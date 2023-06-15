@@ -1,0 +1,4 @@
+"0",""
+"0","#plot the histogram of a variable"
+"0","hist(dataset$scoreX, col = 'blue')"
+"0",""

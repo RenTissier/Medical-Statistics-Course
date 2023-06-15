@@ -1,0 +1,1 @@
+"0","lines(x,dnorm(x, mean = 5, sd = 1),col ='red')"

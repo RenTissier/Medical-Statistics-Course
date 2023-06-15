@@ -1,0 +1,180 @@
+"0","require(fs)"
+"2","Le chargement a nécessité le package : fs
+"
+"0","require(parallel)"
+"2","Le chargement a nécessité le package : parallel
+"
+"0","require(BiocParallel)"
+"2","Le chargement a nécessité le package : BiocParallel
+"
+"0","library(stringr)"
+"0","library(DEXSeq)"
+"2","Le chargement a nécessité le package : Biobase
+"
+"2","Le chargement a nécessité le package : BiocGenerics
+"
+"2","
+Attachement du package : ‘BiocGenerics’
+
+"
+"2","L'objet suivant est masqué depuis ‘package:fs’:
+
+    path
+
+"
+"2","Les objets suivants sont masqués depuis ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+"
+"2","Les objets suivants sont masqués depuis ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame,
+    basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, Filter, Find, get,
+    grep, grepl, intersect, is.unsorted, lapply,
+    Map, mapply, match, mget, order, paste, pmax,
+    pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff,
+    sort, table, tapply, union, unique, unsplit,
+    which.max, which.min
+
+"
+"2","Welcome to Bioconductor
+
+    Vignettes contain introductory material; view
+    with 'browseVignettes()'. To cite
+    Bioconductor, see 'citation(""Biobase"")', and
+    for packages 'citation(""pkgname"")'.
+
+"
+"2","Le chargement a nécessité le package : SummarizedExperiment
+"
+"2","Le chargement a nécessité le package : MatrixGenerics
+"
+"2","Le chargement a nécessité le package : matrixStats
+"
+"2","
+Attachement du package : ‘matrixStats’
+
+"
+"2","Les objets suivants sont masqués depuis ‘package:Biobase’:
+
+    anyMissing, rowMedians
+
+"
+"2","
+Attachement du package : ‘MatrixGenerics’
+
+"
+"2","Les objets suivants sont masqués depuis ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet,
+    colCollapse, colCounts, colCummaxs,
+    colCummins, colCumprods, colCumsums, colDiffs,
+    colIQRDiffs, colIQRs, colLogSumExps,
+    colMadDiffs, colMads, colMaxs, colMeans2,
+    colMedians, colMins, colOrderStats, colProds,
+    colQuantiles, colRanges, colRanks, colSdDiffs,
+    colSds, colSums2, colTabulates, colVarDiffs,
+    colVars, colWeightedMads, colWeightedMeans,
+    colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys,
+    rowAvgsPerColSet, rowCollapse, rowCounts,
+    rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs,
+    rowLogSumExps, rowMadDiffs, rowMads, rowMaxs,
+    rowMeans2, rowMedians, rowMins, rowOrderStats,
+    rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates,
+    rowVarDiffs, rowVars, rowWeightedMads,
+    rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+"
+"2","L'objet suivant est masqué depuis ‘package:Biobase’:
+
+    rowMedians
+
+"
+"2","Le chargement a nécessité le package : GenomicRanges
+"
+"2","Le chargement a nécessité le package : stats4
+"
+"2","Le chargement a nécessité le package : S4Vectors
+"
+"2","
+Attachement du package : ‘S4Vectors’
+
+"
+"2","L'objet suivant est masqué depuis ‘package:utils’:
+
+    findMatches
+
+"
+"2","Les objets suivants sont masqués depuis ‘package:base’:
+
+    expand.grid, I, unname
+
+"
+"2","Le chargement a nécessité le package : IRanges
+"
+"2","
+Attachement du package : ‘IRanges’
+
+"
+"2","L'objet suivant est masqué depuis ‘package:grDevices’:
+
+    windows
+
+"
+"2","Le chargement a nécessité le package : GenomeInfoDb
+"
+"2","Le chargement a nécessité le package : DESeq2
+"
+"2","Le chargement a nécessité le package : AnnotationDbi
+"
+"2","Avis : remplacement de l'importation précédente ‘utils::findMatches’ par ‘S4Vectors::findMatches’ lors du chargement de ‘AnnotationDbi’"
+"2","Le chargement a nécessité le package : RColorBrewer
+"
+"2","Registered S3 methods overwritten by 'dbplyr':
+  method         from
+  print.tbl_lazy     
+  print.tbl_sql      
+"
+"0","library(edgeR)"
+"2","Le chargement a nécessité le package : limma
+"
+"2","
+Attachement du package : ‘limma’
+
+"
+"2","L'objet suivant est masqué depuis ‘package:DEXSeq’:
+
+    plotMA
+
+"
+"2","L'objet suivant est masqué depuis ‘package:DESeq2’:
+
+    plotMA
+
+"
+"2","L'objet suivant est masqué depuis ‘package:BiocGenerics’:
+
+    plotMA
+
+"
+"0","library(ggplot2)"
+"0","library(pals)"
+"0","library(MASS)"
+"2","
+Attachement du package : ‘MASS’
+
+"
+"2","L'objet suivant est masqué depuis ‘package:AnnotationDbi’:
+
+    select
+
+"
+"0","runs <- c(paste0('run50_',c('01','02','03','04','05','06','07','08','09','10')))"
+"0",""

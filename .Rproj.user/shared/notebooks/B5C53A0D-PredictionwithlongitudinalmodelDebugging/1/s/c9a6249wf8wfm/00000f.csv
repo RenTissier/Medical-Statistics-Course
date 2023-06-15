@@ -1,0 +1,4 @@
+"0",""
+"0","data_qol <- read.delim('Update dataset Itske 27052022 -c30.txt')"
+"0","data_abdomen <- read.delim('__final_c30_abdomen.txt')[,-c(1)] # I have transformed the csv file into a txt file to import directly the csv file use the function read.csv"
+"0","data_abdomen <- data_abdomen[complete.cases(data_abdomen$VK_PATIENTNR),]"

@@ -1,0 +1,8 @@
+"0","library(gplots)"
+"0","data.pred.12 <- data.pred[data.pred$timepoint=='1 2',]"
+"0",""
+"0","data.feature.12 <- data.pred.12[,grepl( ""feature"" , names( data.pred.12 ) )]"
+"0",""
+"0","data.feature.12 <- data.feature.12[,which(apply(data.feature.12,2,sd)!=0)]"
+"0","heatmap.2(cor(data.feature.12),trace='none',col= colorRampPalette(c(""green"",""white"",""red""))(40))"
+"0",""

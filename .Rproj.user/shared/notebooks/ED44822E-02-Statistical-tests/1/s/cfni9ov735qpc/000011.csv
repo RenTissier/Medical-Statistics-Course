@@ -1,0 +1,2 @@
+"0","abline(v = qt(c(0.025, 0.975), df = test.variableX$parameter),"
+"0","       col = 'red')"

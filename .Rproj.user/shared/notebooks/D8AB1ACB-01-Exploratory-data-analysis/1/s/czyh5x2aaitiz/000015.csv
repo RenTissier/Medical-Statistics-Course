@@ -1,0 +1,2 @@
+"0","x <- seq(from = -5, to = 15, by = .1)"
+"0","lines(x, dnorm(x, mean = 5, sd = 1.2), col = 'red', lwd = 2)"

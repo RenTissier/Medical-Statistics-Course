@@ -1,0 +1,5 @@
+"0","mean.samples <- NULL"
+"0","for (k in 1:500){"
+"0","  data.sample <- rgamma( 30 , shape = 1, rate = 1)"
+"0","  mean.samples <- c(mean.samples, mean(data.sample))"
+"0","}"

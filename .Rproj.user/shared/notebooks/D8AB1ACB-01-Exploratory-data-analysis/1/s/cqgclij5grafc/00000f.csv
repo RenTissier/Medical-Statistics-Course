@@ -1,0 +1,4 @@
+"0","#Boxplot of a variable for different gruops"
+"0","boxplot(dataset$scoreY ~ dataset$group, col = 'blue', ylab = 'scoreY'"
+"0","        , xlab = 'group')"
+"0",""

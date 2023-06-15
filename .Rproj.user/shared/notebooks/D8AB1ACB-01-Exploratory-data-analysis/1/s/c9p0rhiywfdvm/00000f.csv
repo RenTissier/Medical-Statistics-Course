@@ -1,0 +1,4 @@
+"0",""
+"0","#Plot of the density and quantiles of a chi square distribution "
+"0","#with 1 degree of freedom"
+"0","curve(dchisq(x, df = 1), col = 'blue', from = 0, to = 5)"

@@ -1,0 +1,5 @@
+"0",""
+"0","library(glmnet)"
+"0","model.lasso.cv <- cv.glmnet(x=as.matrix(data.feature.23[complete.cases(data.pred.23$fatigue),]), y=data.pred.23$fatigue[complete.cases(data.pred.23$fatigue)] , family='gaussian',type.measure='deviance',nfolds = 3,alpha = 0.5)"
+"0",""
+"0","plot(model.lasso.cv)"

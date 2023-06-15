@@ -1,0 +1,4 @@
+"0","# obtention of the list of patients available in both dataset"
+"0",""
+"0","patients.common <- intersect(unique(data.qol$id), unique(data_abdomen$VK_PATIENTNR))"
+"0",""

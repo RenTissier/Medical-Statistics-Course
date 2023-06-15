@@ -1,0 +1,4 @@
+"0","data.pred.23 <- data.pred[data.pred$t.prior==2 & data.pred$t.subs==3,]"
+"0","data.feature.23 <- data.pred.23[,grepl( ""feature"" , names( data.pred.23 ) )]"
+"0","data.feature.23 <- data.feature.23[,which(apply(data.feature.23,2,sd)!=0)]"
+"0","heatmap.2(cor(data.feature.23),trace='none',col= colorRampPalette(c(""green"",""white"",""red""))(20))"

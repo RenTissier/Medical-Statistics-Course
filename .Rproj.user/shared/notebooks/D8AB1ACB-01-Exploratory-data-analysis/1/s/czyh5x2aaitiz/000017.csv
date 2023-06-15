@@ -1,0 +1,2 @@
+"0","hist(data.B$scoreX, col = 'blue', prob = TRUE, "
+"0","     main = 'histogram scoreX group B', ylim = c(0, 0.4), xlim= c(1, 8) )"

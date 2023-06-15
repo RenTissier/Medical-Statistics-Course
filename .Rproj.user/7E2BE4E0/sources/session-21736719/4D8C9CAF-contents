@@ -1,0 +1,18 @@
+curve(dnorm(x, mean = 0, sd = 2), col = 'blue', from = -5, to = 10)
+lines(dnorm(x, mean = 3, sd = 1))
+
+groupA <- rnorm(100000,0,1)
+groupB <- rnorm(100000,3,1)
+
+
+plot(density(data.A$scoreY), col= 'blue', xlim=c(-5,5),ylim=c(0,1))
+lines(density(data.B$scoreY), col='red')
+abline(v= mean(data.A$scoreY), col='blue' )
+segments(0, 0.1, -1, 0.1, col = "blue")
+
+
+mean(c(groupA, groupB))
+sd(c(groupA, groupB))
+
+
+dasfasfjigfdfkfo fkgfjr <- fjfiis fdlfkgdlfd gofogk

@@ -1,0 +1,18 @@
+"0","library(reshape2)"
+"0","library(ggplot2)"
+"0","library(gplots)"
+"2","
+Attachement du package : ‘gplots’
+
+"
+"2","L'objet suivant est masqué depuis ‘package:stats’:
+
+    lowess
+
+"
+"0","features <- c(4:515)"
+"0","cor.c30ab.ft <- cor(data.rad.pred[,features])"
+"2","Avis : l'écart type est nul"
+"0","melted_cor <- melt(cor.c30ab.ft)"
+"0",""
+"0","hist(melted_cor$value, main='histogram of correlations between features')"

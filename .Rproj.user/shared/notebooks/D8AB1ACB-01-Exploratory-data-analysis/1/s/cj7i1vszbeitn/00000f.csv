@@ -1,0 +1,3 @@
+"0","#Boxplot of a variable"
+"0","boxplot(dataset$scoreY, col = 'blue', ylab = 'scoreY')"
+"0",""

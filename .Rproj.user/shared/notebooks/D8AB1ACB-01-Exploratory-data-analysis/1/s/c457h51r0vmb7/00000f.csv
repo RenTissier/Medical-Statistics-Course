@@ -1,0 +1,6 @@
+"0","#plotting probability discrete uniform distribution"
+"0",""
+"0","x <- c(1:6)"
+"0","y <- rep(1/6,6)"
+"0",""
+"0","plot(x,y,type=""h"",xlim=c(1,6),ylim=c(0,1),lwd=2,col=""blue"",ylab=""p"")"

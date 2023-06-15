@@ -1,0 +1,4 @@
+"0",""
+"0","#Plot of the density and important quantiles "
+"0","#of a continuous uniform distribution"
+"0","curve(dunif(x, min= 0, max= 1), col=""blue"", from = 0, to = 1 )"

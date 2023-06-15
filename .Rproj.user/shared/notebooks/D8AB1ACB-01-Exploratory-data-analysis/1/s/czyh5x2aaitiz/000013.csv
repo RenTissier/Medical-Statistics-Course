@@ -1,0 +1,6 @@
+"0","#plot the histograms of scoreX for both groups with added density"
+"0","par(mfrow = c(1,2))"
+"0",""
+"0",""
+"0","hist(data.A$scoreX, col = 'blue', prob = TRUE, "
+"0","     main = 'histogram scoreX group A', ylim = c(0, 0.4), xlim= c(1, 8))"
