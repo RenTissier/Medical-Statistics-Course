@@ -129,7 +129,7 @@ summary( svfit )
 ```
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/01-Survival-analysis-in-R.Rmd" );
+catLinkTaskSection("exercises/01-Survival-analysis-in-R.Rmd" );
 ```
 
 ### Survival data for groups: the log-rank test
@@ -201,7 +201,7 @@ survdiff(migr.surv ~ mydata$drug)
 ```
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/02-log-rank-test.Rmd" );
+catLinkTaskSection("exercises/02-log-rank-test.Rmd" );
 ```
 
 
@@ -353,7 +353,7 @@ plot(survfit(leuk.coxs), main = "AG defining strata", log = TRUE)
 ```
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/03-survival-analysis-regression-models.Rmd" );
+catLinkTaskSection("exercises/03-survival-analysis-regression-models.Rmd" );
 ```
 
 
@@ -505,7 +505,7 @@ get.ssize.surv(beta = 0.8, alpha = 0.005, p1 = p1, b1 = b1, pevents = p.event)
 ```
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/04-power-analysis.Rmd" );
+catLinkTaskSection("exercises/04-power-analysis.Rmd" );
 ```
 
 

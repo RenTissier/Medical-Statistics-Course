@@ -218,7 +218,7 @@ legend("topleft", legend = c("normal", "t"), lty = "solid",
 
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/01-Introduction-to-probabilistic-distributions.Rmd");
+catLinkTaskSection("exercises/01-Introduction-to-probabilistic-distributions.Rmd");
 ```
 
 ## Data representation
@@ -333,7 +333,7 @@ boxplot(dataset$scoreY ~ dataset$group, col = 'blue', ylab = 'scoreY'
 As we can see in these boxplots, the median value for both groups is similar but the group B box is wider, indicating more variations in this group. Again, statistical methods are needed to prove if this difference is real or not.
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/02-Data-representation.Rmd" );
+catLinkTaskSection("exercises/02-Data-representation.Rmd" );
 ```
 
 
@@ -583,7 +583,7 @@ c(1:9, 100)
 given by `r mad(c(1:9, 100))`.
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/03-Mean-Variance.Rmd" );
+catLinkTaskSection("exercises/03-Mean-Variance.Rmd" );
 ```
 
 
@@ -732,5 +732,5 @@ heatmap.2(correlation.kendall, trace = 'none', cexRow = 0.8,
 ```
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/04-Correlations.Rmd" );
+catLinkTaskSection("exercises/04-Correlations.Rmd" );
 ```

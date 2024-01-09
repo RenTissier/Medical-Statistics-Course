@@ -1,7 +1,7 @@
 if( !exists( "params" ) ){
   params <- list(
-    "RCourseGitURL" = "https://github.com/rxmenezes/RcourseNKI",
-    "RCourseURL" = "https://github.com/rxmenezes/RcourseNKI"
+    "MedStatGitURL" = "https://github.com/RenTissier/Medical-Statistc-Course-2023",
+    "MedStatURL" = "https://github.com/RenTissier/Medical-Statistc-Course-2023"
   )
 }
 

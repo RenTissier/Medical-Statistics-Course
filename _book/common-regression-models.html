@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2023-06-15" />
+<meta name="date" content="2024-01-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -355,36 +355,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="motivation-4" class="section level3 hasAnchor" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Motivation<a href="common-regression-models.html#motivation-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We have seen in the previous chapter how to compare the distribution between two groups. This gives us an understanding of the relationship between a continuous variable and a binary variable, i.e. a discrete variable with only two possible values. In order to test the association between a continuous variables we need to another approach. For example, does your ability in sprint can influence your pole vault or long jump performances? To answer this kind of question, the best approach is to use linear regression.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="common-regression-models.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
-<span id="cb139-2"><a href="common-regression-models.html#cb139-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-3"><a href="common-regression-models.html#cb139-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(decathlon2)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="common-regression-models.html#cb139-1" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb139-2"><a href="common-regression-models.html#cb139-2" tabindex="-1"></a></span>
+<span id="cb139-3"><a href="common-regression-models.html#cb139-3" tabindex="-1"></a><span class="fu">data</span>(decathlon2)</span></code></pre></div>
 </div>
 <div id="working-example-5" class="section level3 hasAnchor" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> Working Example<a href="common-regression-models.html#working-example-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s use the simulated dataset we used in the previous chapter and add one variable <code>VariableZ</code> that we will build using the 2 other variables.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="common-regression-models.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">352</span>)</span>
-<span id="cb140-2"><a href="common-regression-models.html#cb140-2" aria-hidden="true" tabindex="-1"></a>sample.size<span class="ot">&lt;-</span><span class="dv">30</span></span>
-<span id="cb140-3"><a href="common-regression-models.html#cb140-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-4"><a href="common-regression-models.html#cb140-4" aria-hidden="true" tabindex="-1"></a>variableX.groupA <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(sample.size, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb140-5"><a href="common-regression-models.html#cb140-5" aria-hidden="true" tabindex="-1"></a>variableX.groupB <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(sample.size, <span class="at">mean =</span> <span class="fl">2.4</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb140-6"><a href="common-regression-models.html#cb140-6" aria-hidden="true" tabindex="-1"></a>VariableX <span class="ot">&lt;-</span> <span class="fu">c</span>(variableX.groupA, variableX.groupB)</span>
-<span id="cb140-7"><a href="common-regression-models.html#cb140-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-8"><a href="common-regression-models.html#cb140-8" aria-hidden="true" tabindex="-1"></a>variableY.groupA <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(sample.size, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">scale =</span> <span class="dv">1</span>)</span>
-<span id="cb140-9"><a href="common-regression-models.html#cb140-9" aria-hidden="true" tabindex="-1"></a>variableY.groupB <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(sample.size, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">scale =</span> <span class="fl">1.1</span>)</span>
-<span id="cb140-10"><a href="common-regression-models.html#cb140-10" aria-hidden="true" tabindex="-1"></a>VariableY <span class="ot">&lt;-</span> <span class="fu">c</span>(variableY.groupA, variableY.groupB)</span>
-<span id="cb140-11"><a href="common-regression-models.html#cb140-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-12"><a href="common-regression-models.html#cb140-12" aria-hidden="true" tabindex="-1"></a>VariableZ <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)<span class="sc">*</span>VariableX <span class="sc">+</span> </span>
-<span id="cb140-13"><a href="common-regression-models.html#cb140-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)<span class="sc">*</span>VariableY <span class="sc">+</span> </span>
-<span id="cb140-14"><a href="common-regression-models.html#cb140-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">2</span><span class="sc">*</span>sample.size, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb140-15"><a href="common-regression-models.html#cb140-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-16"><a href="common-regression-models.html#cb140-16" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>), <span class="at">each =</span> sample.size)</span>
-<span id="cb140-17"><a href="common-regression-models.html#cb140-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-18"><a href="common-regression-models.html#cb140-18" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">VariableX =</span> VariableX, <span class="at">VariableY =</span> VariableY, </span>
-<span id="cb140-19"><a href="common-regression-models.html#cb140-19" aria-hidden="true" tabindex="-1"></a>                      <span class="at">VariableZ =</span> VariableZ, </span>
-<span id="cb140-20"><a href="common-regression-models.html#cb140-20" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group =</span> group, <span class="at">stringsAsFactors =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="common-regression-models.html#cb140-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">352</span>)</span>
+<span id="cb140-2"><a href="common-regression-models.html#cb140-2" tabindex="-1"></a>sample.size<span class="ot">&lt;-</span><span class="dv">30</span></span>
+<span id="cb140-3"><a href="common-regression-models.html#cb140-3" tabindex="-1"></a></span>
+<span id="cb140-4"><a href="common-regression-models.html#cb140-4" tabindex="-1"></a>variableX.groupA <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(sample.size, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb140-5"><a href="common-regression-models.html#cb140-5" tabindex="-1"></a>variableX.groupB <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(sample.size, <span class="at">mean =</span> <span class="fl">2.4</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb140-6"><a href="common-regression-models.html#cb140-6" tabindex="-1"></a>VariableX <span class="ot">&lt;-</span> <span class="fu">c</span>(variableX.groupA, variableX.groupB)</span>
+<span id="cb140-7"><a href="common-regression-models.html#cb140-7" tabindex="-1"></a></span>
+<span id="cb140-8"><a href="common-regression-models.html#cb140-8" tabindex="-1"></a>variableY.groupA <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(sample.size, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">scale =</span> <span class="dv">1</span>)</span>
+<span id="cb140-9"><a href="common-regression-models.html#cb140-9" tabindex="-1"></a>variableY.groupB <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(sample.size, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">scale =</span> <span class="fl">1.1</span>)</span>
+<span id="cb140-10"><a href="common-regression-models.html#cb140-10" tabindex="-1"></a>VariableY <span class="ot">&lt;-</span> <span class="fu">c</span>(variableY.groupA, variableY.groupB)</span>
+<span id="cb140-11"><a href="common-regression-models.html#cb140-11" tabindex="-1"></a></span>
+<span id="cb140-12"><a href="common-regression-models.html#cb140-12" tabindex="-1"></a>VariableZ <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)<span class="sc">*</span>VariableX <span class="sc">+</span> </span>
+<span id="cb140-13"><a href="common-regression-models.html#cb140-13" tabindex="-1"></a>  <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)<span class="sc">*</span>VariableY <span class="sc">+</span> </span>
+<span id="cb140-14"><a href="common-regression-models.html#cb140-14" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">2</span><span class="sc">*</span>sample.size, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb140-15"><a href="common-regression-models.html#cb140-15" tabindex="-1"></a></span>
+<span id="cb140-16"><a href="common-regression-models.html#cb140-16" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>), <span class="at">each =</span> sample.size)</span>
+<span id="cb140-17"><a href="common-regression-models.html#cb140-17" tabindex="-1"></a></span>
+<span id="cb140-18"><a href="common-regression-models.html#cb140-18" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">VariableX =</span> VariableX, <span class="at">VariableY =</span> VariableY, </span>
+<span id="cb140-19"><a href="common-regression-models.html#cb140-19" tabindex="-1"></a>                      <span class="at">VariableZ =</span> VariableZ, </span>
+<span id="cb140-20"><a href="common-regression-models.html#cb140-20" tabindex="-1"></a>                      <span class="at">group =</span> group, <span class="at">stringsAsFactors =</span> T)</span></code></pre></div>
 <p>What is a linear regression analysis?</p>
 <p>Let’s make a scatterplot of <code>VariableZ</code> and <code>VariableY</code>.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="common-regression-models.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>VariableY, dataset<span class="sc">$</span>VariableZ)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="common-regression-models.html#cb141-1" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>VariableY, dataset<span class="sc">$</span>VariableZ)</span></code></pre></div>
 <p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <p>We can clearly see that as we look at higher values of the <code>VariableY</code> the values of <code>VariableZ</code> are also increasing. Quantifying the effect of a variable <span class="math inline">\(x\)</span> on the variation of a variable of interest <span class="math inline">\(y\)</span> is the aim of a linear regression model. A linear regression model is written as:</p>
 <p><span class="math inline">\(y_i = \alpha + \beta x_i + \epsilon_i\)</span></p>
@@ -395,8 +395,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(\hat{\alpha} = \overline{y} - \hat{\beta}\overline{x}\)</span></p>
 <p><span class="math inline">\(\sigma^{2} = \frac{SS_{res}}{n-2}\)</span></p>
 <p>Let’s do a linear regression of <code>VariableY</code> on <code>VariableZ</code> by using the function lm in R:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="common-regression-models.html#cb142-1" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(VariableZ <span class="sc">~</span> VariableY, <span class="at">data =</span> dataset)</span>
-<span id="cb142-2"><a href="common-regression-models.html#cb142-2" aria-hidden="true" tabindex="-1"></a>regression</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="common-regression-models.html#cb142-1" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(VariableZ <span class="sc">~</span> VariableY, <span class="at">data =</span> dataset)</span>
+<span id="cb142-2"><a href="common-regression-models.html#cb142-2" tabindex="-1"></a>regression</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = VariableZ ~ VariableY, data = dataset)
@@ -405,17 +405,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)    VariableY  
 ##      0.2723       0.6487</code></pre>
 <p>The function lm returns 2 values, the intercept which correspond to <span class="math inline">\(\alpha\)</span> and the <span class="math inline">\(\beta\)</span> coefficient corresponding to the value below the <code>VariableY</code>. The 4beta$ coefficent can be interpreted as if my variableX increases of 1 my variableZ will increase of <span class="math inline">\(summary(regression)\)</span>coefficients[2,4]. We can represent the results onto the scatterplot:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="common-regression-models.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>VariableY, dataset<span class="sc">$</span>VariableZ, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb144-2"><a href="common-regression-models.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dataset<span class="sc">$</span>VariableY,<span class="fu">fitted</span>(regression), <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb144-3"><a href="common-regression-models.html#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(dataset<span class="sc">$</span>VariableY,<span class="fu">fitted</span>(regression), dataset<span class="sc">$</span>VariableY,dataset<span class="sc">$</span>VariableZ)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="common-regression-models.html#cb144-1" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>VariableY, dataset<span class="sc">$</span>VariableZ, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb144-2"><a href="common-regression-models.html#cb144-2" tabindex="-1"></a><span class="fu">lines</span>(dataset<span class="sc">$</span>VariableY,<span class="fu">fitted</span>(regression), <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb144-3"><a href="common-regression-models.html#cb144-3" tabindex="-1"></a><span class="fu">segments</span>(dataset<span class="sc">$</span>VariableY,<span class="fu">fitted</span>(regression), dataset<span class="sc">$</span>VariableY,dataset<span class="sc">$</span>VariableZ)</span></code></pre></div>
 <p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 <p>In this plot, the blue points are the observed values, the red line is the result of the regression analysis with <span class="math inline">\(\alpha\)</span> being the intercept of the line and <span class="math inline">\(\beta\)</span> its slope. Finally the black vertical line represent the residuals, i.e. the variation that could not be explained by the linear regression model.</p>
 <p>The interest of a linear regression is that we can test if the coefficient <span class="math inline">\(\beta\)</span> is equal to 0 in order to test for association between the 2 variables. To do so in a univariate linear regression we define the statistics t as :</p>
 <p><span class="math inline">\(t = \frac{\beta}{se(\beta)}\)</span></p>
 <p>where t (under the assumption that the outcome is normally distributed and under the null hypothesis <span class="math inline">\(H_0\)</span> : <span class="math inline">\(\beta = 0\)</span>) follows a Student’s t distribution with n-2 degress of freedom. With this information computing the p-value of the test is the same as for the Sutdent’s t test.</p>
 <p>For example we can look at the association between <code>VariableX</code> and <code>group</code> using both Student’s t test and the linear regression:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="common-regression-models.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Student&#39;s t test between VariableX and group</span></span>
-<span id="cb145-2"><a href="common-regression-models.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(VariableX <span class="sc">~</span> group, <span class="at">data =</span> dataset)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="common-regression-models.html#cb145-1" tabindex="-1"></a><span class="co">#Student&#39;s t test between VariableX and group</span></span>
+<span id="cb145-2"><a href="common-regression-models.html#cb145-2" tabindex="-1"></a><span class="fu">t.test</span>(VariableX <span class="sc">~</span> group, <span class="at">data =</span> dataset)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -427,9 +427,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean in group A mean in group B 
 ##        1.900228        2.524028</code></pre>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="common-regression-models.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co">#linear regression between VariableX and group</span></span>
-<span id="cb147-2"><a href="common-regression-models.html#cb147-2" aria-hidden="true" tabindex="-1"></a>linear.regression <span class="ot">&lt;-</span> <span class="fu">lm</span> (VariableX <span class="sc">~</span> group, <span class="at">data =</span> dataset)</span>
-<span id="cb147-3"><a href="common-regression-models.html#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear.regression)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="common-regression-models.html#cb147-1" tabindex="-1"></a><span class="co">#linear regression between VariableX and group</span></span>
+<span id="cb147-2"><a href="common-regression-models.html#cb147-2" tabindex="-1"></a>linear.regression <span class="ot">&lt;-</span> <span class="fu">lm</span> (VariableX <span class="sc">~</span> group, <span class="at">data =</span> dataset)</span>
+<span id="cb147-3"><a href="common-regression-models.html#cb147-3" tabindex="-1"></a><span class="fu">summary</span>(linear.regression)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##              Estimate Std. Error  t value     Pr(&gt;|t|)
 ## (Intercept) 1.9002279  0.1923664 9.878170 4.879130e-14
 ## groupB      0.6238004  0.2720472 2.292986 2.549308e-02</code></pre>
@@ -441,22 +441,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Checking the distributions of the residuals as they are assumed to be normal.</p></li>
 </ul>
 <p>In our case we simulated the outcome <code>VariableZ</code> as the sum of two gaussian distribution so <code>VariableZ</code>. Instead let’s plot the distribution of the residuals:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="common-regression-models.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(regression<span class="sc">$</span>residuals, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="common-regression-models.html#cb149-1" tabindex="-1"></a><span class="fu">hist</span>(regression<span class="sc">$</span>residuals, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code></pre></div>
 <p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 <p>We can see clearly that the residuals distribution is really close from a normal distribution. This clearly indicates that the regression went well. Another plit is commonly used to check if a distribution is following a gaussian distribution. The Q-Q plot. This plot consist of comparing a set of values with the quantiles of a normal distribution:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="common-regression-models.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(regression<span class="sc">$</span>residuals, <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">frame =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb150-2"><a href="common-regression-models.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(regression<span class="sc">$</span>residuals, <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="common-regression-models.html#cb150-1" tabindex="-1"></a><span class="fu">qqnorm</span>(regression<span class="sc">$</span>residuals, <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">frame =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb150-2"><a href="common-regression-models.html#cb150-2" tabindex="-1"></a><span class="fu">qqline</span>(regression<span class="sc">$</span>residuals, <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 <p>The closer the points are from the blue line the closer the set of values is close from a normal distribution.</p>
 <p>Another interesting graph to plot is the scatter plot of the outcome and the residuals.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="common-regression-models.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(regression<span class="sc">$</span>residuals, dataset<span class="sc">$</span>VariableZ)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="common-regression-models.html#cb151-1" tabindex="-1"></a><span class="fu">plot</span>(regression<span class="sc">$</span>residuals, dataset<span class="sc">$</span>VariableZ)</span></code></pre></div>
 <p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <p>We can clearly see a trend in the scatterplot. This trend is interesting, as it means that the residuals of the linear models are associated with the outcome Y. Meaning that the variation not explained by the linear model is not due to randomess and another linear association, independent to <code>VariableY</code> exists. It is easy to explain in our case as <code>VariableZ</code> was simulated as the weighted sum of <code>VariableX</code> and <code>VariableY</code>.</p>
 <p>To obtain a better linear model it might of interest to use linear models with multiple variables such as:</p>
 <p><span class="math inline">\(z_i = \alpha + \beta_1 y_i + \beta_2 x_i + \epsilon_i\)</span></p>
 <p>let’s run the model using the <code>lm</code> function:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="common-regression-models.html#cb152-1" aria-hidden="true" tabindex="-1"></a>multiple.regression <span class="ot">&lt;-</span> <span class="fu">lm</span> (VariableZ <span class="sc">~</span> VariableX <span class="sc">+</span> VariableY, <span class="at">data=</span>dataset)</span>
-<span id="cb152-2"><a href="common-regression-models.html#cb152-2" aria-hidden="true" tabindex="-1"></a>multiple.regression</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="common-regression-models.html#cb152-1" tabindex="-1"></a>multiple.regression <span class="ot">&lt;-</span> <span class="fu">lm</span> (VariableZ <span class="sc">~</span> VariableX <span class="sc">+</span> VariableY, <span class="at">data=</span>dataset)</span>
+<span id="cb152-2"><a href="common-regression-models.html#cb152-2" tabindex="-1"></a>multiple.regression</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = VariableZ ~ VariableX + VariableY, data = dataset)
@@ -465,7 +465,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)    VariableX    VariableY  
 ##     -0.2473       0.2658       0.6158</code></pre>
 <p>And we can check the significance of the <span class="math inline">\(\beta\)</span>s obtained:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="common-regression-models.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(multiple.regression)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="common-regression-models.html#cb154-1" tabindex="-1"></a><span class="fu">summary</span>(multiple.regression)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##               Estimate Std. Error    t value     Pr(&gt;|t|)
 ## (Intercept) -0.2473115 0.28451895 -0.8692268 3.883686e-01
 ## VariableX    0.2658086 0.10814688  2.4578481 1.704112e-02
@@ -476,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <blockquote>
 <p><em>Quick task(s)</em>:</p>
-<p>Solve <a href="_book/01-Linear-regression.tasks.nocode.html">the task(s)</a>, and check your solution(s) <a href="_book/01-Linear-regression.tasks.code.html">here</a>.</p>
+<p>Solve <a href="exercises/01-Linear-regression.tasks.nocode.html">the task(s)</a>, and check your solution(s) <a href="exercises/01-Linear-regression.tasks.code.html">here</a>.</p>
 </blockquote>
 <hr />
 </div>
@@ -504,9 +504,9 @@ E(Y) = h^{-1}\left( \alpha + \beta_1X_1 + \beta_2X_2 \right).
 f(z) = \frac{e^z}{1+e^z},
 \]</span>
 for any value of <span class="math inline">\(z\)</span>. The graph of this function for values of <span class="math inline">\(z\)</span> between -5 and 5 is:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="common-regression-models.html#cb156-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
-<span id="cb156-2"><a href="common-regression-models.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(z, <span class="fu">exp</span>(z)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(z)), <span class="at">main =</span> <span class="st">&quot;Logistic function&quot;</span>, </span>
-<span id="cb156-3"><a href="common-regression-models.html#cb156-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="common-regression-models.html#cb156-1" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb156-2"><a href="common-regression-models.html#cb156-2" tabindex="-1"></a><span class="fu">plot</span>(z, <span class="fu">exp</span>(z)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(z)), <span class="at">main =</span> <span class="st">&quot;Logistic function&quot;</span>, </span>
+<span id="cb156-3"><a href="common-regression-models.html#cb156-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 <p>The logistic link function relates the response <span class="math inline">\(Y\)</span> and the linear prediction (which is the function of the covariates, <span class="math inline">\(\alpha + \beta_1 X_1 + \beta_2 X_2\)</span>) in the following way:</p>
 <p><span class="math display">\[
@@ -564,16 +564,16 @@ E(Y) = \frac{e^{\alpha + \beta_1X_1 + \beta_2X_2 }}{1+e^{\alpha + \beta_1X_1 + \
 </tbody>
 </table>
 <p>We enter the data into R as follows: the dose is entered in its original scale, then log2-transformed. The total numbers of death moths are entered as a single vector, with all males followed by all females. So, the dose vector needs to be repeated (stacked) to produce entries corresponding to all total death count observations. Finally, we enter the sex by repeating <code>male</code> or <code>female</code> the required number of times.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="common-regression-models.html#cb157-1" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>)</span>
-<span id="cb157-2"><a href="common-regression-models.html#cb157-2" aria-hidden="true" tabindex="-1"></a>ldose <span class="ot">&lt;-</span> <span class="fu">log2</span>(dose)</span>
-<span id="cb157-3"><a href="common-regression-models.html#cb157-3" aria-hidden="true" tabindex="-1"></a>numdead <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">13</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">16</span>)</span>
-<span id="cb157-4"><a href="common-regression-models.html#cb157-4" aria-hidden="true" tabindex="-1"></a>ldose <span class="ot">&lt;-</span> <span class="fu">rep</span>(ldose, <span class="dv">2</span>)</span>
-<span id="cb157-5"><a href="common-regression-models.html#cb157-5" aria-hidden="true" tabindex="-1"></a>sex <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>), <span class="at">each =</span> <span class="fu">length</span>(dose))</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="common-regression-models.html#cb157-1" tabindex="-1"></a>dose <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>)</span>
+<span id="cb157-2"><a href="common-regression-models.html#cb157-2" tabindex="-1"></a>ldose <span class="ot">&lt;-</span> <span class="fu">log2</span>(dose)</span>
+<span id="cb157-3"><a href="common-regression-models.html#cb157-3" tabindex="-1"></a>numdead <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">13</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">16</span>)</span>
+<span id="cb157-4"><a href="common-regression-models.html#cb157-4" tabindex="-1"></a>ldose <span class="ot">&lt;-</span> <span class="fu">rep</span>(ldose, <span class="dv">2</span>)</span>
+<span id="cb157-5"><a href="common-regression-models.html#cb157-5" tabindex="-1"></a>sex <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>), <span class="at">each =</span> <span class="fu">length</span>(dose))</span></code></pre></div>
 <p>To define the response as the pair of (number dead, number alive) we do:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="common-regression-models.html#cb158-1" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">cbind</span>(numdead, <span class="at">numalive =</span> <span class="dv">20</span> <span class="sc">-</span> numdead)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="common-regression-models.html#cb158-1" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">cbind</span>(numdead, <span class="at">numalive =</span> <span class="dv">20</span> <span class="sc">-</span> numdead)</span></code></pre></div>
 <p>Now we fit the logistic model:</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="common-regression-models.html#cb159-1" aria-hidden="true" tabindex="-1"></a>budworm.lg <span class="ot">&lt;-</span> <span class="fu">glm</span>(resp <span class="sc">~</span> sex <span class="sc">+</span> ldose, <span class="at">family =</span> binomial)</span>
-<span id="cb159-2"><a href="common-regression-models.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(budworm.lg)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="common-regression-models.html#cb159-1" tabindex="-1"></a>budworm.lg <span class="ot">&lt;-</span> <span class="fu">glm</span>(resp <span class="sc">~</span> sex <span class="sc">+</span> ldose, <span class="at">family =</span> binomial)</span>
+<span id="cb159-2"><a href="common-regression-models.html#cb159-2" tabindex="-1"></a><span class="fu">summary</span>(budworm.lg)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = resp ~ sex + ldose, family = binomial)
@@ -594,8 +594,8 @@ E(Y) = \frac{e^{\alpha + \beta_1X_1 + \beta_2X_2 }}{1+e^{\alpha + \beta_1X_1 + \
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>There may also be an interaction effect between <code>sex</code> and <code>ldose</code>, meaning that the <code>ldose</code> effect may change depending on the sex. To check this, we add the interaction term:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="common-regression-models.html#cb161-1" aria-hidden="true" tabindex="-1"></a>budworm.lg.i <span class="ot">&lt;-</span> <span class="fu">update</span>(budworm.lg, . <span class="sc">~</span> sex<span class="sc">:</span>ldose)</span>
-<span id="cb161-2"><a href="common-regression-models.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(budworm.lg.i)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="common-regression-models.html#cb161-1" tabindex="-1"></a>budworm.lg.i <span class="ot">&lt;-</span> <span class="fu">update</span>(budworm.lg, . <span class="sc">~</span> sex<span class="sc">:</span>ldose)</span>
+<span id="cb161-2"><a href="common-regression-models.html#cb161-2" tabindex="-1"></a><span class="fu">summary</span>(budworm.lg.i)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = resp ~ sex:ldose, family = binomial)
@@ -617,7 +617,7 @@ E(Y) = \frac{e^{\alpha + \beta_1X_1 + \beta_2X_2 }}{1+e^{\alpha + \beta_1X_1 + \
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Here we fitted a new model by using the function <code>update</code>, which added the interaction effect <code>sex:dose</code> to the linear predictor already in <code>budworm.lg</code>. Note that this is the same as fitting the model by calling <code>glm</code> again with the interaction term added.</p>
 <p>We can use <code>anova</code> to summarize results for a model, as before. Here we will test for the effect of variables in the model fit <code>budworm.lg</code>. The function <code>anova</code> will perform testing as if variables were added sequentially, one by one. In this case, the effect of <code>sex</code> is tested, subsequently the effect of <code>ldose</code> given that the <code>sex</code> effect is corrected for. Let us try this out:</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="common-regression-models.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(budworm.lg)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="common-regression-models.html#cb163-1" tabindex="-1"></a><span class="fu">anova</span>(budworm.lg)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table
 ## 
 ## Model: binomial, link: logit
@@ -632,7 +632,7 @@ E(Y) = \frac{e^{\alpha + \beta_1X_1 + \beta_2X_2 }}{1+e^{\alpha + \beta_1X_1 + \
 ## sex    1    6.077        10    118.799
 ## ldose  1  112.042         9      6.757</code></pre>
 <p>Note that the <code>anova</code> function now did not return a p-value for the covariate effects. When applied with generalized linear model fits, this is the default. This forces the user to choose the appropriate test to run (see <code>help(anova.glm)</code> for details). The suitable test in this case is the chi-square, so we rerun it using:</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="common-regression-models.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(budworm.lg, <span class="at">test =</span> <span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="common-regression-models.html#cb165-1" tabindex="-1"></a><span class="fu">anova</span>(budworm.lg, <span class="at">test =</span> <span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table
 ## 
 ## Model: binomial, link: logit
@@ -649,7 +649,7 @@ E(Y) = \frac{e^{\alpha + \beta_1X_1 + \beta_2X_2 }}{1+e^{\alpha + \beta_1X_1 + \
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>In order to test for the main effects, followed by the interaction, use the entire model fit in one <code>glm</code> call:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="common-regression-models.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">glm</span>(resp <span class="sc">~</span> sex <span class="sc">+</span> ldose <span class="sc">+</span> sex<span class="sc">:</span>ldose, <span class="at">family =</span> binomial), <span class="at">test =</span> <span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="common-regression-models.html#cb167-1" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">glm</span>(resp <span class="sc">~</span> sex <span class="sc">+</span> ldose <span class="sc">+</span> sex<span class="sc">:</span>ldose, <span class="at">family =</span> binomial), <span class="at">test =</span> <span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table
 ## 
 ## Model: binomial, link: logit
@@ -670,7 +670,7 @@ E(Y) = \frac{e^{\alpha + \beta_1X_1 + \beta_2X_2 }}{1+e^{\alpha + \beta_1X_1 + \
 <hr />
 <blockquote>
 <p><em>Quick task(s)</em>:</p>
-<p>Solve <a href="_book/02-Logistic-regression.tasks.nocode.html">the task(s)</a>, and check your solution(s) <a href="_book/02-Logistic-regression.tasks.code.html">here</a>.</p>
+<p>Solve <a href="exercises/02-Logistic-regression.tasks.nocode.html">the task(s)</a>, and check your solution(s) <a href="exercises/02-Logistic-regression.tasks.code.html">here</a>.</p>
 </blockquote>
 <hr />
 </div>
@@ -678,8 +678,8 @@ E(Y) = \frac{e^{\alpha + \beta_1X_1 + \beta_2X_2 }}{1+e^{\alpha + \beta_1X_1 + \
 <h3><span class="header-section-number">3.2.5</span> Fitted values<a href="common-regression-models.html#fitted-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>It is useful to make a graph of the predicted values. For this, we use the function <code>predict</code>. It needs as input the fitted model, in this case <code>budworm.lg</code>, as well as the data for which you want to make predictions. If no data is given, the fitted values corresponding to the observed data are used. If data is provided, it needs to be given as a <code>data.frame</code> object, containing variables with the same variable names as in the original data.</p>
 <p>Let us first extract the fitted values:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="common-regression-models.html#cb169-1" aria-hidden="true" tabindex="-1"></a>myfitted <span class="ot">&lt;-</span> <span class="fu">predict</span>(budworm.lg)</span>
-<span id="cb169-2"><a href="common-regression-models.html#cb169-2" aria-hidden="true" tabindex="-1"></a>myfitted</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="common-regression-models.html#cb169-1" tabindex="-1"></a>myfitted <span class="ot">&lt;-</span> <span class="fu">predict</span>(budworm.lg)</span>
+<span id="cb169-2"><a href="common-regression-models.html#cb169-2" tabindex="-1"></a>myfitted</span></code></pre></div>
 <pre><code>##          1          2          3          4          5          6          7 
 ## -2.3724119 -1.3081980 -0.2439840  0.8202300  1.8844439  2.9486579 -3.4731553 
 ##          8          9         10         11         12 
@@ -689,14 +689,14 @@ E(Y) = \frac{e^{\alpha + \beta_1X_1 + \beta_2X_2 }}{1+e^{\alpha + \beta_1X_1 + \
 \hat\alpha + \hat\beta_1 X_1 + \hat\beta_2 X_2,
 \]</span>
 where <span class="math inline">\(\hat\alpha, \hat\beta_1, \hat\beta_2\)</span> are the parameter estimates from the model fit, as given in the column <code>Estimate</code> of the model fit summary:</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="common-regression-models.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(budworm.lg)<span class="sc">$</span>coef</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="common-regression-models.html#cb171-1" tabindex="-1"></a><span class="fu">summary</span>(budworm.lg)<span class="sc">$</span>coef</span></code></pre></div>
 <pre><code>##              Estimate Std. Error   z value     Pr(&gt;|z|)
 ## (Intercept) -3.473155  0.4685202 -7.413032 1.234445e-13
 ## sexmale      1.100743  0.3558271  3.093478 1.978249e-03
 ## ldose        1.064214  0.1310775  8.118971 4.701542e-16</code></pre>
 <p>While this is useful, it is easier to examine the model fit by comparing the fitted values on the scale of the response. For this, we use</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="common-regression-models.html#cb173-1" aria-hidden="true" tabindex="-1"></a>myfitted <span class="ot">&lt;-</span> <span class="fu">predict</span>(budworm.lg, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb173-2"><a href="common-regression-models.html#cb173-2" aria-hidden="true" tabindex="-1"></a>myfitted</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="common-regression-models.html#cb173-1" tabindex="-1"></a>myfitted <span class="ot">&lt;-</span> <span class="fu">predict</span>(budworm.lg, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb173-2"><a href="common-regression-models.html#cb173-2" tabindex="-1"></a>myfitted</span></code></pre></div>
 <pre><code>##          1          2          3          4          5          6          7 
 ## 0.08530076 0.21278854 0.43930479 0.69428515 0.86812073 0.95020002 0.03008577 
 ##          8          9         10         11         12 
@@ -705,7 +705,7 @@ where <span class="math inline">\(\hat\alpha, \hat\beta_1, \hat\beta_2\)</span> 
 <hr />
 <blockquote>
 <p><em>Quick task(s)</em>:</p>
-<p>Solve <a href="_book/03-Fitted-values.tasks.nocode.html">the task(s)</a>, and check your solution(s) <a href="_book/03-Fitted-values.tasks.code.html">here</a>.</p>
+<p>Solve <a href="exercises/03-Fitted-values.tasks.nocode.html">the task(s)</a>, and check your solution(s) <a href="exercises/03-Fitted-values.tasks.code.html">here</a>.</p>
 </blockquote>
 <hr />
 

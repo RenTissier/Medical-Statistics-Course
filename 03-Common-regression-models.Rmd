@@ -161,7 +161,7 @@ Strong correlation between predictors in the same models can create the so-calle
 Note that the power and sample size computations for linear regression with multiple predictors becomes rather challenging. Searcher often use rules of thumbs. A commonly encountered rule of thumbs is at least 10-15 samples for each predictors in the model. But this is only a rule of thumbs and as we know, the required sample size is depending on the variation of the outcome of interest as well as the effect size to test.
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/01-Linear-regression.Rmd" );
+catLinkTaskSection("exercises/01-Linear-regression.Rmd" );
 ```
 
 ## Logistic regression
@@ -293,7 +293,7 @@ anova(glm(resp ~ sex + ldose + sex:ldose, family = binomial), test = "Chisq")
 We conclude that both `sex` and `ldose` have statistically significant effects, but that the interaction does not.
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/02-Logistic-regression.Rmd" );
+catLinkTaskSection("exercises/02-Logistic-regression.Rmd" );
 ```
 
 ### Fitted values
@@ -329,6 +329,6 @@ These are fitted probabilities of dead moths for each combination of `ldose` and
 
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/03-Fitted-values.Rmd" );
+catLinkTaskSection("exercises/03-Fitted-values.Rmd" );
 ```
 

@@ -124,7 +124,7 @@ wilcox.test(dataset$VariableY ~ dataset$group, alternative = "two.sided")
 We can notice that the output of the Mann-Whitney-Wilcoxon test is smaller than for the Student's t test. Indeed as it is a non parametric test it does not provide direct effect size or confidence interval. However, relying only on the p-value is not correct and one would prefer to report also the difference between the median of both samples.
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/01-comparing-2-groups.Rmd" );
+catLinkTaskSection("exercises/01-comparing-2-groups.Rmd" );
 ```
 
 
@@ -367,5 +367,5 @@ Note that for the Student's t test obtaining power and sample sizes is relativel
 
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/02-poweranalysis.Rmd" );
+catLinkTaskSection("exercises/02-poweranalysis.Rmd" );
 ```

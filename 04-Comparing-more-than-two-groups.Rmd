@@ -137,7 +137,7 @@ kt2
 The Kruskal-Wallis test is based on ranks of the data. In this case, it is more powerful to find differences between groups than the F test from ANOVA.
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/01-Comparing-more-than-2-groups.Rmd" );
+catLinkTaskSection("exercises/01-Comparing-more-than-2-groups.Rmd" );
 ```
 
 ## Testing independence in 2x2 tables
@@ -330,7 +330,7 @@ fisher.test(table(x2, y2))$p.value
 ```
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/02-Testing-independence-in-2x2-tables.Rmd" );
+catLinkTaskSection("exercises/02-Testing-independence-in-2x2-tables.Rmd" );
 ```
 
 ## Testing independence in nx2 tables
@@ -448,7 +448,7 @@ Frequencies | Y=0  | Y=1 | Total
 You may wish to check for yourself that the same happens, regardless of the entries chosen to be fixed.
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/03-Testing-independence-in-nx2-tables.Rmd" );
+catLinkTaskSection("exercises/03-Testing-independence-in-nx2-tables.Rmd" );
 ```
 
 ## Testing symmetry in 2x2 tables
@@ -519,7 +519,7 @@ mcnemar.test(table(res.radio, res.comp))
 
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/04-Testing-symmetry-in-2x2-tables.Rmd" );
+catLinkTaskSection("exercises/04-Testing-symmetry-in-2x2-tables.Rmd" );
 ```
 
 
@@ -620,7 +620,7 @@ round(rr, 4)
 So, the chance of someone having a stroke is `r round(rr, 2)` larger amongst smokers than amongst non-smokers.
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/05-relative-risk.Rmd" );
+catLinkTaskSection("exercises/05-relative-risk.Rmd" );
 ```
 
 ### Odds ratio
@@ -652,7 +652,7 @@ Note again that, in this case, cases are on row 2 and controls on row 1.
 So, the odds of someone having a stroke is `r round(or, 2)` larger amongst smokers than amongst non-smokers.
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/06-odds-ratio.Rmd" );
+catLinkTaskSection("exercises/06-odds-ratio.Rmd" );
 ```
 
 
@@ -752,7 +752,7 @@ confint(lgfit, 2)
 This is the 95% confidence interval for the logarithm of the relative risk. Typically there is interest in testing whether the relative risk is equal to 1 (in which case the risk the same in both groups). On this scale, this test is equivalent to testing whether the log-relative risk is equal to 0. The above confidence interval does not include 0, indicating that the null hypothesis that the relative risk is equal to 1 can be rejected, with a significance level of 0.05 (because it is a 95% confidence interval).
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/07-Poisson-regression.Rmd" );
+catLinkTaskSection("exercises/07-Poisson-regression.Rmd" );
 ```
 
 
@@ -844,7 +844,7 @@ min(sr[ powerv >= 0.8 ]*83) + min(sr[ powerv >= 0.8 ]*63)
 Note that Fisher's exact test makes no distinction between rows and columns, in the sense that the test statistic is the same, if we invert rows and columns. So, conclusions here would have been the same if we had used as inputs the proportions of learning speeds per sex, and the column sums, instead.
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/08-power-analysis-Fisher-test.Rmd" );
+catLinkTaskSection("exercises/08-power-analysis-Fisher-test.Rmd" );
 ```
 
 
@@ -878,7 +878,7 @@ pwr.chisq.test(w = eff.size, df = 1, power = 0.8)
 
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("_book/09-power-analysis-chi-square-test.Rmd" );
+catLinkTaskSection("exercises/09-power-analysis-chi-square-test.Rmd" );
 ```
 
 ### Odds ratio
