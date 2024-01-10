@@ -14,10 +14,10 @@ dbinom(c(20,25,35), size = 50, prob =0.5)
 plot(c(0:50),dbinom(c(0:50), size = 50, prob =0.5), ylim=c(0,0.2),col="blue",ylab="p")
 ```
 
-The student throws a coin 5 times and repeats this experiment 500 times. Simulate each experiment using the `rbinom` function and compute their mean. Plot the histogram of the 500 means obtained.
+500 students from the statistical school throw 5 times a coin and report the average number heads obtained per throw. Simulate the results of the 500 students using the `sapply` and `rbinom` function. Plot the histogram of the 500 results obtained.
 
 ```{r}
-means<-NULL
+set.seed(42)
 for (k in 1:500){
 sample <- rbinom(5, size = 1, prob =0.5)
 means <- c(means, mean(sample))
@@ -25,9 +25,10 @@ means <- c(means, mean(sample))
 hist(means,col="blue")
 ```
 
-Not satisfied by his results, the student recruits 9 other students to do the same thing in order to throw the coin 50 time and repeat the experiment 500 times. Simulate and plot the results.
+Not satisfied by these results, the students decides to throw the coin 50 times instead of 5. Simulate and plot the results.
 
 ```{r}
+set.seed(42)
 means<-NULL
 for (k in 1:500){
 sample <- rbinom(50, size = 1, prob =0.5)

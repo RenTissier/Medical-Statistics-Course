@@ -9,23 +9,31 @@ source( "../R_course_setup.R" );
 
 ### Quick Task
 
-Perform the Student's t test and the Wilcoxon rank-sum test to compare the performance for each events and the total number of points between both events in the `decathlon2` dataset. Do you see any differences between the test?
+Perform the Student's t test and the Wilcoxon rank-sum test to compare the performances of athletes on the 100m event between the competitions.  
 
 ```{r}
 library(factoextra)
 data(decathlon2)
-p.values <- NULL
-t.statistic <- NULL
-for (k in colnames(decathlon2)[c(1:10,12)]){
-  print(k)
-  formula <- as.formula(paste('decathlon2$', k, ' ~ decathlon2$Competition', sep = ''))
-  t.test.deca <- t.test(formula)
-  p.values <- c(p.values, t.test.deca$p.value)
-  t.statistic <- c(t.statistic, t.test.deca$statistic)
-  print(t.test.deca)
-  wilcox.test.deca <- wilcox.test(formula, alternative = "two.sided", exact =F)
-  print(wilcox.test.deca)
+t.test(X100m ~ Competition, data = decathlon2)
+wilcox.test(X100m ~ Competition, data = decathlon2)
+```
+
+Now compute for each events and the total number of points between both events in the `decathlon2` dataset the p-values obtained by the student's t test and the wilcoxon test. Display the p-values of both tests for each variable in a data frame. Do you see any differences between the tests?
+
+*Hint : you can create a function that will compute both p-values for one event and use the function `sapply` to apply it to all events.*
+
+```{r}
+
+events <- colnames(decathlon2)[c(1:10,12)]
+
+two.test <- function(response, covariate, dataset){
+    formula <- formula(paste0(response, ' ~ ', covariate))
+    ttest <- t.test(formula, data = dataset)
+    wilcoxtest <- wilcox.test(formula, data = dataset, exact = F)
+    pvalues <- c(ttest$p.value, wilcoxtest$p.value)
 }
 
-dataTests <- data.frame(name.variables = colnames(decathlon2)[c(1:10,12)], pvalue = p.values, statistic = t.statistic) 
+testresults <- sapply(events, two.test, covariate = '	Competition', dataset= decathlon2)
+
+dataTests <- data.frame(ttest = testresults[1,], wtest = testresults[2,]) 
 ```
