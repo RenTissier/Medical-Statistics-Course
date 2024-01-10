@@ -45,7 +45,7 @@ points(x,y,pch=16,cex=2,col="blue")
 
 ```
 
-Now imagine that you throw a fair coin not once, but 10 times. Then the number of times that the result was heads can be modelled by the **binomial distribution**. It describes the probabilities of results of several independent throws, each of which with the same probability of success (heads).  
+Now imagine that you throw a fair coin not once, but 10 times. Then the number of times that the result was heads can be modeled by the **binomial distribution**. It describes the probabilities of results of several independent throws, each of which with the same probability of success (heads).  
 
 If we go back to the previous dice example, we can compute the probability to obtain 4 successes (dice gives 1 or 2) in 10 trials. This can be done with the function `dbinom`. The probability is `r dbinom(4, size = 10, p= 1/3)`.
 
@@ -268,7 +268,7 @@ hist(dataset$scoreX, col = 'blue')
 
 ```
 
-The histogram displays bars representing counts of the number of observations falling into specific bins (intervals of values). This gives us an idea about the shape of the distribution of a variable (in the example above, of `scoreX`). As we simulated values for =`scoreX` using a normal distribution, we expect the histogram to reflect this - be symmetric and to not have too many extremen values. Compare the histogram above to the one for the variable `scoreY`: 
+The histogram displays bars representing counts of the number of observations falling into specific bins (intervals of values). This gives us an idea about the shape of the distribution of a variable (in the example above, of `scoreX`). As we simulated values for =`scoreX` using a normal distribution, we expect the histogram to reflect this - be symmetric and to not have too many extreme values. Compare the histogram above to the one for the variable `scoreY`: 
 
 ```{r}
 
@@ -319,7 +319,7 @@ boxplot(dataset$scoreY, col = 'blue', ylab = 'scoreY')
 
 ```
 
-The box represents the space between the first and the third quartiles of the variable.  The thick horizontal line represents the median of the variable, i.e. the second quartile leaving 50% of values below it. Finally, the top and bottom lines represent a space equal to 1.5 the boxsize from the nearest edge of the box. Any values above or below these lines are represented as points and are considered as extreme values, and possible outliers.
+The box represents the space between the first and the third quartiles of the variable.  The thick horizontal line represents the median of the variable, i.e. the second quartile leaving 50% of values below it. Finally, the top and bottom lines represent a space equal to 1.5 the box size from the nearest edge of the box. Any values above or below these lines are represented as points and are considered as extreme values, and possible outliers.
 
 To make boxplots of the same variable for different groups is really easy, by using a formula as shown below:
 
@@ -376,7 +376,7 @@ The standard deviation represents the amount of variation of values around their
 
 $\sigma = \sqrt(\frac{\sum_{i}^{N}(x_{i}-\overline{x})^{2}}{N})$
 
-We will now compute the standard deviation for both variables in each group :
+We will now compute the standard deviation for both variables in each group:
 
 ```{r}
 

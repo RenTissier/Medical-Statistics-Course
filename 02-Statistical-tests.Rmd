@@ -58,7 +58,7 @@ $SEDM = \sqrt{SEM_{1}^{2}+SEM_{2}^{2}}$
 
 The square root of the sum of the squared standard errors to mean of each group. The standard error to the mean can itself be computed as the standard deviation divided by the square root of the number of samples. 
 
-$SEM_{1} = \frac{\sigma_1}{\sqrt{n}}$
+$SEM_{1} = \frac{\sigma_1}{\sqrt{n_1}}$
 
 When using a statistical test two hypotheses are formulated, the null hypothesis $H_0$ and the alternative hypothesis $H_a$, respectively. In the case of the Student's t-test, the hypotheses are:
 
@@ -109,7 +109,7 @@ The Mann-Whitney-Wilcoxon test is non parametric as it does not test a specific 
 
 $H_0$ : $P(X > Y) = P(Y > X)$ and $H_a$ : $P(X > Y) \neq P(Y > X)$
 
-To simplify the test relies on comparing the medians of both populations. The statistic of the test called U is computed as follows. All observations are pooled together and ranked based on their values. For example if we have a pooled set of 6 distinct values (2, 4, 4, 4, 1, 5), the ranked version of this set of obervations becomes (2, 4, 4, 4, 6, 1). Let's call $R_1$. We can then compute U as: 
+To simplify the test relies on comparing the medians of both populations. The statistic of the test called U is computed as follows. All observations are pooled together and ranked based on their values. For example if we have a pooled set of 6 distinct values (2, 4, 4, 4, 1, 5), the ranked version of this set of observations becomes (2, 4, 4, 4, 1, 6). Let's call $R_1$. We can then compute U as: 
 
 U = $R_1 - \frac{(n_1)(n_1 + 1)}{2}$
 
@@ -121,7 +121,7 @@ wilcox.test(dataset$VariableY ~ dataset$group, alternative = "two.sided")
 
 ```
 
-We can notice that the output of the Mann-Whitney-Wilcoxon test is smaller than for the Student's t test. Indeed as it is a non parametric test it does not provide direct effect size or confidence interval. However, relying only on the p-value is not correct and one would prefer to report also the difference between the median of both samples.
+We can notice that the output of the Mann-Whitney-Wilcoxon test is smaller than for the Student's t test. Indeed as it is a non parametric test it does not provide direct effect size, but we can obtain  confidence interval by setting `conf.int` argument to `TRUE`. Furthermore, relying only on the p-value is not correct and one would prefer to report also the difference between the median of both samples.
 
 ```{r results="asis", echo=FALSE, comment=""}
 catLinkTaskSection("exercises/01-comparing-2-groups.Rmd" );
@@ -132,7 +132,7 @@ catLinkTaskSection("exercises/01-comparing-2-groups.Rmd" );
 
 ### Motivation
 
-After looking at the results of the group comparison using the `decathlon2` dataset the searcher wants to build another study in order to prove that the impact of the material used to build the surface of the stadium can impact the performance of the racing events and the long jump event. While building the protocol of his study the searcher encounters the question : How many sportsmen should he recruit in order to obtain satisfactory testing results?
+After looking at the results of the group comparison using the `decathlon2` dataset the researcher wants to build another study in order to prove that the impact of the material used to build the surface of the stadium can impact the performance of the racing events and the long jump event. While building the protocol of his study the researcher encounters the question: How many sportsmen should he recruit in order to obtain satisfactory testing results?
 
 ```{r}
 library(factoextra)
@@ -169,8 +169,8 @@ We can see that even if we simulated both variables from different distributions
 
 Reality \ Test results | Non-significant  | Significant |  
 ------------|------|-----|
-$H_0$ True  | $1-\beta$ (True Negative) | $\alpha$ (False Positive) |
-$H_0$ False | $\beta$ (False Negative) | $1-\alpha$ (True Positive) |
+$H_0$ True  | $1-\alpha$ (True Negative) | $\alpha$ (False Positive) |
+$H_0$ False | $\beta$ (False Negative) | $1-\beta$ (True Positive) |
 
 The $\alpha$ represents they type I error, i.e. the probability of finding a significant difference when there is none. This coefficient $\alpha$ is often fixed to 5%. The $\beta$ coefficient represent the probability to obtain a non-significant test while the alternative hypothesis is true and is called type II error. This is the case when we test the VariableY that we simulated. The power of a statistical test correspond to the values 1-$\beta$, and is the probability to reject the null hypothesis appropriately.
 
@@ -313,9 +313,9 @@ If the effect size of the phenomenon we want to study cannot be easily changed, 
 As the latter is not advisable in most studies, the easiest approach to influence the power of the test is to increase the sample size. Let's compute the power to reject the null hypothesis in our example. To do so we can for example use the function `pwr.t.test` or power from the R package *pwr*. The function has four different argument : 
 
 - n is the sample size in 1 group
-- d is the effet size : difference between the means of each group divided by the pooled standard deviation of both groups
-- sig.level : significance level
-- power : power of the test
+- d is the effect size: difference between the means of each group divided by the pooled standard deviation of both groups
+- sig.level: significance level
+- power: power of the test
 
 ```{r}
 library(pwr)
@@ -330,7 +330,7 @@ pwr.t.test(n = 10, d = 0.5/1, sig.level = 0.05, power = NULL,
 
 ```
 
-We can see that the power to reject the null hypothesis for VariableX is 98.8% but for VariableY it is only 18.5%. As you can see the relation between the power and the effect size is not linear as the effect size is 4 times larger (0.5 to 2) but the power to reject $H_0$ is more than 5 times larger for VariableX. For simplicity we will not present, here, the exact formula to compute the power as it involves more statistical knowledge than the aim of this course.
+We can see that the power to reject the null hypothesis for `VariableX` is 98.8% but for `VariableY` it is only 18.5%. As you can see the relation between the power and the effect size is not linear as the effect size is 4 times larger (0.5 to 2) but the power to reject $H_0$ is more than 5 times larger for `VariableX`. For simplicity we will not present, here, the exact formula to compute the power as it involves more statistical knowledge than the aim of this course.
 
 We can plot the evolution of the power as a function of the effect size:
 
@@ -345,7 +345,7 @@ plot(c(1:30), powers)
 
 ```
 
-We see that even with a sample size of 30 the power to detect the difference between the two groups is only `r powers[30]`. Instead we can compute what would be the sample size needed for a given a power. The common desired power requested in studies are 80% and 90%. We can compute the sample size needed for both power for the VariableY
+We see that even with a sample size of 30 the power to detect the difference between the two groups is only `r powers[30]`. Instead we can compute what would be the sample size needed for a given a power. The common desired power requested in studies are 80% and 90%. We can compute the sample size needed for both power for the `VariableY`.
 
 ```{r}
 #computation of sample size for a fixed power of 80%
