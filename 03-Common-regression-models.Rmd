@@ -72,7 +72,7 @@ regression <- lm(VariableZ ~ VariableY, data = dataset)
 regression
 ```
 
-The function lm returns 2 values, the intercept which correspond to $\alpha$ and the $\beta$ coefficient corresponding to the value below the `VariableY`. The 4beta$ coefficent can be interpreted as if my variableX increases of 1 my variableZ will increase of $summary(regression)$coefficients[2,4]. We can represent the results onto the scatterplot:
+The function `lm` returns 2 values, the intercept which correspond to $\alpha$ and the $\beta$ coefficient corresponding to the value below the `VariableY`. The $beta$ coefficuient can be interpreted as if my `variableX` increases by 1 unit my `variableZ` will increase of `r summary(regression)$coefficients[2,4]`. We can represent the results onto the scatterplot:
 
 ```{r}
 plot(dataset$VariableY, dataset$VariableZ, col = 'blue')
@@ -82,11 +82,11 @@ segments(dataset$VariableY,fitted(regression), dataset$VariableY,dataset$Variabl
 
 In this plot, the blue points are the observed values, the red line is the result of the regression analysis with $\alpha$ being the intercept of the line and $\beta$ its slope. Finally the black vertical line represent the residuals, i.e. the variation that could not be explained by the linear regression model. 
 
-The interest of a linear regression is that we can test if the coefficient $\beta$ is equal to 0 in order to test for association between the 2 variables. To do so in a univariate linear regression we define the statistics t as :
+The interest of a linear regression is that we can test if the coefficient $\beta$ is equal to 0 in order to test for association between the 2 variables. To do so in a univariate linear regression we define the statistics t as:
 
 $t = \frac{\beta}{se(\beta)}$
 
-where t (under the assumption that the outcome is normally distributed and under the null hypothesis $H_0$ : $\beta = 0$) follows a Student's t distribution  with n-2 degress of freedom. With this information computing the p-value of the test is the same as for the Sutdent's t test.
+where t (under the assumption that the outcome is normally distributed and under the null hypothesis $H_0$ : $\beta = 0$) follows a Student's t distribution  with n-2 degrees of freedom. With this information computing the p-value of the test is the same as for the Student's t test.
 
 For example we can look at the association between `VariableX` and `group` using both Student's t test and the linear regression:
 
@@ -100,24 +100,24 @@ linear.regression <- lm (VariableX ~ group, data = dataset)
 summary(linear.regression)$coefficients
 ```
 
-We see that we obtain exactly the same results. As both approaches are equivalent the sample size and power computation for a linear regression model are the same than for the student's t test.
+We see that we obtain exactly the same results. As both approaches are equivalent the sample size and power computation for a linear regression model are as the same as for the student's t test.
 
-Note that there is another possible statistical test to apply is the likelihood ratio test. This test comes from  a statiscal test called goodness of fit test which allows to test for a significant improvement of the model fit. By comparing the likelihoods, i.e. the probability of observing the set of values based on the statistical model fitted, of the models fitted under the null hypothesis (in our case with only an intercept) and the alternative hypothesis (the model that we fitted). This test will be seen more in detail later in the course. Asymptotically (with the number of samples sufficiently large), both likelihood ratio test and student's t test are equivalent.
+Note that  another possible statistical test to apply is the likelihood ratio test. This test comes from  a statistical test called goodness of fit test which allows to test for a significant improvement of the model fit. By comparing the likelihoods, i.e. the probability of observing the set of values based on the statistical model fitted, of the models fitted under the null hypothesis (in our case with only an intercept) and the alternative hypothesis (the model that we fitted). This test will be seen more in detail later in the course. Asymptotically (with the number of samples sufficiently large), both likelihood ratio test and student's t test are equivalent.
 
-There are four assumptions associated witha linear regression model. First, the outcome has to be a normally ditributed continuous variable. The relationship between the variable $x$ and $\overline{y}$ is linear. The observations have to be independent and the variance of the residuals have to be independent of X (homoscedasticity). To trust the results of the linear regression several steps have to be taken based on theses assumptions:
+There are four assumptions associated with a linear regression model. First, the outcome has to be a normally distributed continuous variable. The relationship between the variable $x$ and $\overline{y}$ is linear. The observations have to be independent and the variance of the residuals have to be independent of X (homoscedasticity). To trust the results of the linear regression several steps have to be taken based on theses assumptions:
 
-- Checking the distribution of the outcome if the distribution is too far from a gaussian distribution it can be good to apply a transformation to the data. Such as log transformation.
+- Checking the distribution of the outcome. If the distribution is too far from a Gaussian distribution it can be good to apply a transformation to the data, such as log transformation.
 
 - Checking the distributions of the residuals as they are assumed to be normal.
 
-In our case we simulated the outcome `VariableZ` as the sum of two gaussian distribution so `VariableZ`. Instead let's plot the distribution of the residuals:
+In our case we simulated the outcome `VariableZ` as the sum of two Gaussian distribution,  so `VariableZ` has a Gaussian distribution. Instead let's plot the distribution of the residuals:
 
 ```{r}
 hist(regression$residuals, breaks = 10)
 
 ```
 
-We can see clearly that the residuals distribution is really close from a normal distribution. This clearly indicates that the regression went well. Another plit is commonly used to check if a distribution is following a gaussian distribution. The Q-Q plot. This plot consist of comparing a set of values with the quantiles of a normal distribution:
+We can see clearly that the residuals distribution is really close to a normal distribution. This clearly indicates that the regression went well. Another plot that is commonly used to check if a distribution is following a Gaussian distribution is the Q-Q plot. This plot consist of comparing a set of values with the quantiles of a normal distribution:
 
 ```{r}
 qqnorm(regression$residuals, pch = 1, frame = FALSE)
@@ -125,7 +125,7 @@ qqline(regression$residuals, col = "steelblue", lwd = 2)
 
 ```
 
-The closer the points are from the blue line the closer the set of values is close from a normal distribution.
+The closer the points are to the blue line the closer the set of values is to a normal distribution.
 
 Another interesting graph to plot is the scatter plot of the outcome and the residuals. 
 
@@ -134,9 +134,9 @@ plot(regression$residuals, dataset$VariableZ)
 
 ```
 
-We can clearly see a trend in the scatterplot. This trend is interesting, as it means that the residuals of the linear models are associated with the outcome Y. Meaning that the variation not explained by the linear model is not due to randomess and another linear association, independent to `VariableY` exists. It is easy to explain in our case as `VariableZ` was simulated as the weighted sum of `VariableX` and `VariableY`.
+We can clearly see a trend in the scatterplot. This trend is interesting, as it means that the residuals of the linear models are associated with the outcome Y. Meaning that the variation not explained by the linear model is not due to randomness and another linear association, independent of `VariableY` exists. It is easy to explain in our case as `VariableZ` was simulated as the weighted sum of `VariableX` and `VariableY`.
 
-To obtain a better linear model it might of interest to use linear models with multiple variables such as:
+To obtain a better linear model it might be of interest to use linear models with multiple variables such as:
 
 $z_i = \alpha + \beta_1 y_i + \beta_2 x_i + \epsilon_i$
 
@@ -154,11 +154,11 @@ summary(multiple.regression)$coefficients
 
 ```
 
-We can indeed see that both coefficents are correctly identified as significant. We can also note that the coefficent of `VariableY` is almost not impacted by the addition of `VariableX`. This is due to the fact that these variables were simulated independently and their correlation should be close to 0. After, computation we obtain a correlation of `r cor(dataset$VariableX, dataset$VariableY)`. With a larger correlation between both variables, the impact on the coefficient obtained on the simple linear regression would have been stronger.
+We can indeed see that both coefficients are correctly identified as significant. We can also note that the coefficient of `VariableY` is almost not impacted by the addition of `VariableX`. This is due to the fact that these variables were simulated independently and their correlation should be close to 0. After, computation we obtain a correlation of `r cor(dataset$VariableX, dataset$VariableY)`. With a larger correlation between both variables, the impact on the coefficient obtained on the simple linear regression would have been stronger.
 
 Strong correlation between predictors in the same models can create the so-called multi-collinearity problem that leads to a severe increase of the p.value and therefore a reduction in significance. 
 
-Note that the power and sample size computations for linear regression with multiple predictors becomes rather challenging. Searcher often use rules of thumbs. A commonly encountered rule of thumbs is at least 10-15 samples for each predictors in the model. But this is only a rule of thumbs and as we know, the required sample size is depending on the variation of the outcome of interest as well as the effect size to test.
+Note that the power and sample size computations for linear regression with multiple predictors becomes rather challenging. Researchers often use rules of thumbs. A commonly encountered rule of thumbs is at least 10-15 samples for each predictors in the model. But this is only a rule of thumbs and as we know, the required sample size is depending on the variation of the outcome of interest as well as the effect size to test.
 
 ```{r results="asis", echo=FALSE, comment=""}
 catLinkTaskSection("exercises/01-Linear-regression.Rmd" );
@@ -172,9 +172,9 @@ In some studies the response variable only has two possible values. Some example
 
 - individuals who have or have not cancer;
 
-- cancer patients who, after treatment, relapse or not;
+- cancer patients who, after treatment, relapse or  do not;
 
-- from all patients receiving the same treatment, each develops resistance or not.
+- from all patients receiving the same treatment, each develops resistance or does not.
 
 If analysing data with such a *binary* response variable, care must be taken, in particular when using regression models. Such a variable can be coded as $\{0, 1\}$ in R, for example. However, linear regression is not going to return predicted values as only 0 or 1. In fact, nothing prevents a linear regression of returning a negative value, or a value larger than 1. 
 
@@ -232,7 +232,7 @@ https://www.springer.com/gp/book/9780387954578
 
 Collet (11=991, p. 75) reports an experiment on the toxicity of the tobacco budworm *Heliothis virescens* to doses of the pyrethroid trans-cypermethrin to which the moths were beginning to show resistance. It is of interest to determine which dose level to choose, so as to guarantee a specific death proportion. The response variable is thus dead or alive per moth. Being a binary variable, a logistic regression is an ideal tool to analyse the data.
 
-Batches of 20 months of each sex were exposed for 3 days to the pyrethroid and the number in each batch which were dead (or knocked down) was recorded. The doses are used in two-fold increases, so it is natural to consider those on the log2-scale. The table of total dead moths per dose and sex is:
+Batches of 20 moths of each sex were exposed for 3 days to the pyrethroid and the number in each batch which were dead (or knocked down) was recorded. The doses are used in two-fold increases, so it is natural to consider those on the log2-scale. The table of total dead moths per dose and sex is:
 
 | sex | d=1 | d=2 | d=4 | d=8 | d=16 | d=32 |
 |-----|-----|-----|-----|-----|------|------|
@@ -266,7 +266,7 @@ summary(budworm.lg)
 There may also be an interaction effect between `sex` and `ldose`, meaning that the `ldose` effect may change depending on the sex. To check this, we add the interaction term:
 
 ```{r}
-budworm.lg.i <- update(budworm.lg, . ~ sex:ldose)
+budworm.lg.i <- update(budworm.lg, . ~ . + sex:ldose)
 summary(budworm.lg.i)
 ```
 
