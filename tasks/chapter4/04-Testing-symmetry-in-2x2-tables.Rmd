@@ -1,11 +1,8 @@
 ---
 title: "04-Testing-symmetry-in-2x2-tables"
-date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_document
 ---
 
-```{r setup, include=FALSE}
-source( "../R_course_setup.R" );
-```
 
 ### Quick tasks
 

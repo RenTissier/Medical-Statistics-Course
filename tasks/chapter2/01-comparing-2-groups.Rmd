@@ -1,11 +1,8 @@
 ---
 title: "01-comparing-2-groups"
-date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_document
 ---
 
-```{r setup, include=FALSE}
-source( "../R_course_setup.R" );
-```
 
 ### Quick Task
 

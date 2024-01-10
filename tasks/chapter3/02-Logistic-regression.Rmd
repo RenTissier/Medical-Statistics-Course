@@ -1,7 +1,5 @@
 ---
 title: "02-Logistic-regression"
-author: "Renaud"
-date: "15/06/2021"
 output: html_document
 ---
 

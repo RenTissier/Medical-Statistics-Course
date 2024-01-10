@@ -1,12 +1,7 @@
 ---
 title: "02-log-rank-test"
-date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_document
 ---
-
-```{r setup, include=FALSE}
-source( "../R_course_setup.R" );
-```
-
 
 ### Quick tasks
 

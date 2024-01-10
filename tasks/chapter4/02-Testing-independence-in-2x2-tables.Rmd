@@ -1,11 +1,8 @@
 ---
 title: "02-Testing independence in 2x2 tables"
-date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_document
 ---
 
-```{r setup, include=FALSE}
-source( "../R_course_setup.R" );
-```
 
 ### Quick tasks
 
@@ -25,7 +22,7 @@ plot(quine$Lrn ~ quine$Sex, main = paste("Chi-square p=", round(mych.test$p.valu
 ```
 
 
-2. Now consider two other datasets involving variables `X` and `Y`, with the cross-tabulations of the variables given below - first for study 1 1:
+2. Now consider two other datasets involving variables `X` and `Y`, with the cross-tabulations of the variables given below - first for study 1:
 
 
 ```{r}
@@ -48,4 +45,4 @@ fisher.test(myt1)
 myt2 <- table(x2, y2)
 chisq.test(myt2)
 fisher.test(myt2)
-```rameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```

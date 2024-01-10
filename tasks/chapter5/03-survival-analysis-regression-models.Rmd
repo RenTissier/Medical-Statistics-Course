@@ -1,11 +1,7 @@
 ---
 title: "03-Survival-analysis-regression-models"
-date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_document
 ---
-
-```{r setup, include=FALSE}
-source( "../R_course_setup.R" );
-```
 
 
 ### Quick tasks

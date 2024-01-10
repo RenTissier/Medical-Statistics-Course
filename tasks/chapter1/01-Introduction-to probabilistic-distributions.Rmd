@@ -1,11 +1,8 @@
 ---
 title: "01-Introduction-to probabilistic-distributions"
-date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_document
 ---
 
-```{r setup, include=FALSE}
-source( "../R_course_setup.R" );
-```
 
 A student in statistics wants to make a small experiment. He throws 50 times a coin and counts the number of times he gets head. Compute the probability to obtain head 20, 25 and 35 times using the function `dbinom`. Plot the probability plot resulting from this experiment.
 

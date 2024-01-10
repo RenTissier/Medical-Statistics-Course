@@ -1,10 +1,6 @@
 ---
 title: "01-Linear-regression"
-author: "Renaud"
-date: "15/06/2021"
 output: html_document
-
-
 ---
 
 ### Quick Task
