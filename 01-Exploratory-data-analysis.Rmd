@@ -502,7 +502,11 @@ This pooled standard deviation is the square root of the weighted mean of the va
 
 ```{r}
 
-pooled.sd <- sqrt((499*sd.g1^{2} + 499*sd.g2^{2})/(499+499))
+pooled.standard.d <- function(sd.g1,sd.g2,n1,n2){
+  pooled <- sqrt(((n1-1)*sd.g1^{2} + (n2-1)*sd.g2^{2})/(n1+n2-2))
+}
+
+pooled.sd <- pooled.standard.d(sd.g1, sd.g2, n1=500, n2=500)
 pooled.sd
 ```
 

@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2024-01-09" />
+<meta name="date" content="2024-01-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -389,7 +389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>where the <em>standard error of difference of means</em> is:</p>
 <p><span class="math inline">\(SEDM = \sqrt{SEM_{1}^{2}+SEM_{2}^{2}}\)</span></p>
 <p>The square root of the sum of the squared standard errors to mean of each group. The standard error to the mean can itself be computed as the standard deviation divided by the square root of the number of samples.</p>
-<p><span class="math inline">\(SEM_{1} = \frac{\sigma_1}{\sqrt{n}}\)</span></p>
+<p><span class="math inline">\(SEM_{1} = \frac{\sigma_1}{\sqrt{n_1}}\)</span></p>
 <p>When using a statistical test two hypotheses are formulated, the null hypothesis <span class="math inline">\(H_0\)</span> and the alternative hypothesis <span class="math inline">\(H_a\)</span>, respectively. In the case of the Student’s t-test, the hypotheses are:</p>
 <p><span class="math inline">\(H_0\)</span> : <span class="math inline">\(\mu_{1} = \mu_{2}\)</span> and <span class="math inline">\(H_a\)</span> : <span class="math inline">\(\mu_{1} \neq \mu_{2}\)</span></p>
 <p>Note that there can be 3 different alternative hypothesis depending on what we want to test. The test for alternative hypothesis presented above is called the <em>two sided</em> Student’s t test as we are testing for different means but we are not making any assumptions on which direction the differences is. Two other alternative can be tested. Namely, <span class="math inline">\(H_a\)</span> = <span class="math inline">\(\mu_{1} &lt; \mu_{2}\)</span>, and <span class="math inline">\(H_a\)</span> = <span class="math inline">\(\mu_{1} &gt; \mu_{2}\)</span>. Under the null hypothesis the variable t follows a Student’s distribution of degrees of freedom equal to <span class="math inline">\(n1 + n2 -2\)</span> if the variances <span class="math inline">\(\sigma_{1}^{2}\)</span> and <span class="math inline">\(\sigma_{2}^{2}\)</span> are equal. If this is not the case the statistics t can still be approximated as a Student’s t distribution with a number of degrees of freedom given by the Welch procedure that we won’t detail here.</p>
@@ -430,7 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The Student’s t test is a great tool to compare two distributions. However, it has its weaknesses. In case of skewed data, the standard deviation of both compared samples can be relatively different and impact the power of the test to detect relevant differences. In such cases, it is preferable to transform the data using for example a log transformation. For the Student’s t test it is requested that the distributions of the samples values are following a normal distribution or to have at least a sample size of 30 in each group (central limit theorem). If this is not the case, it is better to use a non parametric test called Mann-Whitney-Wilcoxon test (or Mann-Whitney U test or Wilcoxon sum rank test).</p>
 <p>The Mann-Whitney-Wilcoxon test is non parametric as it does not test a specific parameter to differentiate two populations. Instead we will test if the probability that an observation in group A is superior to an observation from group B is different from the probability that an observation from group B is superior from group A. The main assumption of the Mann-Whitney-Wilcoxon test is that the samples from both groups must be independent so it cannot be used for paired observations. For paired observations we would prefer the Wilcoxon signed-rank test that we won’t detail here. If the observations in group A are drawn from a random variable X and the observation in group B are coming from a random variable Y the null and alternative hypotheses are:</p>
 <p><span class="math inline">\(H_0\)</span> : <span class="math inline">\(P(X &gt; Y) = P(Y &gt; X)\)</span> and <span class="math inline">\(H_a\)</span> : <span class="math inline">\(P(X &gt; Y) \neq P(Y &gt; X)\)</span></p>
-<p>To simplify the test relies on comparing the medians of both populations. The statistic of the test called U is computed as follows. All observations are pooled together and ranked based on their values. For example if we have a pooled set of 6 distinct values (2, 4, 4, 4, 1, 5), the ranked version of this set of obervations becomes (2, 4, 4, 4, 6, 1). Let’s call <span class="math inline">\(R_1\)</span>. We can then compute U as:</p>
+<p>To simplify the test relies on comparing the medians of both populations. The statistic of the test called U is computed as follows. All observations are pooled together and ranked based on their values. For example if we have a pooled set of 6 distinct values (2, 4, 4, 4, 1, 5), the ranked version of this set of observations becomes (2, 4, 4, 4, 1, 6). Let’s call <span class="math inline">\(R_1\)</span>. We can then compute U as:</p>
 <p>U = <span class="math inline">\(R_1 - \frac{(n_1)(n_1 + 1)}{2}\)</span></p>
 <p>With this statistics U we can then compute the p-value using either a Wilcoxon Rank-Sum Table in case of small samples and approximating U as a normal distribution for large samples:</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="statistical-tests---part-1.html#cb114-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(dataset<span class="sc">$</span>VariableY <span class="sc">~</span> dataset<span class="sc">$</span>group, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
@@ -440,7 +440,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## data:  dataset$VariableY by dataset$group
 ## W = 358, p-value = 0.1774
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
-<p>We can notice that the output of the Mann-Whitney-Wilcoxon test is smaller than for the Student’s t test. Indeed as it is a non parametric test it does not provide direct effect size or confidence interval. However, relying only on the p-value is not correct and one would prefer to report also the difference between the median of both samples.</p>
+<p>We can notice that the output of the Mann-Whitney-Wilcoxon test is smaller than for the Student’s t test. Indeed as it is a non parametric test it does not provide direct effect size, but we can obtain confidence interval by setting <code>conf.int</code> argument to <code>TRUE</code>. Furthermore, relying only on the p-value is not correct and one would prefer to report also the difference between the median of both samples.</p>
 <hr />
 <blockquote>
 <p><em>Quick task(s)</em>:</p>
@@ -453,7 +453,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.2</span> Power of a statistical test<a href="statistical-tests---part-1.html#power-of-a-statistical-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="motivation-3" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Motivation<a href="statistical-tests---part-1.html#motivation-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>After looking at the results of the group comparison using the <code>decathlon2</code> dataset the searcher wants to build another study in order to prove that the impact of the material used to build the surface of the stadium can impact the performance of the racing events and the long jump event. While building the protocol of his study the searcher encounters the question : How many sportsmen should he recruit in order to obtain satisfactory testing results?</p>
+<p>After looking at the results of the group comparison using the <code>decathlon2</code> dataset the researcher wants to build another study in order to prove that the impact of the material used to build the surface of the stadium can impact the performance of the racing events and the long jump event. While building the protocol of his study the researcher encounters the question: How many sportsmen should he recruit in order to obtain satisfactory testing results?</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="statistical-tests---part-1.html#cb116-1" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
 <span id="cb116-2"><a href="statistical-tests---part-1.html#cb116-2" tabindex="-1"></a></span>
 <span id="cb116-3"><a href="statistical-tests---part-1.html#cb116-3" tabindex="-1"></a><span class="fu">data</span>(decathlon2)</span></code></pre></div>
@@ -507,13 +507,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td><span class="math inline">\(H_0\)</span> True</td>
-<td><span class="math inline">\(1-\beta\)</span> (True Negative)</td>
+<td><span class="math inline">\(1-\alpha\)</span> (True Negative)</td>
 <td><span class="math inline">\(\alpha\)</span> (False Positive)</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(H_0\)</span> False</td>
 <td><span class="math inline">\(\beta\)</span> (False Negative)</td>
-<td><span class="math inline">\(1-\alpha\)</span> (True Positive)</td>
+<td><span class="math inline">\(1-\beta\)</span> (True Positive)</td>
 </tr>
 </tbody>
 </table>
@@ -629,9 +629,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As the latter is not advisable in most studies, the easiest approach to influence the power of the test is to increase the sample size. Let’s compute the power to reject the null hypothesis in our example. To do so we can for example use the function <code>pwr.t.test</code> or power from the R package <em>pwr</em>. The function has four different argument :</p>
 <ul>
 <li>n is the sample size in 1 group</li>
-<li>d is the effet size : difference between the means of each group divided by the pooled standard deviation of both groups</li>
-<li>sig.level : significance level</li>
-<li>power : power of the test</li>
+<li>d is the effect size: difference between the means of each group divided by the pooled standard deviation of both groups</li>
+<li>sig.level: significance level</li>
+<li>power: power of the test</li>
 </ul>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="statistical-tests---part-1.html#cb128-1" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
 <span id="cb128-2"><a href="statistical-tests---part-1.html#cb128-2" tabindex="-1"></a><span class="co">#Power computation VariableX</span></span>
@@ -660,7 +660,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##     alternative = two.sided
 ## 
 ## NOTE: n is number in *each* group</code></pre>
-<p>We can see that the power to reject the null hypothesis for VariableX is 98.8% but for VariableY it is only 18.5%. As you can see the relation between the power and the effect size is not linear as the effect size is 4 times larger (0.5 to 2) but the power to reject <span class="math inline">\(H_0\)</span> is more than 5 times larger for VariableX. For simplicity we will not present, here, the exact formula to compute the power as it involves more statistical knowledge than the aim of this course.</p>
+<p>We can see that the power to reject the null hypothesis for <code>VariableX</code> is 98.8% but for <code>VariableY</code> it is only 18.5%. As you can see the relation between the power and the effect size is not linear as the effect size is 4 times larger (0.5 to 2) but the power to reject <span class="math inline">\(H_0\)</span> is more than 5 times larger for <code>VariableX</code>. For simplicity we will not present, here, the exact formula to compute the power as it involves more statistical knowledge than the aim of this course.</p>
 <p>We can plot the evolution of the power as a function of the effect size:</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="statistical-tests---part-1.html#cb132-1" tabindex="-1"></a><span class="co">#computation of the power for different sample size</span></span>
 <span id="cb132-2"><a href="statistical-tests---part-1.html#cb132-2" tabindex="-1"></a>powers <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">n =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>), <span class="at">d =</span> <span class="fl">0.5</span><span class="sc">/</span><span class="dv">1</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="cn">NULL</span>, </span>
@@ -670,7 +670,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb134-2"><a href="statistical-tests---part-1.html#cb134-2" tabindex="-1"></a></span>
 <span id="cb134-3"><a href="statistical-tests---part-1.html#cb134-3" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>), powers)</span></code></pre></div>
 <p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
-<p>We see that even with a sample size of 30 the power to detect the difference between the two groups is only 0.4778965. Instead we can compute what would be the sample size needed for a given a power. The common desired power requested in studies are 80% and 90%. We can compute the sample size needed for both power for the VariableY</p>
+<p>We see that even with a sample size of 30 the power to detect the difference between the two groups is only 0.4778965. Instead we can compute what would be the sample size needed for a given a power. The common desired power requested in studies are 80% and 90%. We can compute the sample size needed for both power for the <code>VariableY</code>.</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="statistical-tests---part-1.html#cb135-1" tabindex="-1"></a><span class="co">#computation of sample size for a fixed power of 80%</span></span>
 <span id="cb135-2"><a href="statistical-tests---part-1.html#cb135-2" tabindex="-1"></a>test.<span class="fl">80.</span>percent <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">d =</span> <span class="fl">0.5</span><span class="sc">/</span><span class="dv">1</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="fl">0.8</span>, </span>
 <span id="cb135-3"><a href="statistical-tests---part-1.html#cb135-3" tabindex="-1"></a>                              <span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;two.sample&quot;</span>),<span class="at">alternative =</span> <span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>))</span>
