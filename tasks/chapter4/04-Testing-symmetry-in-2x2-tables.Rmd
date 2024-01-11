@@ -96,3 +96,9 @@ Controls  <- factor(res.cont , labels = c("noExp", "Exp"))
 table(Cases, Controls)
 ```
 
+
+```{r, echo= FALSE, eval = FALSE}
+mcnemar.test(table(Cases, Controls))
+```
+
+

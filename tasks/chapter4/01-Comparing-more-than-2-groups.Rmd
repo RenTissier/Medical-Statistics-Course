@@ -9,6 +9,7 @@ output: html_document
 Let us now consider the `quine` data again. Use both the F test as well as the Kruskal-Wallis test to decide if the number of days of absence differs between age groups. 
 
 ```{r}
+library(MASS)
 myfit <- lm(Days ~ Age, data = quine)
 anova(myfit)
 kruskal.test(Days ~ Age, data = quine)

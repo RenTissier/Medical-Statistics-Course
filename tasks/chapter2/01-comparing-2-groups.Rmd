@@ -33,4 +33,5 @@ two.test <- function(response, covariate, dataset){
 testresults <- sapply(events, two.test, covariate = '	Competition', dataset= decathlon2)
 
 dataTests <- data.frame(ttest = testresults[1,], wtest = testresults[2,]) 
+dataTests
 ```

@@ -8,6 +8,7 @@ output: html_document
 1. Use the chi-square test to decide if there is evidence of association between learning speed and age in the `quine` data. Extract the p-value of the test, and add the p-value to the barplot of the data.
 
 ```{r}
+library(MASS)
 mych.test <- chisq.test(quine$Lrn, quine$Age)
 ```
 

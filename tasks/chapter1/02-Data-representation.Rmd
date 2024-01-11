@@ -8,6 +8,7 @@ output: html_document
 Let us go back to the `decathlon2` dataset. Use both histograms and boxplots to represent the distribution of the variable `Points` overall and by competitions.
 
 ```{r}
+library(factoextra)
 hist(decathlon2$Points, prob = TRUE)
 par(mfrow=c(1,2))
 hist(decathlon2$Points[decathlon2$Competition == 'Decastar'], xlab= 'Total Points', main = 'Histogram Total points at Decastar')

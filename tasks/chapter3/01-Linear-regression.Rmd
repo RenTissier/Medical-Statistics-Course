@@ -11,12 +11,13 @@ source( "../R_course_setup.R" );
 Check if the variable `Long.jump` of the `decathlon2` dataset follows a normal distribution using a plot.
 
 ```{r}
+library(factoextra)
 hist(decathlon2$Long.jump)
 qqnorm(decathlon2$Long.jump, pch = 1, frame = FALSE)
 qqline(decathlon2$Long.jump, col = "steelblue", lwd = 2)
 ```
 
-Perform a linear regression the check for association between the variables `Long.jump` and `X100m`. What is the beta value? Is the resul significant?
+Perform a linear regression the check for association between the variables `Long.jump` and `X100m`. What is the beta value? Is the result significant?
 ```{r}
 linear.model <- lm(Long.jump ~ X100m, data = decathlon2)
 linear.model

@@ -8,6 +8,9 @@ output: html_document
 Let us go back to the `decathlon2` dataset and compute the mean, and the standard deviation. 
 
 ```{r}
+names(decathlon2)
+sapply(1:ncol(decathlon2), function(x){class(decathlon2[,x])})
+
 data.Decastar <- decathlon2[decathlon2$Competition == 'Decastar', c(1:10,12)]
 data.OlympicGames <- decathlon2[decathlon2$Competition == 'OlympicG', c(1:10,12)]
 mean.variables.Decastar <- apply(data.Decastar, 2, mean, na.rm=T)
