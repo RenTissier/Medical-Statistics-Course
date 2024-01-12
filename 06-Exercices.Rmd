@@ -294,7 +294,7 @@ qqline(regression$residuals, col = "steelblue", lwd = 2)
 
 ```
 
-1.4 The transformation slightly improved the results. From the previous exercises we have observed an association between the delivery method and the length of the cells. Ass the delivery method in the linear regression:
+1.4 The transformation slightly improved the results. From the previous exercises we have observed an association between the delivery method and the length of the cells. Add the delivery method in the linear regression:
 
 ```{r, eval = FALSE, echo = FALSE}
 
@@ -482,7 +482,7 @@ A study looked at the association between job satisfaction and income, gathering
 `>25,000` | 7 | 18 | 54 | 92 |
 
 
-Source: example 2.3.2 (pp. 20-21) of Agresti, A. (1990) Categorical data analsis. Wiley, New York.
+Source: example 2.3.2 (pp. 20-21) of Agresti, A. (1990) Categorical data analysis. Wiley, New York.
 
 2.1 Enter the data into R by making a matrix. Assign meaningful row and columns names. Print out the matrix to check that it has been entered correctly.
 
@@ -674,7 +674,7 @@ names(leuk.lr)
 # This is the same as a gamma distribution with parameters shape = 1/2 and rate = 1/2
 lr.p <- pgamma(leuk.lr$chisq, shape = 1/2, rate = 1/2, lower.tail = FALSE)
 # Check that the computed p-value is the same as the one given by the test
-leuk.lr
+leuk.lr 
 lr.p
 ```
 
