@@ -7,20 +7,20 @@ output: html_document
 
 ### Quick tasks 
 
-1. Continue examining the example of budworms. Fit now the model including the interaction between `ldose` and `sex`. Print the ANOVA table with a test for each coefficient. Extract the fitted probabilities on the scale of the response. 
+1. The `esoph` data includes counts of a case-control study of esophageal cancer, according to age (`agegp`), alcohol consumption (`alcgp`) and tobacco consumption (`tobgp`). Fit a logistic regression model to the responses, formed by both case and control counts, using all covariates available. Print a summary of the model fit, and also the ANOVA table.
 
 ```{r, echo = FALSE, eval = FALSE}
-budworm.lgi <- glm(resp ~ sex + ldose + sex:ldose, family = binomial)
-summary(budworm.lgi)
-anova(budworm.lgi, test = "Chisq")
-myfitted <- predict(budworm.lgi, type = "response")
+myresp <- cbind(esoph$ncases, esoph$ncontrols)
+eso.logit <- glm(myresp ~ esoph$agegp + esoph$alcgp + esoph$tobgp, family = binomial)
+summary(eso.logit)
+anova(eso.logit)
 ```
 
-2. For the `esoph` data analysis, extract the fitted values for the model without and with the interaction. Put those together in a matrix.
+2. Fit also a model which includes also an interaction effect between alcohol and tobacco consumption. Print again the model summary and the anova table of the model fit.
 
-```{r, eval = FALSE, echo = FALSE}
-eso.fit <- predict(eso.logit)
-eso.fit.i <- predict(eso.logit.i)
-eso.fit.mat <- cbind(eso.fit, eso.fit.i)
-eso.fit.mat
+```{r, echo = FALSE, eval = FALSE}
+myresp <- cbind(esoph$ncases, esoph$ncontrols)
+eso.logit.i <- glm(myresp ~ esoph$agegp + esoph$alcgp * esoph$tobgp, family = binomial)
+summary(eso.logit.i)
+anova(eso.logit.i)
 ```

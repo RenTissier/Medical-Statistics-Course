@@ -14,7 +14,7 @@ data(mtcars)
 
 str(mtcars)
 
-head(mtcars)
+head(mtcars,n=5)
 
 ```
 
@@ -257,21 +257,22 @@ plot(sample.size, powers)
 
 ### Exercise 1
 
-1.1 We go back to the `ToothGrowth` dataset. We saw that there is a significant difference in the average length of the odontoblast between the two delivery methods of vitamin C. We are now interested in the relationshipt between the dose of vitamin C and the length of odontoblast. Perform a linear regression model to test for association between these 2 variables.
+1.1 We go back to the `ToothGrowth` dataset. We saw that there is a significant difference in the average length of the odontoblast between the two delivery methods of vitamin C. We are now interested in the relationship between the dose of vitamin C and the length of odontoblast. Perform a linear regression model to test for association between these 2 variables.
 
 ```{r, eval = FALSE, echo = FALSE}
 data(ToothGrowth)
 regression <- lm (len ~ dose, data = ToothGrowth)
 regression
+?ToothGrowth
 ```
 
-1.2 Extract the estimates and corresponding statistics and p-values frol the regression
+1.2 Extract the estimates and corresponding statistics and p-values from the regression.
 
 ```{r, eval = FALSE, echo = FALSE}
 summary(regression)$coefficients
 ```
 
-1.3 Create Plots in order to check the assumptions of the model
+1.3 Create Plots in order to check the assumptions of the model.
 
 ```{r, eval = FALSE, echo = FALSE}
 
@@ -281,7 +282,7 @@ qqline(regression$residuals, col = "steelblue", lwd = 2)
 
 ```
 
-1.3 We can see that the residuals does not really follow a gaussian distribution. Use a log transformation on the length variable and compare the results
+1.3 We can see that the residuals does not really follow a gaussian distribution. Use a log transformation on the length variable and compare the results.
 
 ```{r, eval = FALSE, echo = FALSE}
 
@@ -294,7 +295,11 @@ qqline(regression$residuals, col = "steelblue", lwd = 2)
 
 ```
 
+<<<<<<< Updated upstream
 1.4 The transformation slightly improved the results. From the previous exercises we have observed an association between the delivery method and the length of the cells. Add the delivery method in the linear regression:
+=======
+1.4 The transformation slightly improved the results. From the previous exercises we have observed an association between the delivery method and the length of the cells. Add the delivery method in the linear regression.
+>>>>>>> Stashed changes
 
 ```{r, eval = FALSE, echo = FALSE}
 
@@ -304,8 +309,7 @@ summary(regression)$coefficients
 
 ```
 
-1.5 It could be relevant to add a possible interaction between the dose given and the delivery method. Add an interaction effect in the model:
-
+1.5 It could be relevant to add a possible interaction between the dose given and the delivery method. Add an interaction effect in the model.
 
 ```{r, eval = FALSE, echo = FALSE}
 
@@ -463,7 +467,7 @@ fisher.test(data.mat1)
 
 1.6 Extract the odds ratio estimates from 1.3 and 1.6, and include them as inline code in the text below.
 
-The odds ratio estimated by us from the table was `r`, and the one estimated by Fisher`s exact test was `r`.
+The odds ratio estimated by us from the table was `r`, and the one estimated by Fisher's exact test was `r`.
 
 ```{r, eval = FALSE, echo = FALSE}
 # The odds ratio estimated by us from the table was `r round(or, 2)`, and the one estimated by Fisher`s exact test was `r round(fisher.test(data.mat1)$estimate, 2)`.

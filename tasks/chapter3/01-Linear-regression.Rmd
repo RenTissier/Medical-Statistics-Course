@@ -1,6 +1,6 @@
 ---
 title: "01-Linear-regression"
-date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
