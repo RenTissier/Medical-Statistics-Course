@@ -1,0 +1,24 @@
+---
+title: "09-Power-analysis-chi-square-test"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = param, eval= param, include=T)
+```
+
+### Quick tasks
+
+Using again the learning speed and sex example of the `quine` data, compute the sample size required to obtain a significant chi-square test if the significance level desired was 0.025, instead of 0.05, while keeping all other parameters the same.
+
+```{r, echo=F, eval=T}
+library(pwr)
+mytable <- table(quine$Lrn, quine$Sex)
+chisq.stat <- chisq.test(mytable)$stat
+eff.size <- sqrt(chisq.stat/sum(mytable))
+```
+
+
+```{r}
+pwr.chisq.test(w = eff.size, df = 1, power = 0.8, sig.level = 0.025)
+```

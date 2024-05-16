@@ -1,0 +1,48 @@
+---
+title: "03-Testing-independence-in-nx2-tables"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = param, eval= param, include=T)
+```
+
+### Quick tasks
+
+1. Use the chi-square test to decide if there is evidence of association between learning speed and age in the `quine` data. Extract the p-value of the test, and add the p-value to the barplot of the data.
+
+```{r}
+library(MASS)
+mych.test <- chisq.test(quine$Lrn, quine$Age)
+```
+
+
+```{r}
+plot(quine$Lrn ~ quine$Age, main = paste("Chi-square p=", round(mych.test$p.value, 2) ) )
+                                         
+```
+
+
+2. Now consider two other datasets involving variables `X` and `Y`, with the cross-tabulations of the variables given below - first for study 1:
+
+
+```{r}
+table(x1, y1)
+```
+
+Now for study 2:
+
+```{r}
+table(x2, y2)
+```
+
+Use a test to investigate whether or not the data supports the null hypothesis of independence between `X` and `Y`.
+
+```{r}
+myt1 <- table(x1, y1)
+chisq.test(myt1)
+
+myt2 <- table(x2, y2)
+chisq.test(myt2)
+```
+

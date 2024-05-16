@@ -1,0 +1,39 @@
+---
+title: "04-Power-analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = param, eval= param, include=T)
+```
+
+```{r, echo=F, eval=T}
+library(survival)
+get.ssize.surv <- function(beta, alpha=0.05, p1=0.5, b1=0.5, pevents=1)
+{
+  num <- ( qnorm(1-alpha/2,lower.tail=FALSE) + qnorm(beta, lower.tail=FALSE) ) ^2
+  den <- p1*(1-p1)*( b1^2 )*pevents
+  n <- num/den
+  n
+}
+```
+
+
+### Quick tasks
+
+1. Consider again the leukemia data, for which a Cox model was fitted to understand how `ag` and `log(wbc)` affect prognosis. Compute the sample size required to find the same effect size for `ag` as in this data, using a significance level of $\alpha=0.005$.
+
+```{r}
+leuk.cox <- coxph(Surv(time) ~ ag + log(wbc), data = leuk)
+# Check the coefficients
+leuk.cox$coefficients
+# We would like to extract the first element of this vector
+b1 <- leuk.cox$coefficients[1]
+p.event <- 1 # all have an event
+p1 <- mean(leuk$ag == "present")
+get.ssize.surv(beta = 0.8, alpha = 0.005, p1 = p1, b1 = b1, pevents = p.event)
+```
+
+
+
+

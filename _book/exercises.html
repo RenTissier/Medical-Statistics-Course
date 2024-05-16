@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2024-01-11" />
+<meta name="date" content="2024-05-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -404,12 +404,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.3</span> Chapter 3<a href="exercises.html#chapter-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="exercise-1-2" class="section level3 hasAnchor" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> Exercise 1<a href="exercises.html#exercise-1-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>1.1 We go back to the <code>ToothGrowth</code> dataset. We saw that there is a significant difference in the average length of the odontoblast between the two delivery methods of vitamin C. We are now interested in the relationshipt between the dose of vitamin C and the length of odontoblast. Perform a linear regression model to test for association between these 2 variables.</p>
-<p>1.2 Extract the estimates and corresponding statistics and p-values frol the regression</p>
-<p>1.3 Create Plots in order to check the assumptions of the model</p>
-<p>1.3 We can see that the residuals does not really follow a gaussian distribution. Use a log transformation on the length variable and compare the results</p>
-<p>1.4 The transformation slightly improved the results. From the previous exercises we have observed an association between the delivery method and the length of the cells. Ass the delivery method in the linear regression:</p>
-<p>1.5 It could be relevant to add a possible interaction between the dose given and the delivery method. Add an interaction effect in the model:</p>
+<p>1.1 We go back to the <code>ToothGrowth</code> dataset. We saw that there is a significant difference in the average length of the odontoblast between the two delivery methods of vitamin C. We are now interested in the relationship between the dose of vitamin C and the length of odontoblast. Perform a linear regression model to test for association between these 2 variables.</p>
+<p>1.2 Extract the estimates and corresponding statistics and p-values from the regression.</p>
+<p>1.3 Create Plots in order to check the assumptions of the model.</p>
+<p>1.3 We can see that the residuals does not really follow a gaussian distribution. Use a log transformation on the length variable and compare the results.</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
+1.4 The transformation slightly improved the results. From the previous exercises we have observed an association between the delivery method and the length of the cells. Add the delivery method in the linear regression:
+=======
+1.4 The transformation slightly improved the results. From the previous exercises we have observed an association between the delivery method and the length of the cells. Add the delivery method in the linear regression.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes</p>
+<p>1.5 It could be relevant to add a possible interaction between the dose given and the delivery method. Add an interaction effect in the model.</p>
 <p>1.6 What do you conclude from this analysis?</p>
 </div>
 <div id="exercise-2-1" class="section level3 hasAnchor" number="6.3.2">
@@ -462,7 +466,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>1.4 Write a short piece of text where the computed relative risk and odds ratio are included, with inline code.</p>
 <p>1.5 Test the hypothesis that the use of aspirin, compared to placebo, has no effect on the chance of a heart attack, against the hypothesis that aspirin modifies the chance, without making an assumption about in which direction the modification may occur.</p>
 <p>1.6 Extract the odds ratio estimates from 1.3 and 1.6, and include them as inline code in the text below.</p>
-<p>The odds ratio estimated by us from the table was <code>r</code>, and the one estimated by Fisher<code>s exact test was</code>r`.</p>
+<p>The odds ratio estimated by us from the table was <code>r</code>, and the one estimated by Fisher’s exact test was <code>r</code>.</p>
 </div>
 <div id="exercise-2-2" class="section level3 hasAnchor" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Exercise 2<a href="exercises.html#exercise-2-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -515,7 +519,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>Source: example 2.3.2 (pp. 20-21) of Agresti, A. (1990) Categorical data analsis. Wiley, New York.</p>
+<p>Source: example 2.3.2 (pp. 20-21) of Agresti, A. (1990) Categorical data analysis. Wiley, New York.</p>
 <p>2.1 Enter the data into R by making a matrix. Assign meaningful row and columns names. Print out the matrix to check that it has been entered correctly.</p>
 <p>2.2 Add the counts from the dissatisfaction columns up, keeping the split between income levels. Do the same for the satisfaction columns. Make a new table (or a matrix) with these two new columns.</p>
 <p>2.3 Use the chi-square test to compare the spread of people across income classes between satisfied and dissatisfied groups. Print out the test result and save the p-value in an object.</p>
