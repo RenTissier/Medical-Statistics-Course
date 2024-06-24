@@ -1,8 +1,8 @@
 chapter.folders <- list.dirs(path = './tasks',recursive=F)
 parameters <- c(TRUE,FALSE)
-names <-c('','.nocode')
+names <-c('.code','.nocode')
 mainfolder <- getwd()
-savingfolder <- paste0(mainfolder,'/_book/')
+savingfolder <- paste0(mainfolder,'/_book/exercises/')
 
 for (chapter in chapter.folders){
   tasks <- list.files(chapter)

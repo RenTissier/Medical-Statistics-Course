@@ -218,7 +218,7 @@ legend("topleft", legend = c("normal", "t"), lty = "solid",
 
 
 ```{r results="asis", echo=FALSE, comment=""}
-catLinkTaskSection("exercises/01-Introduction-to-probabilistic-distributions.Rmd");
+catLinkTaskSection("exercises/01-Introduction-to probabilistic-distributions.Rmd");
 ```
 
 ## Data representation

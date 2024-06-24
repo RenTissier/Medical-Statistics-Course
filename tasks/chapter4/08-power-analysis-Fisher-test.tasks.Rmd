@@ -1,5 +1,5 @@
 ---
-title: "08-power-analysis-poisson-regression"
+title: "08-power-analysis-Fisher-test"
 output: html_document
 ---
 
