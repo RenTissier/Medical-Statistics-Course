@@ -216,6 +216,61 @@ legend("topleft", legend = c("normal", "t"), lty = "solid",
 
 ```
 
+### R functions
+
+#### Probability *d*ensity function (e.g. `dnorm`, `dbinom`, `dunif`)
+
+```{r fig.height=5, fig.width=5, fig.show="hold", out.width="50%"}
+curve(dnorm(x, mean=0, sd=1), col="blue", from=-5, to=5,
+      ylab="Probability density", main="dnorm(1.0) = 0.24")
+arrows(x0=c(1, 1),             y0=c(par("usr")[3], dnorm(1)),
+       x1=c(1, par("usr")[1]), y1=c(dnorm(1), dnorm(1)),
+       length=0.15)
+```
+
+#### Cumulative *p*robability function (e.g. `pnorm`, `pbinom`, `punif`)
+
+```{r fig.height=5, fig.width=5, fig.show="hold", out.width="50%"}
+curve(dnorm(x, mean=0, sd=1), col="blue", from=-5, to=5,
+      ylab="Probability density", main="pnorm(1.0) = 0.84")
+ax <- seq(-5, 1, 0.01)
+polygon(c(-5, ax, 1), c(0, dnorm(ax), 0), col="lightblue", lty=2)
+arrows(x0=1, y0=par("usr")[3], x1=-0.2, y1=0.15, length=0.15)
+text(-0.2, 0.15, adj=c(0.5, -1), "0.84")
+
+curve(pnorm(x, mean=0, sd=1), col="blue", from=-5, to=5,
+      ylab="Cumulative probability", main="pnorm(1.0) = 0.84")
+arrows(x0=c(1, 1),             y0=c(par("usr")[3], pnorm(1)),
+       x1=c(1, par("usr")[1]), y1=c(pnorm(1), pnorm(1)),
+       length=0.15)
+```
+
+#### *Q*uantile function (e.g. `qnorm`, `qbinom`, `qunif`)
+
+```{r fig.height=5, fig.width=5, fig.show="hold", out.width="50%"}
+curve(dnorm(x, mean=0, sd=1), col="blue", from=-5, to=5,
+      ylab="Probability density", main="qnorm(0.84) = 1.0")
+ax <- seq(-5, 1, 0.01)
+polygon(c(-5, ax, 1), c(0, dnorm(ax), 0), col="lightblue", lty=2)
+arrows(x0=1, y0=par("usr")[3], x1=-0.2, y1=0.15, length=0.15, code=1)
+text(-0.2, 0.15, adj=c(0.5, -1), "0.84")
+
+curve(pnorm(x, mean=0, sd=1), col="blue", from=-5, to=5,
+      ylab="Cumulative probability", main="qnorm(0.84) = 1.0")
+arrows(x0=c(1, 1),             y0=c(par("usr")[3], pnorm(1)),
+       x1=c(1, par("usr")[1]), y1=c(pnorm(1), pnorm(1)),
+       length=0.15, code=1)
+```
+
+#### *R*andom number generator (e.g. `rnorm`, `rbinom`, `runif`)
+
+```{r fig.height=5, fig.width=5, fig.show="hold", out.width="50%"}
+set.seed(42)
+random_x <- rnorm(100)
+hist(random_x, col="blue", xlab="x", xlim=c(-3, 3),
+     main=sprintf("rnorm(n) = %.2f, %.2f, %.2f...",
+                  random_x[1], random_x[2], random_x[3]))
+```
 
 ```{r results="asis", echo=FALSE, comment=""}
 catLinkTaskSection("exercises/01-Introduction-to probabilistic-distributions.Rmd");
