@@ -383,7 +383,7 @@ test.90.percent <- pwr.t.test(n = NULL, d = 0.5/1, sig.level = 0.05, power = 0.9
 test.90.percent
 ```
 
-We can see that we would need `r ceiling(test.80.percent$n, 0)` samples in each group for a power of 80% and `r ceiling(test.90.percent$n, 0)` for a power of 90%. 
+We can see that we would need `r ceiling(test.80.percent$n)` samples in each group for a power of 80% and `r ceiling(test.90.percent$n)` for a power of 90%. 
 
 We have seen that in order to determine the proper sample size needed in a study we need to know or to give an estimate of the effect sizes we want to test, the standard deviation existing in the sample and to fix both type-I error and the power to detect a true positive. To do so the approach often used is to go back to the literature or to used pilot studies.
 
