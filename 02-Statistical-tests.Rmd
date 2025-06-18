@@ -48,29 +48,38 @@ boxplot(dataset$VariableY ~ dataset$group, col = 'blue')
 
 We can identify by 'eye' differences between the distribution of both group but how can we quantify the differences if there is any? To do so we will use statistical tests.
 
-The most common test to compare two groups is the Student's t test, this test as the same name as the Student's t distribution as it utilizes the same distribution. Let's assume that two sets of values are drawn from distributions with expectancies $\mu_1$ and $\mu_2$, and variances $\sigma_{1}^{2}$ and $\sigma_{2}^{2}$, respectively. The Student's test statistic is computed as follows:
+The most common test to compare two groups is the Student's t test, this test as the same name as the Student's t distribution as it utilizes the same distribution. Let's assume that two sets of values are drawn from distributions with means $\mu_1$ and $\mu_2$, and variances $\sigma_{1}^{2}$ and $\sigma_{2}^{2}$, respectively.
+Let the corresponding _sample_ means be $\bar{x}_{1}$ and $\bar{x}_{2}$, and the sample variances
+$s_{1}^{2}$ and $s_{2}^{2}$, respectively.
+The Student's test statistic is computed as follows:
 
-$t = \frac{\overline{x_{1}}-\overline{x_{2}}}{SEDM}$
+$t = \frac{\bar{x}_{1}-\bar{x}_{2}}{\text{SEDM}}$
 
 where the *standard error of difference of means* is:
 
-$SEDM = \sqrt{SEM_{1}^{2}+SEM_{2}^{2}}$
+$\text{SEDM} = \sqrt{\text{SEM}_{1}^{2}+\text{SEM}_{2}^{2}}$
 
 The square root of the sum of the squared standard errors to mean of each group. The standard error to the mean can itself be computed as the standard deviation divided by the square root of the number of samples. 
 
-$SEM_{1} = \frac{\sigma_1}{\sqrt{n_1}}$
+$\text{SEM}_{1} = \frac{s_{1}}{\sqrt{n_{1}}}$
+$\text{SEM}_{2} = \frac{s_{2}}{\sqrt{n_{2}}}$
 
 When using a statistical test two hypotheses are formulated, the null hypothesis $H_0$ and the alternative hypothesis $H_a$, respectively. In the case of the Student's t-test, the hypotheses are:
 
 $H_0$ : $\mu_{1} = \mu_{2}$ and $H_a$ : $\mu_{1} \neq \mu_{2}$
 
-Note that there can be 3 different alternative hypothesis depending on what we want to test. The test for alternative hypothesis presented above is called the *two sided* Student's t test as we are testing for different means but we are not making any assumptions on which direction the differences is. Two other alternative can be tested. Namely, $H_a$ = $\mu_{1} < \mu_{2}$, and $H_a$ = $\mu_{1} > \mu_{2}$. Under the null hypothesis the variable t follows a Student's distribution of degrees of freedom equal to $n1 + n2 -2$ if the variances $\sigma_{1}^{2}$ and $\sigma_{2}^{2}$ are equal. If this is not the case the statistics t can still be approximated as a Student's t distribution with a number of degrees of freedom given by the Welch procedure that we won't detail here. 
+Note that there can be 3 different alternative hypothesis depending on what we want to test. The test for alternative hypothesis presented above is called the *two sided* Student's t test as we are testing for different means but we are not making any assumptions on which direction the differences is. Two other alternative can be tested. Namely, $H_a$ = $\mu_{1} < \mu_{2}$, and $H_a$ = $\mu_{1} > \mu_{2}$.
+Under the null hypothesis the variable $t$ follows a Student's t distribution of degrees of freedom $n1 + n2 -2$ if the variances $\sigma_{1}^{2}$ and $\sigma_{2}^{2}$ are equal.
+If this is not the case the statistic $t$ can still be approximated as a Student's t distribution with a degrees of freedom given by the Welch procedure that we won't detail here. 
 
 Let's apply the Student's t test to our dataset:
 
 ```{r}
 #t-test for VariableX
-test.variableX <- t.test(dataset$VariableX ~ dataset$group)
+test.variableX <- t.test(dataset$VariableX ~ dataset$group)  # Default is Welch's t test
+test.variableX
+
+test.variableX <- t.test(dataset$VariableX ~ dataset$group, var.equal=TRUE)  # Student's t test
 test.variableX
 ```
 
@@ -84,14 +93,17 @@ abline(v = qt(c(0.025, 0.975), df = test.variableX$parameter),
 abline(v = test.variableX$statistic, col= 'green')
 ```
 
-As we can see the value of the statistics is outside the range delimited by the 2.5% quantile and the 97.5% quantile. Therefore it is unlikely that the statistics is drawn from such random variable. It allows us to reject the null hypothesis and accept the alternative hypothesis with less than 5% chance risk of making a mistake. The p-value obtained from the test is the probability that the statistics is drawn from the hypothetical Student's t distribution under the null hypothesis from quantiles table for example. 
+As we can see the value of the statistics is outside the range delimited by the 2.5% quantile and the 97.5% quantile. Therefore it is unlikely that the statistics is drawn from such random variable. It allows us to reject the null hypothesis and accept the alternative hypothesis with less than 5% chance of making a mistake.
+The p-value obtained from the test is the probability of drawing a value at least as extreme as the observed one from the hypothetical Student's t distribution under the null hypothesis. 
 
-An important output information from the output is also the 95% confidence interval. This interval quantifies the uncertainty of the estimate of the mean difference. The 95% confidence interval is a range of values that you can be 95% certain contains the true mean difference between the two populations. As we can see 0 is not in this range allowing us to, once again, reject the null hypothesis of equality of the means. The confidence interval can be computed by using the SEDM and the mean difference obtained in the test. For a level of confidence $\alpha$ of a two sided Student test is give by the formula:
+An important output information from the output is also the 95% confidence interval. This interval quantifies the uncertainty of the estimate of the mean difference.
+The 95% confidence interval is a range of values such that if the true mean difference ($\mu_1-\mu_2$) is within this range, you have at most 5% chance of observing a statistic more extreme than the one observed.
+As we can see 0 is not in this range allowing us to, once again, reject the null hypothesis of equality of the means. The confidence interval can be computed by using the SEDM and the mean difference obtained in the test. For a level of confidence $\alpha$ of a two sided Student test is give by the formula:
 
-$high Boundary = mean + t_{1-\frac{\alpha}{2}}*SEDM$ 
+$\text{Upper boundary} = \text{mean} + t_{1-\frac{\alpha}{2}} \cdot \text{SEDM}$ 
 
 
-$low Boundary = mean - t_{1-\frac{\alpha}{2}}*SEDM$
+$\text{Lower boundary} = \text{mean} - t_{1-\frac{\alpha}{2}} \cdot \text{SEDM}$
 
 We can see from this formula that two factors can influence the size of the confidence interval. Indeed, the SEDM is a function depending on the standard deviation and the number of samples in each group. On one hand, increasing the number of sample will improve the accuracy of the test and narrow the confidence interval. On the other hand, samples with large standard deviation will lead to larger confidence intervals. We can compute the confidence intervals of the test we made earlier:
 
@@ -160,23 +172,29 @@ We created both Variables to have a different means depending on the group. Now 
 
 ```{r}
 
-t.test(VariableX ~ group, data = dataset)
+t.test(VariableX ~ group, data = dataset, var.equal=TRUE)
 
-t.test(VariableY ~ group, data = dataset)
+t.test(VariableY ~ group, data = dataset, var.equal=TRUE)
 ```
 
-We can see that even if we simulated both variables from different distributions depending on the group. We ended up with one test detecting significant differences between the groups and the other one not detecting differences. Typically, there is 4 different possible outcomes from a statistical test::
+We can see that even if we simulated both variables from different distributions depending on the group. We ended up with one test detecting significant differences between the groups and the other one not detecting differences.
+Typically, there are 4 different possible outcomes from a statistical test::
 
 Reality \ Test results | Non-significant  | Significant |  
 ------------|------|-----|
 $H_0$ True  | $1-\alpha$ (True Negative) | $\alpha$ (False Positive) |
 $H_0$ False | $\beta$ (False Negative) | $1-\beta$ (True Positive) |
 
-The $\alpha$ represents they type I error, i.e. the probability of finding a significant difference when there is none. This coefficient $\alpha$ is often fixed to 5%. The $\beta$ coefficient represent the probability to obtain a non-significant test while the alternative hypothesis is true and is called type II error. This is the case when we test the VariableY that we simulated. The power of a statistical test correspond to the values 1-$\beta$, and is the probability to reject the null hypothesis appropriately.
+The $\alpha$ represents the type-I error, i.e. the probability of finding a significant difference when there is none. This coefficient $\alpha$ is often fixed to 5%.
+The $\beta$ represents the probability to obtain a non-significant test result while the alternative hypothesis is true and is called type-II error.
+This is the case when we test the VariableY that we simulated. The power of a statistical test correspond to the values 1-$\beta$, and is the probability to reject the null hypothesis appropriately given that $H_0$ is false.
 
 ### Illustrating two-sided critical regions
 
-We will illustrate the notion of power. For `variableX`, we have the standard normal for group `A` and a mean 2 for group `B`. We don't know in advance that values in group `B` are all larger than those in group `A`, so we use a two-sided test to compare the 2 groups. The distribution of the values under the null hypothesis is a Student-t with 20-2 degrees of freedom, and the probability density function for it, with the rejection regions, is given below. Here we use $\alpha = 0.05$, so we assign half of that probability of making a type-I error to each tail.
+We will illustrate the notion of power. For `variableX`, we have the standard normal for group `A` and a mean 2 for group `B`. We don't know in advance that values in group `B` are all larger than those in group `A`, so we use a two-sided test to compare the 2 groups.
+The distribution of the values under the null hypothesis is a Student's t distribution with $(20-2)$ degrees of freedom.
+The probability density function for it, together with the rejection regions, is given below.
+Here we use $\alpha = 0.05$, so we assign half of that probability of making a type-I error to each tail.
 
 ```{r}
 x <- seq(from = -5, to = 5, by = 0.01)
@@ -323,11 +341,18 @@ library(pwr)
 pwr.t.test(n = 10, d = 2/1, sig.level = 0.05, power = NULL, 
            type = c("two.sample"), alternative = c("two.sided"))
 
-
 #Power computation VariableY
 pwr.t.test(n = 10, d = 0.5/1, sig.level = 0.05, power = NULL, 
            type = c("two.sample"), alternative = c("two.sided"))
+```
 
+```{r}
+# Also possible with built-in R function
+# Notice the slightly different function arguments, and the default behaviour of `strict=FALSE`
+power.t.test(n = 10, delta = 0.5, sd = 1, sig.level = 0.05, power = NULL, 
+             type = c("two.sample"), alternative = c("two.sided"))
+power.t.test(n = 10, delta = 0.5, sd = 1, sig.level = 0.05, power = NULL, 
+             type = c("two.sample"), alternative = c("two.sided"), strict=TRUE)
 ```
 
 We can see that the power to reject the null hypothesis for `VariableX` is 98.8% but for `VariableY` it is only 18.5%. As you can see the relation between the power and the effect size is not linear as the effect size is 4 times larger (0.5 to 2) but the power to reject $H_0$ is more than 5 times larger for `VariableX`. For simplicity we will not present, here, the exact formula to compute the power as it involves more statistical knowledge than the aim of this course.
@@ -341,8 +366,7 @@ powers <- pwr.t.test(n = c(1:30), d = 0.5/1, sig.level = 0.05, power = NULL,
 
 #Plot of the power as a function of the sample size
 
-plot(c(1:30), powers)
-
+plot(c(1:30), powers, ylim=c(0, 1))
 ```
 
 We see that even with a sample size of 30 the power to detect the difference between the two groups is only `r powers[30]`. Instead we can compute what would be the sample size needed for a given a power. The common desired power requested in studies are 80% and 90%. We can compute the sample size needed for both power for the `VariableY`.
@@ -359,9 +383,9 @@ test.90.percent <- pwr.t.test(n = NULL, d = 0.5/1, sig.level = 0.05, power = 0.9
 test.90.percent
 ```
 
-We can see that we would need `r round(test.80.percent$n, 0)` samples in each group for a power of 80% and `r round(test.90.percent$n, 0)` for a power of 90%. 
+We can see that we would need `r ceiling(test.80.percent$n, 0)` samples in each group for a power of 80% and `r ceiling(test.90.percent$n, 0)` for a power of 90%. 
 
-We have seen that in order to determine the proper sample size needed in a study we need to know or to give an estimate of the effect sizes we want to test, the standard deviation existing in the sample and to fix both type I error and the power to detect a true positive. To do so the approach often used is to go back to the literature or to used pilot studies.
+We have seen that in order to determine the proper sample size needed in a study we need to know or to give an estimate of the effect sizes we want to test, the standard deviation existing in the sample and to fix both type-I error and the power to detect a true positive. To do so the approach often used is to go back to the literature or to used pilot studies.
 
 Note that for the Student's t test obtaining power and sample sizes is relatively simple due to the exact mathematical formula linking all 4 parameters. But for a lot of test (especially non parametric ones) there are no exact formulas and simulations are needed. Hopefully, there are a lot of function in R that are able to do the simulation and power computations.
 
