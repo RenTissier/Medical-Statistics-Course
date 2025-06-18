@@ -22,7 +22,8 @@ The course program includes: exploratory data analysis, basic statistical tests,
 
 - [Renee Menezes](https://www.nki.nl/research/find-a-researcher/groupleaders/renee-x-menezes/), [Biostatistics Center, NKI](https://www.nki.nl/research/facilities-platforms/biostatistics-center/) (__coordinator__)
 - [Renaud Tissier](https://www.nki.nl/research/find-a-researcher/researchers/renaud-tissier/), [Biostatistics Center, NKI](https://www.nki.nl/research/facilities-platforms/biostatistics-center/)
-- [Leyla Azarang](https://www.nki.nl/research/find-a-researcher/researchers/leyla-azarang/), [Biostatistics Center, NKI](https://www.nki.nl/research/facilities-platforms/biostatistics-center/)
+- [Vincent Pappalardo](https://www.nki.nl/research/find-a-researcher/researchers/vincent-pappalardo/), [Biostatistics Center, NKI](https://www.nki.nl/research/facilities-platforms/biostatistics-center/)
+- [Terry Chan](https://www.nki.nl/research/find-a-researcher/researchers/terry-chan/), [Biostatistics Center, NKI](https://www.nki.nl/research/facilities-platforms/biostatistics-center/)
 
 
 ## Goals & Topics {-}
