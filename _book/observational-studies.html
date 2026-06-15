@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Observational studies | Medical Statistics</title>
+  <meta name="description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Observational studies | Medical Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Observational studies | Medical Statistics" />
+  
+  <meta name="twitter:description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
+  
+
+
+
+<meta name="date" content="2026-06-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="randomization-techniques.html"/>
+<link rel="next" href="exercises.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#teachers"><i class="fa fa-check"></i>Teachers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#goals-topics"><i class="fa fa-check"></i>Goals &amp; Topics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#programme"><i class="fa fa-check"></i>Programme</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html"><i class="fa fa-check"></i><b>1</b> Introduction and exploratory data analysis</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#introduction-to-probabilistic-distributions"><i class="fa fa-check"></i><b>1.1</b> Introduction to probabilistic distributions</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#motivation"><i class="fa fa-check"></i><b>1.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#discrete-random-variables"><i class="fa fa-check"></i><b>1.1.2</b> Discrete random variables</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#continuous-random-variable"><i class="fa fa-check"></i><b>1.1.3</b> Continuous random variable</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#r-functions"><i class="fa fa-check"></i><b>1.1.4</b> R functions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#data-representation"><i class="fa fa-check"></i><b>1.2</b> Data representation</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#motivating-example"><i class="fa fa-check"></i><b>1.2.1</b> Motivating example</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#working-example"><i class="fa fa-check"></i><b>1.2.2</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#mean-variance"><i class="fa fa-check"></i><b>1.3</b> Mean-Variance</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#working-example-1"><i class="fa fa-check"></i><b>1.3.1</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#correlation-and-heatmap"><i class="fa fa-check"></i><b>1.4</b> Correlation and heatmap</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#motivation-1"><i class="fa fa-check"></i><b>1.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#working-example-2"><i class="fa fa-check"></i><b>1.4.2</b> Working example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html"><i class="fa fa-check"></i><b>2</b> Statistical tests - Part 1</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#comparing-2-groups"><i class="fa fa-check"></i><b>2.1</b> Comparing 2 groups</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#motivation-2"><i class="fa fa-check"></i><b>2.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#working-example-3"><i class="fa fa-check"></i><b>2.1.2</b> Working Example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#power-of-a-statistical-test"><i class="fa fa-check"></i><b>2.2</b> Power of a statistical test</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#motivation-3"><i class="fa fa-check"></i><b>2.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="2.2.2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#working-example-4"><i class="fa fa-check"></i><b>2.2.2</b> Working example</a></li>
+<li class="chapter" data-level="2.2.3" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#illustrating-two-sided-critical-regions"><i class="fa fa-check"></i><b>2.2.3</b> Illustrating two-sided critical regions</a></li>
+<li class="chapter" data-level="2.2.4" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#illustrating-the-power"><i class="fa fa-check"></i><b>2.2.4</b> Illustrating the power</a></li>
+<li class="chapter" data-level="2.2.5" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#what-happens-if-the-effect-size-is-smaller"><i class="fa fa-check"></i><b>2.2.5</b> What happens if the effect size is smaller?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="common-regression-models.html"><a href="common-regression-models.html"><i class="fa fa-check"></i><b>3</b> Common regression models</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="common-regression-models.html"><a href="common-regression-models.html#linear-regression"><i class="fa fa-check"></i><b>3.1</b> Linear regression</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="common-regression-models.html"><a href="common-regression-models.html#motivation-4"><i class="fa fa-check"></i><b>3.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.1.2" data-path="common-regression-models.html"><a href="common-regression-models.html#working-example-5"><i class="fa fa-check"></i><b>3.1.2</b> Working Example</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="common-regression-models.html"><a href="common-regression-models.html#logistic-regression"><i class="fa fa-check"></i><b>3.2</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="common-regression-models.html"><a href="common-regression-models.html#motivation-5"><i class="fa fa-check"></i><b>3.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.2.2" data-path="common-regression-models.html"><a href="common-regression-models.html#link-function"><i class="fa fa-check"></i><b>3.2.2</b> Link function</a></li>
+<li class="chapter" data-level="3.2.3" data-path="common-regression-models.html"><a href="common-regression-models.html#the-glm-function"><i class="fa fa-check"></i><b>3.2.3</b> The <code>glm</code> function</a></li>
+<li class="chapter" data-level="3.2.4" data-path="common-regression-models.html"><a href="common-regression-models.html#working-example-6"><i class="fa fa-check"></i><b>3.2.4</b> Working example</a></li>
+<li class="chapter" data-level="3.2.5" data-path="common-regression-models.html"><a href="common-regression-models.html#fitted-values"><i class="fa fa-check"></i><b>3.2.5</b> Fitted values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html"><i class="fa fa-check"></i><b>4</b> Statistical tests - Part 2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#comparing-more-than-two-groups"><i class="fa fa-check"></i><b>4.1</b> Comparing more than two groups</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-6"><i class="fa fa-check"></i><b>4.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples"><i class="fa fa-check"></i><b>4.1.2</b> Working examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#testing-independence-in-2x2-tables"><i class="fa fa-check"></i><b>4.2</b> Testing independence in 2x2 tables</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-7"><i class="fa fa-check"></i><b>4.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-1"><i class="fa fa-check"></i><b>4.2.2</b> Working examples</a></li>
+<li class="chapter" data-level="4.2.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#general-setup"><i class="fa fa-check"></i><b>4.2.3</b> General setup</a></li>
+<li class="chapter" data-level="4.2.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont"><i class="fa fa-check"></i><b>4.2.4</b> Working examples (cont)</a></li>
+<li class="chapter" data-level="4.2.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#the-chi-squared-test"><i class="fa fa-check"></i><b>4.2.5</b> The chi-squared test</a></li>
+<li class="chapter" data-level="4.2.6" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont-1"><i class="fa fa-check"></i><b>4.2.6</b> Working examples (cont)</a></li>
+<li class="chapter" data-level="4.2.7" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#fishers-exact-test"><i class="fa fa-check"></i><b>4.2.7</b> Fisher’s exact test</a></li>
+<li class="chapter" data-level="4.2.8" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont-2"><i class="fa fa-check"></i><b>4.2.8</b> Working examples (cont)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#testing-independence-in-nx2-tables"><i class="fa fa-check"></i><b>4.3</b> Testing independence in nx2 tables</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-8"><i class="fa fa-check"></i><b>4.3.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.3.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-2"><i class="fa fa-check"></i><b>4.3.2</b> Working examples</a></li>
+<li class="chapter" data-level="4.3.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#general-setup-1"><i class="fa fa-check"></i><b>4.3.3</b> General setup</a></li>
+<li class="chapter" data-level="4.3.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#chi-squared-test-for-nx2-tables"><i class="fa fa-check"></i><b>4.3.4</b> Chi-squared test for nx2 tables</a></li>
+<li class="chapter" data-level="4.3.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont-3"><i class="fa fa-check"></i><b>4.3.5</b> Working examples (cont)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#testing-symmetry-in-2x2-tables"><i class="fa fa-check"></i><b>4.4</b> Testing symmetry in 2x2 tables</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-9"><i class="fa fa-check"></i><b>4.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.4.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-example-7"><i class="fa fa-check"></i><b>4.4.2</b> Working example</a></li>
+<li class="chapter" data-level="4.4.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#general-setup-2"><i class="fa fa-check"></i><b>4.4.3</b> General setup</a></li>
+<li class="chapter" data-level="4.4.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-example-cont"><i class="fa fa-check"></i><b>4.4.4</b> Working example (cont)</a></li>
+<li class="chapter" data-level="4.4.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#notes"><i class="fa fa-check"></i><b>4.4.5</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#relative-risk-and-odds-ratio"><i class="fa fa-check"></i><b>4.5</b> Relative risk and odds ratio</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-10"><i class="fa fa-check"></i><b>4.5.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.5.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#relative-risk"><i class="fa fa-check"></i><b>4.5.2</b> Relative risk</a></li>
+<li class="chapter" data-level="4.5.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#odds-ratio"><i class="fa fa-check"></i><b>4.5.3</b> Odds ratio</a></li>
+<li class="chapter" data-level="4.5.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#relative-risk-vs.-odds-ratio"><i class="fa fa-check"></i><b>4.5.4</b> Relative risk <em>vs.</em> odds ratio</a></li>
+<li class="chapter" data-level="4.5.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#logistic-regression-models-cont"><i class="fa fa-check"></i><b>4.5.5</b> Logistic regression models (cont)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#poisson-regression-models"><i class="fa fa-check"></i><b>4.5.6</b> Poisson regression models</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#power-for-analysis-of-count-tables"><i class="fa fa-check"></i><b>4.6</b> Power for analysis of count tables</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-11"><i class="fa fa-check"></i><b>4.6.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.6.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#fishers-exact-test-1"><i class="fa fa-check"></i><b>4.6.2</b> Fisher’s exact test</a></li>
+<li class="chapter" data-level="4.6.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#chi-squared-test"><i class="fa fa-check"></i><b>4.6.3</b> Chi-squared test</a></li>
+<li class="chapter" data-level="4.6.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#odds-ratio-1"><i class="fa fa-check"></i><b>4.6.4</b> Odds ratio</a></li>
+<li class="chapter" data-level="4.6.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#notes-1"><i class="fa fa-check"></i><b>4.6.5</b> Notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>5</b> Survival analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data---introduction"><i class="fa fa-check"></i><b>5.1</b> Survival data - Introduction</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="survival-analysis.html"><a href="survival-analysis.html#motivation-12"><i class="fa fa-check"></i><b>5.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-8"><i class="fa fa-check"></i><b>5.1.2</b> Working example</a></li>
+<li class="chapter" data-level="5.1.3" data-path="survival-analysis.html"><a href="survival-analysis.html#kaplan-meier-curve"><i class="fa fa-check"></i><b>5.1.3</b> Kaplan-Meier curve</a></li>
+<li class="chapter" data-level="5.1.4" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-cont-1"><i class="fa fa-check"></i><b>5.1.4</b> Working example (cont)</a></li>
+<li class="chapter" data-level="5.1.5" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data-analysis-in-r"><i class="fa fa-check"></i><b>5.1.5</b> Survival data analysis in R</a></li>
+<li class="chapter" data-level="5.1.6" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data-for-groups-the-log-rank-test"><i class="fa fa-check"></i><b>5.1.6</b> Survival data for groups: the log-rank test</a></li>
+<li class="chapter" data-level="5.1.7" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-cont-2"><i class="fa fa-check"></i><b>5.1.7</b> Working example (cont)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data---regression-models"><i class="fa fa-check"></i><b>5.2</b> Survival data - regression models</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="survival-analysis.html"><a href="survival-analysis.html#motivation-13"><i class="fa fa-check"></i><b>5.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.2.2" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-proportional-hazards-model"><i class="fa fa-check"></i><b>5.2.2</b> Cox proportional-hazards model</a></li>
+<li class="chapter" data-level="5.2.3" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-9"><i class="fa fa-check"></i><b>5.2.3</b> Working example</a></li>
+<li class="chapter" data-level="5.2.4" data-path="survival-analysis.html"><a href="survival-analysis.html#group-specific-baseline-hazards"><i class="fa fa-check"></i><b>5.2.4</b> Group-specific baseline hazards</a></li>
+<li class="chapter" data-level="5.2.5" data-path="survival-analysis.html"><a href="survival-analysis.html#the-proportional-hazards-assumption"><i class="fa fa-check"></i><b>5.2.5</b> The proportional hazards assumption</a></li>
+<li class="chapter" data-level="5.2.6" data-path="survival-analysis.html"><a href="survival-analysis.html#others"><i class="fa fa-check"></i><b>5.2.6</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data---power-analysis"><i class="fa fa-check"></i><b>5.3</b> Survival data - power analysis</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="survival-analysis.html"><a href="survival-analysis.html#motivation-14"><i class="fa fa-check"></i><b>5.3.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.3.2" data-path="survival-analysis.html"><a href="survival-analysis.html#power-and-sample-size-for-cox-regression"><i class="fa fa-check"></i><b>5.3.2</b> Power and sample size for Cox regression</a></li>
+<li class="chapter" data-level="5.3.3" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-10"><i class="fa fa-check"></i><b>5.3.3</b> Working example</a></li>
+<li class="chapter" data-level="5.3.4" data-path="survival-analysis.html"><a href="survival-analysis.html#minimum-sample-size"><i class="fa fa-check"></i><b>5.3.4</b> Minimum sample size</a></li>
+<li class="chapter" data-level="5.3.5" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-cont-3"><i class="fa fa-check"></i><b>5.3.5</b> Working example (cont)</a></li>
+<li class="chapter" data-level="5.3.6" data-path="survival-analysis.html"><a href="survival-analysis.html#reference"><i class="fa fa-check"></i><b>5.3.6</b> Reference</a></li>
+<li class="chapter" data-level="5.3.7" data-path="survival-analysis.html"><a href="survival-analysis.html#notes-2"><i class="fa fa-check"></i><b>5.3.7</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-analysis---notes"><i class="fa fa-check"></i><b>5.4</b> Survival analysis - Notes</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="survival-analysis.html"><a href="survival-analysis.html#other-types-of-censoring"><i class="fa fa-check"></i><b>5.4.1</b> Other types of censoring</a></li>
+<li class="chapter" data-level="5.4.2" data-path="survival-analysis.html"><a href="survival-analysis.html#right--left--and-interval-censoring"><i class="fa fa-check"></i><b>5.4.2</b> Right-, left- and interval censoring</a></li>
+<li class="chapter" data-level="5.4.3" data-path="survival-analysis.html"><a href="survival-analysis.html#left-truncation-delayed-entry"><i class="fa fa-check"></i><b>5.4.3</b> Left-truncation (delayed entry)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="survival-analysis.html"><a href="survival-analysis.html#type-i-and-type-ii-censoring"><i class="fa fa-check"></i><b>5.4.4</b> Type-I and type-II censoring</a></li>
+<li class="chapter" data-level="5.4.5" data-path="survival-analysis.html"><a href="survival-analysis.html#competing-risks"><i class="fa fa-check"></i><b>5.4.5</b> Competing risks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html"><i class="fa fa-check"></i><b>6</b> Clinical research, why and how</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html#bias-and-precision"><i class="fa fa-check"></i><b>6.0.1</b> Bias and Precision</a></li>
+<li class="chapter" data-level="6.0.2" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html#increase-accuracy"><i class="fa fa-check"></i><b>6.0.2</b> Increase accuracy</a></li>
+<li class="chapter" data-level="6.0.3" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html#reducing-bias-randomized-trials"><i class="fa fa-check"></i><b>6.0.3</b> Reducing bias: randomized trials</a></li>
+<li class="chapter" data-level="6.0.4" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html#exercise-law-of-large-numbers-in-a-one-arm-trial."><i class="fa fa-check"></i><b>6.0.4</b> Exercise: law of large numbers in a one-arm trial.</a></li>
+<li class="chapter" data-level="6.0.5" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html#short-summary-of-what-we-found-in-the-exercise"><i class="fa fa-check"></i><b>6.0.5</b> Short summary of what we found in the exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="randomization-techniques.html"><a href="randomization-techniques.html"><i class="fa fa-check"></i><b>7</b> Randomization techniques</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="randomization-techniques.html"><a href="randomization-techniques.html#randomization-in-a-randomized-clinical-trial"><i class="fa fa-check"></i><b>7.1</b> Randomization in a randomized clinical trial</a></li>
+<li class="chapter" data-level="7.2" data-path="randomization-techniques.html"><a href="randomization-techniques.html#why-randomize"><i class="fa fa-check"></i><b>7.2</b> Why randomize?</a></li>
+<li class="chapter" data-level="7.3" data-path="randomization-techniques.html"><a href="randomization-techniques.html#what-randomization-can-and-cannot-do"><i class="fa fa-check"></i><b>7.3</b> What randomization can and cannot do</a></li>
+<li class="chapter" data-level="7.4" data-path="randomization-techniques.html"><a href="randomization-techniques.html#working-example-11"><i class="fa fa-check"></i><b>7.4</b> Working example</a></li>
+<li class="chapter" data-level="7.5" data-path="randomization-techniques.html"><a href="randomization-techniques.html#simple-randomization"><i class="fa fa-check"></i><b>7.5</b> Simple randomization</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="randomization-techniques.html"><a href="randomization-techniques.html#a-first-look"><i class="fa fa-check"></i><b>7.5.1</b> A first look</a></li>
+<li class="chapter" data-level="7.5.2" data-path="randomization-techniques.html"><a href="randomization-techniques.html#working-example-12"><i class="fa fa-check"></i><b>7.5.2</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="randomization-techniques.html"><a href="randomization-techniques.html#block-randomization"><i class="fa fa-check"></i><b>7.6</b> Block randomization</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="randomization-techniques.html"><a href="randomization-techniques.html#a-block-of-size-4"><i class="fa fa-check"></i><b>7.6.1</b> A block of size 4</a></li>
+<li class="chapter" data-level="7.6.2" data-path="randomization-techniques.html"><a href="randomization-techniques.html#working-example-13"><i class="fa fa-check"></i><b>7.6.2</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="randomization-techniques.html"><a href="randomization-techniques.html#minimization"><i class="fa fa-check"></i><b>7.7</b> Minimization</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="randomization-techniques.html"><a href="randomization-techniques.html#the-basic-idea"><i class="fa fa-check"></i><b>7.7.1</b> The basic idea</a></li>
+<li class="chapter" data-level="7.7.2" data-path="randomization-techniques.html"><a href="randomization-techniques.html#a-hand-worked-example"><i class="fa fa-check"></i><b>7.7.2</b> A hand-worked example</a></li>
+<li class="chapter" data-level="7.7.3" data-path="randomization-techniques.html"><a href="randomization-techniques.html#working-example-14"><i class="fa fa-check"></i><b>7.7.3</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="randomization-techniques.html"><a href="randomization-techniques.html#summary"><i class="fa fa-check"></i><b>7.8</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="observational-studies.html"><a href="observational-studies.html"><i class="fa fa-check"></i><b>8</b> Observational studies</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="observational-studies.html"><a href="observational-studies.html#why-do-we-need-observational-studies"><i class="fa fa-check"></i><b>8.1</b> Why do we need observational studies?</a></li>
+<li class="chapter" data-level="8.2" data-path="observational-studies.html"><a href="observational-studies.html#classifying-observational-studies"><i class="fa fa-check"></i><b>8.2</b> Classifying observational studies</a></li>
+<li class="chapter" data-level="8.3" data-path="observational-studies.html"><a href="observational-studies.html#cross-sectional-studies"><i class="fa fa-check"></i><b>8.3</b> Cross-sectional studies</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="observational-studies.html"><a href="observational-studies.html#working-example-15"><i class="fa fa-check"></i><b>8.3.1</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="observational-studies.html"><a href="observational-studies.html#cohort-studies"><i class="fa fa-check"></i><b>8.4</b> Cohort studies</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="observational-studies.html"><a href="observational-studies.html#working-example-16"><i class="fa fa-check"></i><b>8.4.1</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="observational-studies.html"><a href="observational-studies.html#case-control-studies"><i class="fa fa-check"></i><b>8.5</b> Case-control studies</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="observational-studies.html"><a href="observational-studies.html#why-the-relative-risk-cannot-be-estimated-directly"><i class="fa fa-check"></i><b>8.5.1</b> Why the relative risk cannot be estimated directly</a></li>
+<li class="chapter" data-level="8.5.2" data-path="observational-studies.html"><a href="observational-studies.html#odds-and-the-odds-ratio"><i class="fa fa-check"></i><b>8.5.2</b> Odds and the odds ratio</a></li>
+<li class="chapter" data-level="8.5.3" data-path="observational-studies.html"><a href="observational-studies.html#working-example-17"><i class="fa fa-check"></i><b>8.5.3</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="observational-studies.html"><a href="observational-studies.html#rare-disease-approximation"><i class="fa fa-check"></i><b>8.6</b> Rare disease approximation</a></li>
+<li class="chapter" data-level="8.7" data-path="observational-studies.html"><a href="observational-studies.html#summary-1"><i class="fa fa-check"></i><b>8.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>9</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="exercises.html"><a href="exercises.html#chapter-1"><i class="fa fa-check"></i><b>9.1</b> Chapter 1</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="exercises.html"><a href="exercises.html#exercise-1"><i class="fa fa-check"></i><b>9.1.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.1.2" data-path="exercises.html"><a href="exercises.html#exercise-2"><i class="fa fa-check"></i><b>9.1.2</b> Exercise 2:</a></li>
+<li class="chapter" data-level="9.1.3" data-path="exercises.html"><a href="exercises.html#exercise-3"><i class="fa fa-check"></i><b>9.1.3</b> Exercise 3(*)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="exercises.html"><a href="exercises.html#chapter-2"><i class="fa fa-check"></i><b>9.2</b> Chapter 2</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="exercises.html"><a href="exercises.html#exercise-1-1"><i class="fa fa-check"></i><b>9.2.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.2.2" data-path="exercises.html"><a href="exercises.html#exercise2"><i class="fa fa-check"></i><b>9.2.2</b> Exercise2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="exercises.html"><a href="exercises.html#chapter-3"><i class="fa fa-check"></i><b>9.3</b> Chapter 3</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="exercises.html"><a href="exercises.html#exercise-1-2"><i class="fa fa-check"></i><b>9.3.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.3.2" data-path="exercises.html"><a href="exercises.html#exercise-2-1"><i class="fa fa-check"></i><b>9.3.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="9.3.3" data-path="exercises.html"><a href="exercises.html#exercise-3-1"><i class="fa fa-check"></i><b>9.3.3</b> Exercise 3</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="exercises.html"><a href="exercises.html#chapter-4"><i class="fa fa-check"></i><b>9.4</b> Chapter 4</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="exercises.html"><a href="exercises.html#exercise-1-3"><i class="fa fa-check"></i><b>9.4.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.4.2" data-path="exercises.html"><a href="exercises.html#exercise-2-2"><i class="fa fa-check"></i><b>9.4.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="9.4.3" data-path="exercises.html"><a href="exercises.html#exercise-3-2"><i class="fa fa-check"></i><b>9.4.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="9.4.4" data-path="exercises.html"><a href="exercises.html#exercise-4"><i class="fa fa-check"></i><b>9.4.4</b> Exercise 4</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="exercises.html"><a href="exercises.html#chapter-5"><i class="fa fa-check"></i><b>9.5</b> Chapter 5</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="exercises.html"><a href="exercises.html#exercise-1-4"><i class="fa fa-check"></i><b>9.5.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.5.2" data-path="exercises.html"><a href="exercises.html#exercise-2-3"><i class="fa fa-check"></i><b>9.5.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="9.5.3" data-path="exercises.html"><a href="exercises.html#exercise-3-3"><i class="fa fa-check"></i><b>9.5.3</b> Exercise 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>10</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="appendix.html"><a href="appendix.html#pca-analysis"><i class="fa fa-check"></i><b>10.1</b> PCA Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="appendix.html"><a href="appendix.html#motivation-15"><i class="fa fa-check"></i><b>10.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="appendix.html"><a href="appendix.html#working-example-18"><i class="fa fa-check"></i><b>10.1.2</b> Working example</a></li>
+<li class="chapter" data-level="10.1.3" data-path="appendix.html"><a href="appendix.html#quick-tasks"><i class="fa fa-check"></i><b>10.1.3</b> Quick tasks</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Medical Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="observational-studies" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Observational studies<a href="observational-studies.html#observational-studies" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<center>
+<div class="float">
+<img src="figure/grimes2002-fig1.png" alt="Vectors" />
+<div class="figcaption">Vectors</div>
+</div>
+</center>
+<div id="why-do-we-need-observational-studies" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Why do we need observational studies?<a href="observational-studies.html#why-do-we-need-observational-studies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Randomized controlled trials are often the best design for studying causal effects, but they are not always possible. In many real settings, randomization is not ethical, not practical, or too expensive. In addition, patients enrolled in randomized trials are often more selected than the patients seen in routine care, so trial results may not generalize perfectly to the target population.</p>
+<p>For these reasons, observational studies remain essential in medical research. In an observational study, the researcher does <strong>not</strong> assign the exposure. Instead, the exposure and the outcome are observed as they occur in practice.</p>
+<p>The main strength of randomized trials is that randomization makes causal interpretation easier. But observational designs are needed whenever an exposure cannot realistically or ethically be assigned.</p>
+<p>In this section we look at three common observational designs:</p>
+<ul>
+<li>cross-sectional studies;</li>
+<li>cohort studies;</li>
+<li>case-control studies.</li>
+</ul>
+</div>
+<div id="classifying-observational-studies" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Classifying observational studies<a href="observational-studies.html#classifying-observational-studies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A useful way to distinguish the three designs is by asking <strong>when</strong> exposure and outcome are assessed.</p>
+<ul>
+<li>In a <strong>cross-sectional study</strong>, exposure and outcome are measured at the same moment.</li>
+<li>In a <strong>cohort study</strong>, we start from exposure status and follow people forward to see who develops the outcome.</li>
+<li>In a <strong>case-control study</strong>, we start from outcome status and then look backward for prior exposure.</li>
+</ul>
+<p>A short memory aid is:</p>
+<ul>
+<li>cross-sectional = snapshot;</li>
+<li>cohort = from exposure to outcome;</li>
+<li>case-control = from outcome back to exposure.</li>
+</ul>
+</div>
+<div id="cross-sectional-studies" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Cross-sectional studies<a href="observational-studies.html#cross-sectional-studies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A cross-sectional study gives a snapshot of a population at one point in time. Its main use is to estimate <strong>prevalence</strong>, that is, the proportion of individuals in the population who currently have a disease or condition.</p>
+<p>Its main limitation is that exposure and outcome are observed at the same time. So if an association is found, we usually cannot tell whether the exposure caused the outcome or whether the outcome influenced the exposure.</p>
+<p>Cross-sectional studies are therefore useful for describing how common a condition is, but they are much weaker for causal interpretation.</p>
+<div id="working-example-15" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Working example<a href="observational-studies.html#working-example-15" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose that 300 adults are surveyed during a clinic visit, and both obesity status and arthritis status are recorded at that same visit.</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="observational-studies.html#cb368-1" tabindex="-1"></a>cross.tab <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb368-2"><a href="observational-studies.html#cb368-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">36</span>, <span class="dv">84</span>,</span>
+<span id="cb368-3"><a href="observational-studies.html#cb368-3" tabindex="-1"></a>    <span class="dv">24</span>, <span class="dv">156</span>),</span>
+<span id="cb368-4"><a href="observational-studies.html#cb368-4" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb368-5"><a href="observational-studies.html#cb368-5" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb368-6"><a href="observational-studies.html#cb368-6" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb368-7"><a href="observational-studies.html#cb368-7" tabindex="-1"></a>    <span class="at">Obesity =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>),</span>
+<span id="cb368-8"><a href="observational-studies.html#cb368-8" tabindex="-1"></a>    <span class="at">Arthritis =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb368-9"><a href="observational-studies.html#cb368-9" tabindex="-1"></a>  )</span>
+<span id="cb368-10"><a href="observational-studies.html#cb368-10" tabindex="-1"></a>)</span>
+<span id="cb368-11"><a href="observational-studies.html#cb368-11" tabindex="-1"></a></span>
+<span id="cb368-12"><a href="observational-studies.html#cb368-12" tabindex="-1"></a>cross.tab</span></code></pre></div>
+<pre><code>##        Arthritis
+## Obesity Yes  No
+##     Yes  36  84
+##     No   24 156</code></pre>
+<p>The overall prevalence of arthritis is:</p>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="observational-studies.html#cb370-1" tabindex="-1"></a>prev.arthritis <span class="ot">&lt;-</span> <span class="fu">sum</span>(cross.tab[, <span class="st">&quot;Yes&quot;</span>]) <span class="sc">/</span> <span class="fu">sum</span>(cross.tab)</span>
+<span id="cb370-2"><a href="observational-studies.html#cb370-2" tabindex="-1"></a>prev.arthritis</span></code></pre></div>
+<pre><code>## [1] 0.2</code></pre>
+<p>So in this cross-sectional sample, the prevalence of arthritis is 20%.</p>
+<p>We can also compare the prevalence of arthritis between obese and non-obese individuals.</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="observational-studies.html#cb372-1" tabindex="-1"></a><span class="fu">prop.table</span>(cross.tab, <span class="at">margin =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##        Arthritis
+## Obesity       Yes        No
+##     Yes 0.3000000 0.7000000
+##     No  0.1333333 0.8666667</code></pre>
+<p>The obese group has a higher prevalence of arthritis in this snapshot. But this does <strong>not</strong> establish a causal direction. A cross-sectional study cannot answer whether obesity increased the risk of arthritis, whether arthritis reduced physical activity and increased obesity, or whether both are related to other factors.</p>
+<p>Another important limitation is that cross-sectional studies estimate <strong>prevalence</strong>, not <strong>incidence</strong>. They describe how much disease is present at a given time, not how often new disease occurs over time.</p>
+</div>
+</div>
+<div id="cohort-studies" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Cohort studies<a href="observational-studies.html#cohort-studies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s consider a standard 2 <span class="math inline">\(\times\)</span> 2 table</p>
+<p><span class="math display">\[
+\begin{array}{c|cc}
+&amp; \text{Disease Yes} &amp; \text{Disease No} \\
+\hline
+\text{Exposure Yes} &amp; a &amp; b \\
+\text{Exposure No} &amp; c &amp; d
+\end{array}
+\]</span></p>
+<p>A cohort study starts with exposure status and follows individuals forward in time to observe whether the outcome occurs. Because the outcome happens after exposure assessment, this design is more natural than a cross-sectional study for studying incidence and risk.</p>
+<center>
+<div class="float">
+<img src="figure/Cohort_1.png" alt="Vectors" />
+<div class="figcaption">Vectors</div>
+</div>
+</center>
+<p>Important strengths of cohort studies are:</p>
+<ul>
+<li>incidence can be estimated;</li>
+<li>several outcomes can be studied for the same exposure;</li>
+<li>exposures that cannot be randomized can still be studied;</li>
+<li>external validity is often higher than in a highly selected randomized trial.</li>
+</ul>
+<p>Important limitations are:</p>
+<ul>
+<li>confounding and selection bias are still concerns;</li>
+<li>causal interpretation requires strong assumptions;</li>
+<li>long follow-up may be expensive and time-consuming.</li>
+</ul>
+<p>In a randomized trial, randomization helps make treated and untreated groups comparable. In a cohort study, there is no such protection. Any causal interpretation therefore depends on correctly adjusting for systematic differences between exposed and unexposed individuals.</p>
+<p>This is difficult in practice, because it requires both:</p>
+<ul>
+<li>a reasonable causal model;</li>
+<li>measurement of all important variables that need adjustment.</li>
+</ul>
+<p>So cohort studies provide valuable information, but they must be designed and interpreted with care.</p>
+<div id="working-example-16" class="section level3 hasAnchor" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Working example<a href="observational-studies.html#working-example-16" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider a cohort of 200 individuals followed for a fixed period. At baseline, 100 are exposed and 100 are unexposed. During follow-up, disease occurs in 40 exposed individuals and 10 unexposed individuals.</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="observational-studies.html#cb374-1" tabindex="-1"></a>cohort.tab <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb374-2"><a href="observational-studies.html#cb374-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">60</span>,</span>
+<span id="cb374-3"><a href="observational-studies.html#cb374-3" tabindex="-1"></a>    <span class="dv">10</span>, <span class="dv">90</span>),</span>
+<span id="cb374-4"><a href="observational-studies.html#cb374-4" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb374-5"><a href="observational-studies.html#cb374-5" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb374-6"><a href="observational-studies.html#cb374-6" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb374-7"><a href="observational-studies.html#cb374-7" tabindex="-1"></a>    <span class="at">Exposure =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>),</span>
+<span id="cb374-8"><a href="observational-studies.html#cb374-8" tabindex="-1"></a>    <span class="at">Disease =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb374-9"><a href="observational-studies.html#cb374-9" tabindex="-1"></a>  )</span>
+<span id="cb374-10"><a href="observational-studies.html#cb374-10" tabindex="-1"></a>)</span>
+<span id="cb374-11"><a href="observational-studies.html#cb374-11" tabindex="-1"></a></span>
+<span id="cb374-12"><a href="observational-studies.html#cb374-12" tabindex="-1"></a>cohort.tab</span></code></pre></div>
+<pre><code>##         Disease
+## Exposure Yes No
+##      Yes  40 60
+##      No   10 90</code></pre>
+<p>The risk of disease in each group is:</p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="observational-studies.html#cb376-1" tabindex="-1"></a>risk.exposed <span class="ot">&lt;-</span> cohort.tab[<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(cohort.tab[<span class="st">&quot;Yes&quot;</span>, ])</span>
+<span id="cb376-2"><a href="observational-studies.html#cb376-2" tabindex="-1"></a>risk.unexposed <span class="ot">&lt;-</span> cohort.tab[<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(cohort.tab[<span class="st">&quot;No&quot;</span>, ])</span>
+<span id="cb376-3"><a href="observational-studies.html#cb376-3" tabindex="-1"></a></span>
+<span id="cb376-4"><a href="observational-studies.html#cb376-4" tabindex="-1"></a>risk.exposed</span></code></pre></div>
+<pre><code>## [1] 0.4</code></pre>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="observational-studies.html#cb378-1" tabindex="-1"></a>risk.unexposed</span></code></pre></div>
+<pre><code>## [1] 0.1</code></pre>
+<p>The relative risk (or risk ratio) is therefore:</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="observational-studies.html#cb380-1" tabindex="-1"></a>rr.cohort <span class="ot">&lt;-</span> ( cohort.tab[<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(cohort.tab[<span class="st">&quot;Yes&quot;</span>, ]) )<span class="sc">/</span> (cohort.tab[<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(cohort.tab[<span class="st">&quot;No&quot;</span>, ]))</span>
+<span id="cb380-2"><a href="observational-studies.html#cb380-2" tabindex="-1"></a>rr.cohort</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>So the disease risk is 4 times as high in the exposed group as in the unexposed group.</p>
+<p>Because this is a cohort design, these risks are meaningful: the denominators come from the numbers at risk in the exposed and unexposed groups.</p>
+</div>
+</div>
+<div id="case-control-studies" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Case-control studies<a href="observational-studies.html#case-control-studies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A case-control study starts with the outcome. We first identify <strong>cases</strong> with the disease and <strong>controls</strong> without the disease, and then compare how common previous exposure was in the two groups.</p>
+<center>
+<div class="float">
+<img src="figure/CC_studies_1.png" alt="Vectors" />
+<div class="figcaption">Vectors</div>
+</div>
+</center>
+<p>This design is especially useful for rare diseases, because it would be inefficient to wait for rare cases to appear in a prospective cohort.</p>
+<p>Case-control studies also require careful sampling.</p>
+<ul>
+<li>Cases should have a clearly defined disease or outcome.</li>
+<li>Controls should come from the same source population that gave rise to the cases.</li>
+<li>Control selection should not depend on the exposure of interest.</li>
+</ul>
+<p>This last point is very important. For example, if the exposure is smoking, choosing partners or siblings of lung cancer cases as controls may be problematic because their smoking behavior may be more similar than in the general source population. Likewise, choosing controls with another disease related to the same exposure can also bias the comparison.</p>
+<p>Other important limitations are:</p>
+<ul>
+<li>recall bias may affect how past exposure is reported;</li>
+<li>confounding and selection bias remain major concerns;</li>
+<li>matching can make groups more comparable, but it does not automatically remove all bias.</li>
+</ul>
+<div id="why-the-relative-risk-cannot-be-estimated-directly" class="section level3 hasAnchor" number="8.5.1">
+<h3><span class="header-section-number">8.5.1</span> Why the relative risk cannot be estimated directly<a href="observational-studies.html#why-the-relative-risk-cannot-be-estimated-directly" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In a case-control study, the investigator fixes how many cases and controls are sampled. That means the proportion with disease in the sample is determined by the study design, not by the underlying disease risk in the population.</p>
+<p>So the usual cohort quantity</p>
+<p><span class="math display">\[
+\text{relative risk} = \frac{a / (a+b)}{c / (c+d)}
+\]</span></p>
+<p>is not meaningful in a case-control sample.</p>
+</div>
+<div id="odds-and-the-odds-ratio" class="section level3 hasAnchor" number="8.5.2">
+<h3><span class="header-section-number">8.5.2</span> Odds and the odds ratio<a href="observational-studies.html#odds-and-the-odds-ratio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The appropriate association measure in a case-control study is usually the <strong>odds ratio</strong>.</p>
+<p>Recall that odds are defined as</p>
+<p><span class="math display">\[
+\text{odds} = \frac{P(\text{event})}{1 - P(\text{event})}.
+\]</span></p>
+<p>For example, the probability of rolling a 6 with a fair die is <span class="math inline">\(1/6\)</span>, while the odds of rolling a 6 are <span class="math inline">\(1/5\)</span>, because there is 1 favorable side and 5 unfavorable sides.</p>
+<p>The odds ratio is</p>
+<p><span class="math display">\[
+\text{odds ratio} = \frac{a/b}{c/d} = \frac{ad}{bc}.
+\]</span></p>
+</div>
+<div id="working-example-17" class="section level3 hasAnchor" number="8.5.3">
+<h3><span class="header-section-number">8.5.3</span> Working example<a href="observational-studies.html#working-example-17" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose the same disease was originally studied in a cohort, but we now perform a case-control study by taking all 50 diseased individuals and a sample of 50 controls. The observed table becomes:</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="observational-studies.html#cb382-1" tabindex="-1"></a>casecontrol.tab <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb382-2"><a href="observational-studies.html#cb382-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">20</span>,</span>
+<span id="cb382-3"><a href="observational-studies.html#cb382-3" tabindex="-1"></a>    <span class="dv">10</span>, <span class="dv">30</span>),</span>
+<span id="cb382-4"><a href="observational-studies.html#cb382-4" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb382-5"><a href="observational-studies.html#cb382-5" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb382-6"><a href="observational-studies.html#cb382-6" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb382-7"><a href="observational-studies.html#cb382-7" tabindex="-1"></a>    <span class="at">Exposure =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>),</span>
+<span id="cb382-8"><a href="observational-studies.html#cb382-8" tabindex="-1"></a>    <span class="at">Disease =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb382-9"><a href="observational-studies.html#cb382-9" tabindex="-1"></a>  )</span>
+<span id="cb382-10"><a href="observational-studies.html#cb382-10" tabindex="-1"></a>)</span>
+<span id="cb382-11"><a href="observational-studies.html#cb382-11" tabindex="-1"></a></span>
+<span id="cb382-12"><a href="observational-studies.html#cb382-12" tabindex="-1"></a>casecontrol.tab</span></code></pre></div>
+<pre><code>##         Disease
+## Exposure Yes No
+##      Yes  40 20
+##      No   10 30</code></pre>
+<p>The appropriate association measure is the <strong>odds ratio</strong>:</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="observational-studies.html#cb384-1" tabindex="-1"></a>or.casecontrol <span class="ot">&lt;-</span> (casecontrol.tab[<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;Yes&quot;</span>]<span class="sc">*</span>casecontrol.tab[<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>])<span class="sc">/</span>(casecontrol.tab[<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No&quot;</span>]<span class="sc">*</span>casecontrol.tab[<span class="st">&quot;No&quot;</span>,<span class="st">&quot;Yes&quot;</span>])</span>
+<span id="cb384-2"><a href="observational-studies.html#cb384-2" tabindex="-1"></a>or.casecontrol</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>So the odds ratio is 6.</p>
+<p>This is <strong>not</strong> the same as the cohort relative risk of 4. The odds ratio and relative risk are different quantities.</p>
+</div>
+</div>
+<div id="rare-disease-approximation" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Rare disease approximation<a href="observational-studies.html#rare-disease-approximation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When the disease is rare, the odds ratio from a case-control study is often close to the relative risk from the full cohort.</p>
+<p>For example, suppose the cohort table is:</p>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="observational-studies.html#cb386-1" tabindex="-1"></a>rare.cohort <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb386-2"><a href="observational-studies.html#cb386-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">60</span>,</span>
+<span id="cb386-3"><a href="observational-studies.html#cb386-3" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">90</span>),</span>
+<span id="cb386-4"><a href="observational-studies.html#cb386-4" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb386-5"><a href="observational-studies.html#cb386-5" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb386-6"><a href="observational-studies.html#cb386-6" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb386-7"><a href="observational-studies.html#cb386-7" tabindex="-1"></a>    <span class="at">Exposure =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>),</span>
+<span id="cb386-8"><a href="observational-studies.html#cb386-8" tabindex="-1"></a>    <span class="at">Disease =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb386-9"><a href="observational-studies.html#cb386-9" tabindex="-1"></a>  )</span>
+<span id="cb386-10"><a href="observational-studies.html#cb386-10" tabindex="-1"></a>)</span>
+<span id="cb386-11"><a href="observational-studies.html#cb386-11" tabindex="-1"></a></span>
+<span id="cb386-12"><a href="observational-studies.html#cb386-12" tabindex="-1"></a>rare.cohort</span></code></pre></div>
+<pre><code>##         Disease
+## Exposure Yes No
+##      Yes   4 60
+##      No    1 90</code></pre>
+<p>The corresponding relative risk is:</p>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="observational-studies.html#cb388-1" tabindex="-1"></a>rr.rare <span class="ot">&lt;-</span> ( rare.cohort[<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(rare.cohort[<span class="st">&quot;Yes&quot;</span>, ]) )<span class="sc">/</span> (rare.cohort[<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(rare.cohort[<span class="st">&quot;No&quot;</span>, ]))</span>
+<span id="cb388-2"><a href="observational-studies.html#cb388-2" tabindex="-1"></a>rr.rare</span></code></pre></div>
+<pre><code>## [1] 5.6875</code></pre>
+<p>Now suppose a case-control sample produces:</p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="observational-studies.html#cb390-1" tabindex="-1"></a>rare.cc <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb390-2"><a href="observational-studies.html#cb390-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">20</span>,</span>
+<span id="cb390-3"><a href="observational-studies.html#cb390-3" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">30</span>),</span>
+<span id="cb390-4"><a href="observational-studies.html#cb390-4" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb390-5"><a href="observational-studies.html#cb390-5" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb390-6"><a href="observational-studies.html#cb390-6" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb390-7"><a href="observational-studies.html#cb390-7" tabindex="-1"></a>    <span class="at">Exposure =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>),</span>
+<span id="cb390-8"><a href="observational-studies.html#cb390-8" tabindex="-1"></a>    <span class="at">Disease =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb390-9"><a href="observational-studies.html#cb390-9" tabindex="-1"></a>  )</span>
+<span id="cb390-10"><a href="observational-studies.html#cb390-10" tabindex="-1"></a>)</span>
+<span id="cb390-11"><a href="observational-studies.html#cb390-11" tabindex="-1"></a></span>
+<span id="cb390-12"><a href="observational-studies.html#cb390-12" tabindex="-1"></a>rare.cc</span></code></pre></div>
+<pre><code>##         Disease
+## Exposure Yes No
+##      Yes   4 20
+##      No    1 30</code></pre>
+<p>Its odds ratio is:</p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="observational-studies.html#cb392-1" tabindex="-1"></a>or.rare <span class="ot">&lt;-</span> (rare.cc[<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;Yes&quot;</span>]<span class="sc">*</span>rare.cc[<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>])<span class="sc">/</span>(rare.cc[<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No&quot;</span>]<span class="sc">*</span>rare.cc[<span class="st">&quot;No&quot;</span>,<span class="st">&quot;Yes&quot;</span>])</span>
+<span id="cb392-2"><a href="observational-studies.html#cb392-2" tabindex="-1"></a>or.rare</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>Here the relative risk is about 5.69 and the odds ratio is 6, so they are close. This is the usual rare-disease approximation.</p>
+</div>
+<div id="summary-1" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Summary<a href="observational-studies.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The main ideas of this section are:</p>
+<ul>
+<li>cross-sectional studies are useful for prevalence, but weak for causal interpretation;</li>
+<li>cohort studies allow direct estimation of incidence and relative risks;</li>
+<li>case-control studies are efficient for rare diseases and usually rely on the odds ratio;</li>
+<li>in case-control studies, controls must represent the same source population as the cases;</li>
+<li>when the disease is rare, the odds ratio often approximates the relative risk.</li>
+</ul>
+<p>In practice, the question we want to answer determines the choice of the study design and of the measure of association.</p>
+<center>
+<div class="float">
+<img src="figure/comp_obs_1.png" alt="Vectors" />
+<div class="figcaption">Vectors</div>
+</div>
+</center>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="randomization-techniques.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

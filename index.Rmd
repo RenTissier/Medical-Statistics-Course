@@ -74,6 +74,9 @@ ii) click on the "File" menu on the top left, and choose "New file">"R Markdown"
 - gplots
 - pwr
 - statmod
+- randomizr
+- blockrand
+- carat
 
 ## Materials {-}
 

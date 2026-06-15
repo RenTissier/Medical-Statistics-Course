@@ -1,0 +1,90 @@
+---
+title: "Block randomization packages"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = param, eval= param, include=T)
+```
+
+# Exercise - Block randomization
+
+A trial compares treatments `A` and `B` with equal allocation.
+
+In the package `blockrand`, the argument `block.sizes` is specified per treatment arm. In a two-arm trial, `block.sizes = 2` therefore corresponds to an actual block size of 4.
+
+## Exercise 1
+
+Generate a randomization list for `n = 24` patients using `blockrand::blockrand()` with actual block size 4. Compute the cumulative difference between the numbers in arms `A` and `B` after each patient.
+
+
+```{r}
+set.seed(201)
+br1 <- blockrand::blockrand(n = 24,
+                             levels = c("A", "B"),
+                             block.sizes = 2)
+
+trt1 <- br1$treatment[1:24]
+running.diff1 <- cumsum(trt1 == "A") - cumsum(trt1 == "B")
+
+cbind(patient = 1:24,
+      treatment = trt1,
+      running_diff = running.diff1)
+
+table(trt1)
+abs(sum(trt1 == "A") - sum(trt1 == "B"))
+```
+
+
+## Exercise 2
+
+Generate a second list for `n = 24` patients using actual block sizes 4 and 6. Compare the final imbalance and the running imbalance with the previous list.
+
+
+```{r}
+set.seed(202)
+br2 <- blockrand::blockrand(n = 24,
+                             levels = c("A", "B"),
+                             block.sizes = c(2, 3))
+
+trt2 <- br2$treatment[1:24]
+running.diff2 <- cumsum(trt2 == "A") - cumsum(trt2 == "B")
+
+table(trt2)
+abs(sum(trt2 == "A") - sum(trt2 == "B"))
+
+par(mfrow = c(1, 2))
+plot(running.diff1, type = "s",
+     xlab = "Patient order", ylab = "Running difference (A - B)",
+     main = "Actual block size 4")
+abline(h = 0, lty = 2)
+
+plot(running.diff2, type = "s",
+     xlab = "Patient order", ylab = "Running difference (A - B)",
+     main = "Actual block sizes 4 and 6")
+abline(h = 0, lty = 2)
+
+```
+
+## Exercise 3
+
+Suppose that sex is an important prognostic factor. Simulate a variable `sex` with levels `Female` and `Male` for the same 24 patients, and perform block randomization separately within each sex group. Display the treatment counts by sex.
+
+
+```{r}
+set.seed(203)
+sex <- factor(sample(c("Female", "Male"), 24, replace = TRUE))
+
+trt.strat <- character(24)
+for (lev in levels(sex)) {
+  idx <- which(sex == lev)
+  br <- blockrand::blockrand(n = length(idx),
+                             levels = c("A", "B"),
+                             block.sizes = 2)
+  trt.strat[idx] <- br$treatment[1:length(idx)]
+}
+
+table(trt.strat, sex)
+
+
+```

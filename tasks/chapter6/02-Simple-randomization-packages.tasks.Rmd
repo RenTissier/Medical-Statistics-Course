@@ -1,0 +1,70 @@
+---
+title: "Simple randomization packages"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = param, eval= param, include=T)
+```
+
+
+# Exercise - Simple randomization
+
+A small trial compares treatments `A` and `B`. The trial uses simple randomization with equal allocation.
+
+## Exercise 1
+
+Generate one randomization list for `n = 20` patients using `randomizr::simple_ra()`. How many patients are allocated to each treatment? What is the final absolute imbalance `|n_A - n_B|`?
+
+
+
+```{r}
+
+set.seed(101)
+trt <- randomizr::simple_ra(N = 20, conditions = c("A", "B"))
+trt
+
+table(trt)
+abs(sum(trt == "A") - sum(trt == "B"))
+```
+
+
+## Exercise 2
+
+Repeat the same trial 2000 times and estimate the probability that the final imbalance is at least 6 patients.
+
+
+```{r}
+set.seed(102)
+nsim <- 2000
+n <- 20
+
+prob_ge6 <- mean(replicate(nsim, {
+  trt <- randomizr::simple_ra(N = n, conditions = c("A", "B"))
+  abs(sum(trt == "A") - sum(trt == "B")) >= 6
+}))
+
+prob_ge6
+```
+
+
+## Exercise 3
+
+Repeat the simulation for `n = 20`, `n = 50`, and `n = 100`. Compare how often an imbalance of at least 6 patients occurs. What do you conclude about simple randomization in small and large trials?
+
+
+
+```{r}
+set.seed(103)
+nsim <- 2000
+
+prob_ge6 <- function(n) {
+  mean(replicate(nsim, {
+    trt <- randomizr::simple_ra(N = n, conditions = c("A", "B"))
+    abs(sum(trt == "A") - sum(trt == "B")) >= 6
+  }))
+}
+
+res <- sapply(c(20, 50, 100), prob_ge6)
+res
+```

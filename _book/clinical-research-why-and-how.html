@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Clinical research, why and how | Medical Statistics</title>
+  <meta name="description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Clinical research, why and how | Medical Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Clinical research, why and how | Medical Statistics" />
+  
+  <meta name="twitter:description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
+  
+
+
+
+<meta name="date" content="2026-06-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="survival-analysis.html"/>
+<link rel="next" href="randomization-techniques.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#teachers"><i class="fa fa-check"></i>Teachers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#goals-topics"><i class="fa fa-check"></i>Goals &amp; Topics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#programme"><i class="fa fa-check"></i>Programme</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html"><i class="fa fa-check"></i><b>1</b> Introduction and exploratory data analysis</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#introduction-to-probabilistic-distributions"><i class="fa fa-check"></i><b>1.1</b> Introduction to probabilistic distributions</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#motivation"><i class="fa fa-check"></i><b>1.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#discrete-random-variables"><i class="fa fa-check"></i><b>1.1.2</b> Discrete random variables</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#continuous-random-variable"><i class="fa fa-check"></i><b>1.1.3</b> Continuous random variable</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#r-functions"><i class="fa fa-check"></i><b>1.1.4</b> R functions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#data-representation"><i class="fa fa-check"></i><b>1.2</b> Data representation</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#motivating-example"><i class="fa fa-check"></i><b>1.2.1</b> Motivating example</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#working-example"><i class="fa fa-check"></i><b>1.2.2</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#mean-variance"><i class="fa fa-check"></i><b>1.3</b> Mean-Variance</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#working-example-1"><i class="fa fa-check"></i><b>1.3.1</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#correlation-and-heatmap"><i class="fa fa-check"></i><b>1.4</b> Correlation and heatmap</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#motivation-1"><i class="fa fa-check"></i><b>1.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#working-example-2"><i class="fa fa-check"></i><b>1.4.2</b> Working example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html"><i class="fa fa-check"></i><b>2</b> Statistical tests - Part 1</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#comparing-2-groups"><i class="fa fa-check"></i><b>2.1</b> Comparing 2 groups</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#motivation-2"><i class="fa fa-check"></i><b>2.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#working-example-3"><i class="fa fa-check"></i><b>2.1.2</b> Working Example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#power-of-a-statistical-test"><i class="fa fa-check"></i><b>2.2</b> Power of a statistical test</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#motivation-3"><i class="fa fa-check"></i><b>2.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="2.2.2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#working-example-4"><i class="fa fa-check"></i><b>2.2.2</b> Working example</a></li>
+<li class="chapter" data-level="2.2.3" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#illustrating-two-sided-critical-regions"><i class="fa fa-check"></i><b>2.2.3</b> Illustrating two-sided critical regions</a></li>
+<li class="chapter" data-level="2.2.4" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#illustrating-the-power"><i class="fa fa-check"></i><b>2.2.4</b> Illustrating the power</a></li>
+<li class="chapter" data-level="2.2.5" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#what-happens-if-the-effect-size-is-smaller"><i class="fa fa-check"></i><b>2.2.5</b> What happens if the effect size is smaller?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="common-regression-models.html"><a href="common-regression-models.html"><i class="fa fa-check"></i><b>3</b> Common regression models</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="common-regression-models.html"><a href="common-regression-models.html#linear-regression"><i class="fa fa-check"></i><b>3.1</b> Linear regression</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="common-regression-models.html"><a href="common-regression-models.html#motivation-4"><i class="fa fa-check"></i><b>3.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.1.2" data-path="common-regression-models.html"><a href="common-regression-models.html#working-example-5"><i class="fa fa-check"></i><b>3.1.2</b> Working Example</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="common-regression-models.html"><a href="common-regression-models.html#logistic-regression"><i class="fa fa-check"></i><b>3.2</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="common-regression-models.html"><a href="common-regression-models.html#motivation-5"><i class="fa fa-check"></i><b>3.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.2.2" data-path="common-regression-models.html"><a href="common-regression-models.html#link-function"><i class="fa fa-check"></i><b>3.2.2</b> Link function</a></li>
+<li class="chapter" data-level="3.2.3" data-path="common-regression-models.html"><a href="common-regression-models.html#the-glm-function"><i class="fa fa-check"></i><b>3.2.3</b> The <code>glm</code> function</a></li>
+<li class="chapter" data-level="3.2.4" data-path="common-regression-models.html"><a href="common-regression-models.html#working-example-6"><i class="fa fa-check"></i><b>3.2.4</b> Working example</a></li>
+<li class="chapter" data-level="3.2.5" data-path="common-regression-models.html"><a href="common-regression-models.html#fitted-values"><i class="fa fa-check"></i><b>3.2.5</b> Fitted values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html"><i class="fa fa-check"></i><b>4</b> Statistical tests - Part 2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#comparing-more-than-two-groups"><i class="fa fa-check"></i><b>4.1</b> Comparing more than two groups</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-6"><i class="fa fa-check"></i><b>4.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples"><i class="fa fa-check"></i><b>4.1.2</b> Working examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#testing-independence-in-2x2-tables"><i class="fa fa-check"></i><b>4.2</b> Testing independence in 2x2 tables</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-7"><i class="fa fa-check"></i><b>4.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-1"><i class="fa fa-check"></i><b>4.2.2</b> Working examples</a></li>
+<li class="chapter" data-level="4.2.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#general-setup"><i class="fa fa-check"></i><b>4.2.3</b> General setup</a></li>
+<li class="chapter" data-level="4.2.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont"><i class="fa fa-check"></i><b>4.2.4</b> Working examples (cont)</a></li>
+<li class="chapter" data-level="4.2.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#the-chi-squared-test"><i class="fa fa-check"></i><b>4.2.5</b> The chi-squared test</a></li>
+<li class="chapter" data-level="4.2.6" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont-1"><i class="fa fa-check"></i><b>4.2.6</b> Working examples (cont)</a></li>
+<li class="chapter" data-level="4.2.7" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#fishers-exact-test"><i class="fa fa-check"></i><b>4.2.7</b> Fisher’s exact test</a></li>
+<li class="chapter" data-level="4.2.8" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont-2"><i class="fa fa-check"></i><b>4.2.8</b> Working examples (cont)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#testing-independence-in-nx2-tables"><i class="fa fa-check"></i><b>4.3</b> Testing independence in nx2 tables</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-8"><i class="fa fa-check"></i><b>4.3.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.3.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-2"><i class="fa fa-check"></i><b>4.3.2</b> Working examples</a></li>
+<li class="chapter" data-level="4.3.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#general-setup-1"><i class="fa fa-check"></i><b>4.3.3</b> General setup</a></li>
+<li class="chapter" data-level="4.3.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#chi-squared-test-for-nx2-tables"><i class="fa fa-check"></i><b>4.3.4</b> Chi-squared test for nx2 tables</a></li>
+<li class="chapter" data-level="4.3.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont-3"><i class="fa fa-check"></i><b>4.3.5</b> Working examples (cont)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#testing-symmetry-in-2x2-tables"><i class="fa fa-check"></i><b>4.4</b> Testing symmetry in 2x2 tables</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-9"><i class="fa fa-check"></i><b>4.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.4.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-example-7"><i class="fa fa-check"></i><b>4.4.2</b> Working example</a></li>
+<li class="chapter" data-level="4.4.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#general-setup-2"><i class="fa fa-check"></i><b>4.4.3</b> General setup</a></li>
+<li class="chapter" data-level="4.4.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-example-cont"><i class="fa fa-check"></i><b>4.4.4</b> Working example (cont)</a></li>
+<li class="chapter" data-level="4.4.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#notes"><i class="fa fa-check"></i><b>4.4.5</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#relative-risk-and-odds-ratio"><i class="fa fa-check"></i><b>4.5</b> Relative risk and odds ratio</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-10"><i class="fa fa-check"></i><b>4.5.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.5.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#relative-risk"><i class="fa fa-check"></i><b>4.5.2</b> Relative risk</a></li>
+<li class="chapter" data-level="4.5.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#odds-ratio"><i class="fa fa-check"></i><b>4.5.3</b> Odds ratio</a></li>
+<li class="chapter" data-level="4.5.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#relative-risk-vs.-odds-ratio"><i class="fa fa-check"></i><b>4.5.4</b> Relative risk <em>vs.</em> odds ratio</a></li>
+<li class="chapter" data-level="4.5.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#logistic-regression-models-cont"><i class="fa fa-check"></i><b>4.5.5</b> Logistic regression models (cont)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#poisson-regression-models"><i class="fa fa-check"></i><b>4.5.6</b> Poisson regression models</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#power-for-analysis-of-count-tables"><i class="fa fa-check"></i><b>4.6</b> Power for analysis of count tables</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-11"><i class="fa fa-check"></i><b>4.6.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.6.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#fishers-exact-test-1"><i class="fa fa-check"></i><b>4.6.2</b> Fisher’s exact test</a></li>
+<li class="chapter" data-level="4.6.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#chi-squared-test"><i class="fa fa-check"></i><b>4.6.3</b> Chi-squared test</a></li>
+<li class="chapter" data-level="4.6.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#odds-ratio-1"><i class="fa fa-check"></i><b>4.6.4</b> Odds ratio</a></li>
+<li class="chapter" data-level="4.6.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#notes-1"><i class="fa fa-check"></i><b>4.6.5</b> Notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>5</b> Survival analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data---introduction"><i class="fa fa-check"></i><b>5.1</b> Survival data - Introduction</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="survival-analysis.html"><a href="survival-analysis.html#motivation-12"><i class="fa fa-check"></i><b>5.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-8"><i class="fa fa-check"></i><b>5.1.2</b> Working example</a></li>
+<li class="chapter" data-level="5.1.3" data-path="survival-analysis.html"><a href="survival-analysis.html#kaplan-meier-curve"><i class="fa fa-check"></i><b>5.1.3</b> Kaplan-Meier curve</a></li>
+<li class="chapter" data-level="5.1.4" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-cont-1"><i class="fa fa-check"></i><b>5.1.4</b> Working example (cont)</a></li>
+<li class="chapter" data-level="5.1.5" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data-analysis-in-r"><i class="fa fa-check"></i><b>5.1.5</b> Survival data analysis in R</a></li>
+<li class="chapter" data-level="5.1.6" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data-for-groups-the-log-rank-test"><i class="fa fa-check"></i><b>5.1.6</b> Survival data for groups: the log-rank test</a></li>
+<li class="chapter" data-level="5.1.7" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-cont-2"><i class="fa fa-check"></i><b>5.1.7</b> Working example (cont)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data---regression-models"><i class="fa fa-check"></i><b>5.2</b> Survival data - regression models</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="survival-analysis.html"><a href="survival-analysis.html#motivation-13"><i class="fa fa-check"></i><b>5.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.2.2" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-proportional-hazards-model"><i class="fa fa-check"></i><b>5.2.2</b> Cox proportional-hazards model</a></li>
+<li class="chapter" data-level="5.2.3" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-9"><i class="fa fa-check"></i><b>5.2.3</b> Working example</a></li>
+<li class="chapter" data-level="5.2.4" data-path="survival-analysis.html"><a href="survival-analysis.html#group-specific-baseline-hazards"><i class="fa fa-check"></i><b>5.2.4</b> Group-specific baseline hazards</a></li>
+<li class="chapter" data-level="5.2.5" data-path="survival-analysis.html"><a href="survival-analysis.html#the-proportional-hazards-assumption"><i class="fa fa-check"></i><b>5.2.5</b> The proportional hazards assumption</a></li>
+<li class="chapter" data-level="5.2.6" data-path="survival-analysis.html"><a href="survival-analysis.html#others"><i class="fa fa-check"></i><b>5.2.6</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data---power-analysis"><i class="fa fa-check"></i><b>5.3</b> Survival data - power analysis</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="survival-analysis.html"><a href="survival-analysis.html#motivation-14"><i class="fa fa-check"></i><b>5.3.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.3.2" data-path="survival-analysis.html"><a href="survival-analysis.html#power-and-sample-size-for-cox-regression"><i class="fa fa-check"></i><b>5.3.2</b> Power and sample size for Cox regression</a></li>
+<li class="chapter" data-level="5.3.3" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-10"><i class="fa fa-check"></i><b>5.3.3</b> Working example</a></li>
+<li class="chapter" data-level="5.3.4" data-path="survival-analysis.html"><a href="survival-analysis.html#minimum-sample-size"><i class="fa fa-check"></i><b>5.3.4</b> Minimum sample size</a></li>
+<li class="chapter" data-level="5.3.5" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-cont-3"><i class="fa fa-check"></i><b>5.3.5</b> Working example (cont)</a></li>
+<li class="chapter" data-level="5.3.6" data-path="survival-analysis.html"><a href="survival-analysis.html#reference"><i class="fa fa-check"></i><b>5.3.6</b> Reference</a></li>
+<li class="chapter" data-level="5.3.7" data-path="survival-analysis.html"><a href="survival-analysis.html#notes-2"><i class="fa fa-check"></i><b>5.3.7</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-analysis---notes"><i class="fa fa-check"></i><b>5.4</b> Survival analysis - Notes</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="survival-analysis.html"><a href="survival-analysis.html#other-types-of-censoring"><i class="fa fa-check"></i><b>5.4.1</b> Other types of censoring</a></li>
+<li class="chapter" data-level="5.4.2" data-path="survival-analysis.html"><a href="survival-analysis.html#right--left--and-interval-censoring"><i class="fa fa-check"></i><b>5.4.2</b> Right-, left- and interval censoring</a></li>
+<li class="chapter" data-level="5.4.3" data-path="survival-analysis.html"><a href="survival-analysis.html#left-truncation-delayed-entry"><i class="fa fa-check"></i><b>5.4.3</b> Left-truncation (delayed entry)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="survival-analysis.html"><a href="survival-analysis.html#type-i-and-type-ii-censoring"><i class="fa fa-check"></i><b>5.4.4</b> Type-I and type-II censoring</a></li>
+<li class="chapter" data-level="5.4.5" data-path="survival-analysis.html"><a href="survival-analysis.html#competing-risks"><i class="fa fa-check"></i><b>5.4.5</b> Competing risks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html"><i class="fa fa-check"></i><b>6</b> Clinical research, why and how</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html#bias-and-precision"><i class="fa fa-check"></i><b>6.0.1</b> Bias and Precision</a></li>
+<li class="chapter" data-level="6.0.2" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html#increase-accuracy"><i class="fa fa-check"></i><b>6.0.2</b> Increase accuracy</a></li>
+<li class="chapter" data-level="6.0.3" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html#reducing-bias-randomized-trials"><i class="fa fa-check"></i><b>6.0.3</b> Reducing bias: randomized trials</a></li>
+<li class="chapter" data-level="6.0.4" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html#exercise-law-of-large-numbers-in-a-one-arm-trial."><i class="fa fa-check"></i><b>6.0.4</b> Exercise: law of large numbers in a one-arm trial.</a></li>
+<li class="chapter" data-level="6.0.5" data-path="clinical-research-why-and-how.html"><a href="clinical-research-why-and-how.html#short-summary-of-what-we-found-in-the-exercise"><i class="fa fa-check"></i><b>6.0.5</b> Short summary of what we found in the exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="randomization-techniques.html"><a href="randomization-techniques.html"><i class="fa fa-check"></i><b>7</b> Randomization techniques</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="randomization-techniques.html"><a href="randomization-techniques.html#randomization-in-a-randomized-clinical-trial"><i class="fa fa-check"></i><b>7.1</b> Randomization in a randomized clinical trial</a></li>
+<li class="chapter" data-level="7.2" data-path="randomization-techniques.html"><a href="randomization-techniques.html#why-randomize"><i class="fa fa-check"></i><b>7.2</b> Why randomize?</a></li>
+<li class="chapter" data-level="7.3" data-path="randomization-techniques.html"><a href="randomization-techniques.html#what-randomization-can-and-cannot-do"><i class="fa fa-check"></i><b>7.3</b> What randomization can and cannot do</a></li>
+<li class="chapter" data-level="7.4" data-path="randomization-techniques.html"><a href="randomization-techniques.html#working-example-11"><i class="fa fa-check"></i><b>7.4</b> Working example</a></li>
+<li class="chapter" data-level="7.5" data-path="randomization-techniques.html"><a href="randomization-techniques.html#simple-randomization"><i class="fa fa-check"></i><b>7.5</b> Simple randomization</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="randomization-techniques.html"><a href="randomization-techniques.html#a-first-look"><i class="fa fa-check"></i><b>7.5.1</b> A first look</a></li>
+<li class="chapter" data-level="7.5.2" data-path="randomization-techniques.html"><a href="randomization-techniques.html#working-example-12"><i class="fa fa-check"></i><b>7.5.2</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="randomization-techniques.html"><a href="randomization-techniques.html#block-randomization"><i class="fa fa-check"></i><b>7.6</b> Block randomization</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="randomization-techniques.html"><a href="randomization-techniques.html#a-block-of-size-4"><i class="fa fa-check"></i><b>7.6.1</b> A block of size 4</a></li>
+<li class="chapter" data-level="7.6.2" data-path="randomization-techniques.html"><a href="randomization-techniques.html#working-example-13"><i class="fa fa-check"></i><b>7.6.2</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="randomization-techniques.html"><a href="randomization-techniques.html#minimization"><i class="fa fa-check"></i><b>7.7</b> Minimization</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="randomization-techniques.html"><a href="randomization-techniques.html#the-basic-idea"><i class="fa fa-check"></i><b>7.7.1</b> The basic idea</a></li>
+<li class="chapter" data-level="7.7.2" data-path="randomization-techniques.html"><a href="randomization-techniques.html#a-hand-worked-example"><i class="fa fa-check"></i><b>7.7.2</b> A hand-worked example</a></li>
+<li class="chapter" data-level="7.7.3" data-path="randomization-techniques.html"><a href="randomization-techniques.html#working-example-14"><i class="fa fa-check"></i><b>7.7.3</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="randomization-techniques.html"><a href="randomization-techniques.html#summary"><i class="fa fa-check"></i><b>7.8</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="observational-studies.html"><a href="observational-studies.html"><i class="fa fa-check"></i><b>8</b> Observational studies</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="observational-studies.html"><a href="observational-studies.html#why-do-we-need-observational-studies"><i class="fa fa-check"></i><b>8.1</b> Why do we need observational studies?</a></li>
+<li class="chapter" data-level="8.2" data-path="observational-studies.html"><a href="observational-studies.html#classifying-observational-studies"><i class="fa fa-check"></i><b>8.2</b> Classifying observational studies</a></li>
+<li class="chapter" data-level="8.3" data-path="observational-studies.html"><a href="observational-studies.html#cross-sectional-studies"><i class="fa fa-check"></i><b>8.3</b> Cross-sectional studies</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="observational-studies.html"><a href="observational-studies.html#working-example-15"><i class="fa fa-check"></i><b>8.3.1</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="observational-studies.html"><a href="observational-studies.html#cohort-studies"><i class="fa fa-check"></i><b>8.4</b> Cohort studies</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="observational-studies.html"><a href="observational-studies.html#working-example-16"><i class="fa fa-check"></i><b>8.4.1</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="observational-studies.html"><a href="observational-studies.html#case-control-studies"><i class="fa fa-check"></i><b>8.5</b> Case-control studies</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="observational-studies.html"><a href="observational-studies.html#why-the-relative-risk-cannot-be-estimated-directly"><i class="fa fa-check"></i><b>8.5.1</b> Why the relative risk cannot be estimated directly</a></li>
+<li class="chapter" data-level="8.5.2" data-path="observational-studies.html"><a href="observational-studies.html#odds-and-the-odds-ratio"><i class="fa fa-check"></i><b>8.5.2</b> Odds and the odds ratio</a></li>
+<li class="chapter" data-level="8.5.3" data-path="observational-studies.html"><a href="observational-studies.html#working-example-17"><i class="fa fa-check"></i><b>8.5.3</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="observational-studies.html"><a href="observational-studies.html#rare-disease-approximation"><i class="fa fa-check"></i><b>8.6</b> Rare disease approximation</a></li>
+<li class="chapter" data-level="8.7" data-path="observational-studies.html"><a href="observational-studies.html#summary-1"><i class="fa fa-check"></i><b>8.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>9</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="exercises.html"><a href="exercises.html#chapter-1"><i class="fa fa-check"></i><b>9.1</b> Chapter 1</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="exercises.html"><a href="exercises.html#exercise-1"><i class="fa fa-check"></i><b>9.1.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.1.2" data-path="exercises.html"><a href="exercises.html#exercise-2"><i class="fa fa-check"></i><b>9.1.2</b> Exercise 2:</a></li>
+<li class="chapter" data-level="9.1.3" data-path="exercises.html"><a href="exercises.html#exercise-3"><i class="fa fa-check"></i><b>9.1.3</b> Exercise 3(*)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="exercises.html"><a href="exercises.html#chapter-2"><i class="fa fa-check"></i><b>9.2</b> Chapter 2</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="exercises.html"><a href="exercises.html#exercise-1-1"><i class="fa fa-check"></i><b>9.2.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.2.2" data-path="exercises.html"><a href="exercises.html#exercise2"><i class="fa fa-check"></i><b>9.2.2</b> Exercise2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="exercises.html"><a href="exercises.html#chapter-3"><i class="fa fa-check"></i><b>9.3</b> Chapter 3</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="exercises.html"><a href="exercises.html#exercise-1-2"><i class="fa fa-check"></i><b>9.3.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.3.2" data-path="exercises.html"><a href="exercises.html#exercise-2-1"><i class="fa fa-check"></i><b>9.3.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="9.3.3" data-path="exercises.html"><a href="exercises.html#exercise-3-1"><i class="fa fa-check"></i><b>9.3.3</b> Exercise 3</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="exercises.html"><a href="exercises.html#chapter-4"><i class="fa fa-check"></i><b>9.4</b> Chapter 4</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="exercises.html"><a href="exercises.html#exercise-1-3"><i class="fa fa-check"></i><b>9.4.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.4.2" data-path="exercises.html"><a href="exercises.html#exercise-2-2"><i class="fa fa-check"></i><b>9.4.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="9.4.3" data-path="exercises.html"><a href="exercises.html#exercise-3-2"><i class="fa fa-check"></i><b>9.4.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="9.4.4" data-path="exercises.html"><a href="exercises.html#exercise-4"><i class="fa fa-check"></i><b>9.4.4</b> Exercise 4</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="exercises.html"><a href="exercises.html#chapter-5"><i class="fa fa-check"></i><b>9.5</b> Chapter 5</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="exercises.html"><a href="exercises.html#exercise-1-4"><i class="fa fa-check"></i><b>9.5.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.5.2" data-path="exercises.html"><a href="exercises.html#exercise-2-3"><i class="fa fa-check"></i><b>9.5.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="9.5.3" data-path="exercises.html"><a href="exercises.html#exercise-3-3"><i class="fa fa-check"></i><b>9.5.3</b> Exercise 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>10</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="appendix.html"><a href="appendix.html#pca-analysis"><i class="fa fa-check"></i><b>10.1</b> PCA Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="appendix.html"><a href="appendix.html#motivation-15"><i class="fa fa-check"></i><b>10.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="appendix.html"><a href="appendix.html#working-example-18"><i class="fa fa-check"></i><b>10.1.2</b> Working example</a></li>
+<li class="chapter" data-level="10.1.3" data-path="appendix.html"><a href="appendix.html#quick-tasks"><i class="fa fa-check"></i><b>10.1.3</b> Quick tasks</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Medical Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="clinical-research-why-and-how" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Clinical research, why and how<a href="clinical-research-why-and-how.html#clinical-research-why-and-how" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>(Sara Balduzzi, Antonios Daletzakis and Vincent van der Noort)</p>
+<p>Time to take a step back. What are we doing here all day, as researchers? What is our goal and why is everything so complicated?</p>
+<p>Of course there are many answers to these questions but one important aspect is this:</p>
+<p>Clinical research tries to answer a question about <em>a large group of patients</em> (e. g. all stage III non-small cell lung cancer patients) by looking at a <em>small subset of these patients</em> (the patients in the trial).</p>
+<center>
+<div class="float">
+<img src="figure/korbedpsych.jpg" alt="Vectors" />
+<div class="figcaption">Vectors</div>
+</div>
+</center>
+<p>You collect a number of study participants, see (for instance) how well they react to a new drug and then draw conclusions about how all other patients with the same disease will react to this drug in the future.</p>
+<p>The first thing that comes to mind when seeing this is: this is impossible. You cannot know everything about all the people that are <em>not</em> in the trial. This is correct, on a fundamental level what we want is impossible and it is important to realize that statistics cannot change that: statistics is not magic.</p>
+<p>However, more important is to <em>not give up</em>. As researchers we take (what I think is) the best course of action when confronted with an impossible situation: make the best of it. In our case: try to do what we can to make the conclusions about the large group of people (the general population) based on the small set of people (the study population) <em>as reliable as possible</em>. This what statistics, but also (part of) the rules and regulations from GCP are all about. While it is true that we cannot know everything, it is also true that after doing a study we know <em>more</em> than we knew before.</p>
+<div id="bias-and-precision" class="section level3 hasAnchor" number="6.0.1">
+<h3><span class="header-section-number">6.0.1</span> Bias and Precision<a href="clinical-research-why-and-how.html#bias-and-precision" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Much of the measures we take to draw more reliable conclusions fall in three categories:</p>
+<ul>
+<li>Increase accuracy</li>
+<li>Decrease bias</li>
+<li>Make sure your trial measures the things you are actually interested in in clinical practice</li>
+</ul>
+<p>What do these terms mean and what can we do about it?</p>
+<p>The <strong>precision</strong> of a quantitative measurement relates to the amount of random variation about a fixed point (be it the true value or not).</p>
+<p><strong>Bias</strong> may be defined as any factor or process that tends to produce results or conclusions that differ systematically from the truth. Any research study in a medical field is open to bias (from many sources).</p>
+<p>In general, an accurate measurement is defined as both <strong>unbiased and precise</strong>.</p>
+<center>
+<div class="float">
+<img src="figure/precision-and-bias.png" alt="Vectors" />
+<div class="figcaption">Vectors</div>
+</div>
+</center>
+<p><strong>Group discussion</strong>: the following picture gives some rather abstract examples of things that can affect the accuracy of our measurements, let’s see if we can give concrete examples on all of them:</p>
+<center>
+<div class="float">
+<embed src="figure/sources_of_variation_in_measurement_Results.pdf" />
+<div class="figcaption">Vectors</div>
+</div>
+</center>
+</div>
+<div id="increase-accuracy" class="section level3 hasAnchor" number="6.0.2">
+<h3><span class="header-section-number">6.0.2</span> Increase accuracy<a href="clinical-research-why-and-how.html#increase-accuracy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Some general strategies for increasing accuracy are:</p>
+<ul>
+<li>Increase the sample size</li>
+<li>Use more accurate or sensitive techniques for your measurements</li>
+<li>Take prognostic factors into account</li>
+</ul>
+<p>We will discuss all three of them shortly.</p>
+<p><strong>Sample size</strong> There is an obvious intuitive reason why increasing the sample size is good: we are trying to learn something about a large group of patients. The larger the fraction of those patients we actually see in our study, the more we learn about them.</p>
+<p>But there is also a more mathematical reason, sometime called the law of large numbers. Suppose we are will to accept that (for now) we cannot learn enough about our patients to predict for each future patient their exact time of death or even whether or not their tumor will respond to drug X. However we do believe that by doing the study we can get some useful ‘summary’ level information about the patient group as a whole: what is their <em>median</em> overall survival? What <em>fraction</em> of patients will respond to drug X?</p>
+<p>The median survival in the study patients is a an estimate of this ‘true’ median survival in all patient; the observed response rate in the study patients is an estimate of the ‘true’ response rate in all patients - this latter number can be interpreted as the probability for in individual future patient to respond.</p>
+<p>Now this estimate will likely not be 100% accurate (i.e. equal to the true value) because of inter-subject variation and the fact that not every patient in past, present and future participates in the trial. But here we know that the more patients we include the more accurate the estimate becomes, and we can also calculate how fast. This is no longer a matter of biology but of mathematics: we can just model the trial patients as marbles we randomly draw from the urn of all patients.</p>
+<p>(Note that here it is important the study patients are indeed a representative sample of the population of interest!)</p>
+<p>We have an exercise about this further down. First let’s look at the other two bullets.</p>
+<p><strong>Sensitive measurements</strong> Our hospital is named after Antoni van Leeuwenhoek who contributed tremendously to our understanding of biology by improving the sensitivity of an (existing) measurement apparatus: the microscope. Just to say that there really <em>is</em> fame and glamour in this boring sounding bullet point.</p>
+<p>In the context of clinical trials this is more about using standardized questionnaires for patient reported outcomes, standardized measurements of tumor (e.g. Recist), finding ways to be even better than that, like the automatic volume measurements that are currently developed here in the AvL, using overall survival instead of progression free survival as a measure of survival etc.</p>
+<p><strong>Prognostic factors</strong> Imagine that you are trying to estimate the <em>difference</em> in survival between two groups of patients (e.g. smokers and non-smokers) but among your trial patients you see that the groups do not only differ only in smoking status but also in other known prognostic factors such as age, socioeconomic status, percentage females etc. Then in order to get a more accurate of what part of the difference is attributable to smoking we can make a <em>regression model</em> taking these other factors into account. You already had a whole chapter on regression models, so this is just a short reminder why we care.</p>
+</div>
+<div id="reducing-bias-randomized-trials" class="section level3 hasAnchor" number="6.0.3">
+<h3><span class="header-section-number">6.0.3</span> Reducing bias: randomized trials<a href="clinical-research-why-and-how.html#reducing-bias-randomized-trials" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The last example with smokers and non-smokers that differ in various aspects also ties in with the question of how to reduce bias. We can make a very long list (e.g. Chavalarias J Clin Epidemiology 63 (2010) identify 235 types of bias that have accquired their own name throughout the literature) but here I want to list just a few thing common in clinical trials:</p>
+<ul>
+<li>Identify sources of bias</li>
+<li>Use a control group</li>
+<li>Randomisation</li>
+<li>Blinding</li>
+</ul>
+<p>The first point is obvious: <strong>think about everything that can go wrong before starting your trial</strong>.</p>
+<p><strong>Control groups:</strong> If you give a number of study patients drug X and after 1 year all of them are still alive, this looks like as if drug X is working very well, especially if you are someone who already believed that. But how do we know that these patients wouldn’t have lived for one year anyway?</p>
+<p>One solution out of this is to include a second group of patients that do not get drug X but the standard of care and see if people in the ‘drug X’-group do actually live longer (or more often make the 1 year mark).</p>
+<p><strong>Randomization:</strong> Can we improve on the idea of the previous paragraph? We saw in the smoker/non-smoker example that it is annoying if the groups you want to compare differ in more aspects than the one you are interested in. Ideally we want the groups to be as comparable as possible with the exception of the one thing we are studying (normally: which treatment do the patients get, but sometimes also a potential risk factor like smoking).</p>
+<p>One way to achieve that is through <em>randomization</em>. All patients that are eligible and willing to participate are randomly assigned to treatment A or treatment B. The groups will not be exactly equal, but due to the law of large numbers again we assume that when including enough patients all <em>known and unknown</em> prognostic factors must be balanced between arms.</p>
+<p>When it comes to known factors we can also manipulate the randomness a bit (see chapter stratification later today) to ensure these are balanced.</p>
+<p>Randomized controlled trials are considered the gold standard in clinical research</p>
+<p><strong>Question:</strong> What are some reasons to trust ‘randomness’ more than people when assigning patients to treatment arms?</p>
+<p><strong>Question:</strong> If randomized trials are so great, then why (i.e. for what reasons) do we do so many one-armed trials?</p>
+<p><strong>Blinding:</strong> Sometimes patients and/or treating physicians are <em>blinded</em> to (e.g. do not know) which treatment a patient receives with the goal of eliminating the placebo effect (or making it equally bad between arms). Also (even in one-armed trials) treating physicians are blinded to the emerging outcomes in order to prevent influencing their decisions on which patients to include or not into the trial.</p>
+<p>In many practical situations blinding is not possible. (E.g. a trial that compares surgery to chemotherapy.) The amount of effort spend on blinding also depends on the outcome (e.g. when the outcome is overall survival we worry less about the placebo effect than when the outcome is (reduction of) pain).</p>
+</div>
+<div id="exercise-law-of-large-numbers-in-a-one-arm-trial." class="section level3 hasAnchor" number="6.0.4">
+<h3><span class="header-section-number">6.0.4</span> Exercise: law of large numbers in a one-arm trial.<a href="clinical-research-why-and-how.html#exercise-law-of-large-numbers-in-a-one-arm-trial." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="short-summary-of-what-we-found-in-the-exercise" class="section level3 hasAnchor" number="6.0.5">
+<h3><span class="header-section-number">6.0.5</span> Short summary of what we found in the exercise<a href="clinical-research-why-and-how.html#short-summary-of-what-we-found-in-the-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We see:</p>
+<ul>
+<li><strong>On one hand:</strong> what we want (to figure something out about <em>all</em> patients based on <em>some</em> patients) is fundamentally impossible. The probability of getting a wrong answer is greater than the probability of getting the right answer</li>
+<li><strong>On the other hand:</strong> The situation is not hopeless. By including a not-too-tiny amount of patients we can make the probability of finding a wrong answer that is <em>clinically relevantly different</em> from the true answer pretty small.</li>
+</ul>
+<p>Of course you have talked about this before already in the chapter about power and sample size.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="survival-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="randomization-techniques.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

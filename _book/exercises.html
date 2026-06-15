@@ -4,32 +4,32 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Exercises | Medical Statistics</title>
+  <title>Chapter 7 Exercises | Medical Statistics</title>
   <meta name="description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Exercises | Medical Statistics" />
+  <meta property="og:title" content="Chapter 7 Exercises | Medical Statistics" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Exercises | Medical Statistics" />
+  <meta name="twitter:title" content="Chapter 7 Exercises | Medical Statistics" />
   
   <meta name="twitter:description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
   
 
 
 
-<meta name="date" content="2025-08-18" />
+<meta name="date" content="2026-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="survival-analysis.html"/>
+<link rel="prev" href="clinical-research.html"/>
 <link rel="next" href="appendix.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -55,7 +55,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -65,7 +65,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -291,46 +291,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.5" data-path="survival-analysis.html"><a href="survival-analysis.html#competing-risks"><i class="fa fa-check"></i><b>5.4.5</b> Competing risks</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>6</b> Exercises</a>
+<li class="chapter" data-level="6" data-path="clinical-research.html"><a href="clinical-research.html"><i class="fa fa-check"></i><b>6</b> Clinical research</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="exercises.html"><a href="exercises.html#chapter-1"><i class="fa fa-check"></i><b>6.1</b> Chapter 1</a>
+<li class="chapter" data-level="6.1" data-path="clinical-research.html"><a href="clinical-research.html#clinical-research-why-and-how"><i class="fa fa-check"></i><b>6.1</b> Clinical research, why and how</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="exercises.html"><a href="exercises.html#exercise-1"><i class="fa fa-check"></i><b>6.1.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="6.1.2" data-path="exercises.html"><a href="exercises.html#exercise-2"><i class="fa fa-check"></i><b>6.1.2</b> Exercise 2:</a></li>
-<li class="chapter" data-level="6.1.3" data-path="exercises.html"><a href="exercises.html#exercise-3"><i class="fa fa-check"></i><b>6.1.3</b> Exercise 3(*)</a></li>
+<li class="chapter" data-level="6.1.1" data-path="clinical-research.html"><a href="clinical-research.html#bias-and-precision"><i class="fa fa-check"></i><b>6.1.1</b> Bias and Precision</a></li>
+<li class="chapter" data-level="6.1.2" data-path="clinical-research.html"><a href="clinical-research.html#increase-accuracy"><i class="fa fa-check"></i><b>6.1.2</b> Increase accuracy</a></li>
+<li class="chapter" data-level="6.1.3" data-path="clinical-research.html"><a href="clinical-research.html#reducing-bias-randomized-trials"><i class="fa fa-check"></i><b>6.1.3</b> Reducing bias: randomized trials</a></li>
+<li class="chapter" data-level="6.1.4" data-path="clinical-research.html"><a href="clinical-research.html#exercise-law-of-large-numbers-in-a-one-arm-trial."><i class="fa fa-check"></i><b>6.1.4</b> Exercise: law of large numbers in a one-arm trial.</a></li>
+<li class="chapter" data-level="6.1.5" data-path="clinical-research.html"><a href="clinical-research.html#short-summary-of-what-we-found-in-the-exercise"><i class="fa fa-check"></i><b>6.1.5</b> Short summary of what we found in the exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="exercises.html"><a href="exercises.html#chapter-2"><i class="fa fa-check"></i><b>6.2</b> Chapter 2</a>
+<li class="chapter" data-level="6.2" data-path="clinical-research.html"><a href="clinical-research.html#randomization-techniques"><i class="fa fa-check"></i><b>6.2</b> Randomization techniques</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="exercises.html"><a href="exercises.html#exercise-1-1"><i class="fa fa-check"></i><b>6.2.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="6.2.2" data-path="exercises.html"><a href="exercises.html#exercise2"><i class="fa fa-check"></i><b>6.2.2</b> Exercise2</a></li>
+<li class="chapter" data-level="6.2.1" data-path="clinical-research.html"><a href="clinical-research.html#randomization-in-a-randomized-clinical-trial"><i class="fa fa-check"></i><b>6.2.1</b> Randomization in a randomized clinical trial</a></li>
+<li class="chapter" data-level="6.2.2" data-path="clinical-research.html"><a href="clinical-research.html#why-randomize"><i class="fa fa-check"></i><b>6.2.2</b> Why randomize?</a></li>
+<li class="chapter" data-level="6.2.3" data-path="clinical-research.html"><a href="clinical-research.html#working-example-11"><i class="fa fa-check"></i><b>6.2.3</b> Working example</a></li>
+<li class="chapter" data-level="6.2.4" data-path="clinical-research.html"><a href="clinical-research.html#simple-randomization"><i class="fa fa-check"></i><b>6.2.4</b> Simple randomization</a></li>
+<li class="chapter" data-level="6.2.5" data-path="clinical-research.html"><a href="clinical-research.html#block-randomization"><i class="fa fa-check"></i><b>6.2.5</b> Block randomization</a></li>
+<li class="chapter" data-level="6.2.6" data-path="clinical-research.html"><a href="clinical-research.html#minimization"><i class="fa fa-check"></i><b>6.2.6</b> Minimization</a></li>
+<li class="chapter" data-level="6.2.7" data-path="clinical-research.html"><a href="clinical-research.html#summary"><i class="fa fa-check"></i><b>6.2.7</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="exercises.html"><a href="exercises.html#chapter-3"><i class="fa fa-check"></i><b>6.3</b> Chapter 3</a>
+<li class="chapter" data-level="6.3" data-path="clinical-research.html"><a href="clinical-research.html#observational-studies"><i class="fa fa-check"></i><b>6.3</b> Observational studies</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="exercises.html"><a href="exercises.html#exercise-1-2"><i class="fa fa-check"></i><b>6.3.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="6.3.2" data-path="exercises.html"><a href="exercises.html#exercise-2-1"><i class="fa fa-check"></i><b>6.3.2</b> Exercise 2</a></li>
-<li class="chapter" data-level="6.3.3" data-path="exercises.html"><a href="exercises.html#exercise-3-1"><i class="fa fa-check"></i><b>6.3.3</b> Exercise 3</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="exercises.html"><a href="exercises.html#chapter-4"><i class="fa fa-check"></i><b>6.4</b> Chapter 4</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="exercises.html"><a href="exercises.html#exercise-1-3"><i class="fa fa-check"></i><b>6.4.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="6.4.2" data-path="exercises.html"><a href="exercises.html#exercise-2-2"><i class="fa fa-check"></i><b>6.4.2</b> Exercise 2</a></li>
-<li class="chapter" data-level="6.4.3" data-path="exercises.html"><a href="exercises.html#exercise-3-2"><i class="fa fa-check"></i><b>6.4.3</b> Exercise 3</a></li>
-<li class="chapter" data-level="6.4.4" data-path="exercises.html"><a href="exercises.html#exercise-4"><i class="fa fa-check"></i><b>6.4.4</b> Exercise 4</a></li>
-</ul></li>
-<li class="chapter" data-level="6.5" data-path="exercises.html"><a href="exercises.html#chapter-5"><i class="fa fa-check"></i><b>6.5</b> Chapter 5</a>
-<ul>
-<li class="chapter" data-level="6.5.1" data-path="exercises.html"><a href="exercises.html#exercise-1-4"><i class="fa fa-check"></i><b>6.5.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="6.5.2" data-path="exercises.html"><a href="exercises.html#exercise-2-3"><i class="fa fa-check"></i><b>6.5.2</b> Exercise 2</a></li>
-<li class="chapter" data-level="6.5.3" data-path="exercises.html"><a href="exercises.html#exercise-3-3"><i class="fa fa-check"></i><b>6.5.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="6.3.1" data-path="clinical-research.html"><a href="clinical-research.html#why-do-we-need-observational-studies"><i class="fa fa-check"></i><b>6.3.1</b> Why do we need observational studies?</a></li>
+<li class="chapter" data-level="6.3.2" data-path="clinical-research.html"><a href="clinical-research.html#classifying-observational-studies"><i class="fa fa-check"></i><b>6.3.2</b> Classifying observational studies</a></li>
+<li class="chapter" data-level="6.3.3" data-path="clinical-research.html"><a href="clinical-research.html#cross-sectional-studies"><i class="fa fa-check"></i><b>6.3.3</b> Cross-sectional studies</a></li>
+<li class="chapter" data-level="6.3.4" data-path="clinical-research.html"><a href="clinical-research.html#cohort-studies"><i class="fa fa-check"></i><b>6.3.4</b> Cohort studies</a></li>
+<li class="chapter" data-level="6.3.5" data-path="clinical-research.html"><a href="clinical-research.html#case-control-studies"><i class="fa fa-check"></i><b>6.3.5</b> Case-control studies</a></li>
+<li class="chapter" data-level="6.3.6" data-path="clinical-research.html"><a href="clinical-research.html#rare-disease-approximation"><i class="fa fa-check"></i><b>6.3.6</b> Rare disease approximation</a></li>
+<li class="chapter" data-level="6.3.7" data-path="clinical-research.html"><a href="clinical-research.html#summary-1"><i class="fa fa-check"></i><b>6.3.7</b> Summary</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>7</b> Appendix</a>
+<li class="chapter" data-level="7" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>7</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="appendix.html"><a href="appendix.html#pca-analysis"><i class="fa fa-check"></i><b>7.1</b> PCA Analysis</a>
+<li class="chapter" data-level="7.1" data-path="exercises.html"><a href="exercises.html#chapter-1"><i class="fa fa-check"></i><b>7.1</b> Chapter 1</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="appendix.html"><a href="appendix.html#motivation-15"><i class="fa fa-check"></i><b>7.1.1</b> Motivation</a></li>
-<li class="chapter" data-level="7.1.2" data-path="appendix.html"><a href="appendix.html#working-example-11"><i class="fa fa-check"></i><b>7.1.2</b> Working example</a></li>
-<li class="chapter" data-level="7.1.3" data-path="appendix.html"><a href="appendix.html#quick-tasks"><i class="fa fa-check"></i><b>7.1.3</b> Quick tasks</a></li>
+<li class="chapter" data-level="7.1.1" data-path="exercises.html"><a href="exercises.html#exercise-1"><i class="fa fa-check"></i><b>7.1.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.1.2" data-path="exercises.html"><a href="exercises.html#exercise-2"><i class="fa fa-check"></i><b>7.1.2</b> Exercise 2:</a></li>
+<li class="chapter" data-level="7.1.3" data-path="exercises.html"><a href="exercises.html#exercise-3"><i class="fa fa-check"></i><b>7.1.3</b> Exercise 3(*)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="exercises.html"><a href="exercises.html#chapter-2"><i class="fa fa-check"></i><b>7.2</b> Chapter 2</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="exercises.html"><a href="exercises.html#exercise-1-1"><i class="fa fa-check"></i><b>7.2.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.2.2" data-path="exercises.html"><a href="exercises.html#exercise2"><i class="fa fa-check"></i><b>7.2.2</b> Exercise2</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="exercises.html"><a href="exercises.html#chapter-3"><i class="fa fa-check"></i><b>7.3</b> Chapter 3</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="exercises.html"><a href="exercises.html#exercise-1-2"><i class="fa fa-check"></i><b>7.3.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.3.2" data-path="exercises.html"><a href="exercises.html#exercise-2-1"><i class="fa fa-check"></i><b>7.3.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="7.3.3" data-path="exercises.html"><a href="exercises.html#exercise-3-1"><i class="fa fa-check"></i><b>7.3.3</b> Exercise 3</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="exercises.html"><a href="exercises.html#chapter-4"><i class="fa fa-check"></i><b>7.4</b> Chapter 4</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="exercises.html"><a href="exercises.html#exercise-1-3"><i class="fa fa-check"></i><b>7.4.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.4.2" data-path="exercises.html"><a href="exercises.html#exercise-2-2"><i class="fa fa-check"></i><b>7.4.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="7.4.3" data-path="exercises.html"><a href="exercises.html#exercise-3-2"><i class="fa fa-check"></i><b>7.4.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="7.4.4" data-path="exercises.html"><a href="exercises.html#exercise-4"><i class="fa fa-check"></i><b>7.4.4</b> Exercise 4</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="exercises.html"><a href="exercises.html#chapter-5"><i class="fa fa-check"></i><b>7.5</b> Chapter 5</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="exercises.html"><a href="exercises.html#exercise-1-4"><i class="fa fa-check"></i><b>7.5.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.5.2" data-path="exercises.html"><a href="exercises.html#exercise-2-3"><i class="fa fa-check"></i><b>7.5.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="7.5.3" data-path="exercises.html"><a href="exercises.html#exercise-3-3"><i class="fa fa-check"></i><b>7.5.3</b> Exercise 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="appendix.html"><a href="appendix.html#pca-analysis"><i class="fa fa-check"></i><b>8.1</b> PCA Analysis</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="appendix.html"><a href="appendix.html#motivation-15"><i class="fa fa-check"></i><b>8.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="appendix.html"><a href="appendix.html#working-example-18"><i class="fa fa-check"></i><b>8.1.2</b> Working example</a></li>
+<li class="chapter" data-level="8.1.3" data-path="appendix.html"><a href="appendix.html#quick-tasks"><i class="fa fa-check"></i><b>8.1.3</b> Quick tasks</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -350,12 +381,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exercises" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Exercises<a href="exercises.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="chapter-1" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Chapter 1<a href="exercises.html#chapter-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1" class="section level3 hasAnchor" number="6.1.1">
-<h3><span class="header-section-number">6.1.1</span> Exercise 1<a href="exercises.html#exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercises" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Exercises<a href="exercises.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="chapter-1" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Chapter 1<a href="exercises.html#chapter-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Exercise 1<a href="exercises.html#exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Load the dataset mtcars in the R memory using the command (datamtcars)</p>
 <p>1.1 How many variables and observations are contained in the dataset? Print the 5 first rows of the dataset</p>
 <p>1.2 Plot the histograms of the continuous numerical variables of the dataset (type <code>?mtcars</code> to obtain the description of the dataset).</p>
@@ -364,24 +395,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>1.5 Plot boxplots using the command <code>boxplot(qsec ~ vs:am)</code>. What is the difference with the plots obtained previously?</p>
 <p>1.6 compute the mean and standard variation for each continuous variable of the dataset for the 2 different engine types.</p>
 </div>
-<div id="exercise-2" class="section level3 hasAnchor" number="6.1.2">
-<h3><span class="header-section-number">6.1.2</span> Exercise 2:<a href="exercises.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-2" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Exercise 2:<a href="exercises.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We continue with the same dataset:</p>
 <p>2.1 compute the correlation matrix associated for the three different correlations for all variables except the <code>vs</code> and <code>am</code> variables.</p>
 <p>2.2 Display the results using heatmaps.</p>
 </div>
-<div id="exercise-3" class="section level3 hasAnchor" number="6.1.3">
-<h3><span class="header-section-number">6.1.3</span> Exercise 3(*)<a href="exercises.html#exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-3" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Exercise 3(*)<a href="exercises.html#exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>3.1 Perform a pca analysis and plot the resulting scree plot.</p>
 <p>3.2 display the eigenvalues of the oca analysis. How many principal components would you keep?</p>
 <p>3.3 Plot the correlation circle for the first two principal components. What is your interpretation of the first principal component?</p>
 <p>3.4 Display the contribution of each variable on the principal components</p>
 </div>
 </div>
-<div id="chapter-2" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Chapter 2<a href="exercises.html#chapter-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1-1" class="section level3 hasAnchor" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> Exercise 1<a href="exercises.html#exercise-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="chapter-2" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Chapter 2<a href="exercises.html#chapter-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-1" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Exercise 1<a href="exercises.html#exercise-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Load the <code>ToothGrowth</code> dataset using the command line <code>data(ToothGrowth)</code>. This dataset is the result of an experiment on Guinea Pigs. It looks at the length of odontoblast cells after animals received a dose of vitamin C by one of two delivery methods. Namely, Orange juice (noted OJ) and ascorbic acid noted VC.</p>
 <p>Source: Crampton, E. W. (1947). The growth of the odontoblast of the incisor teeth as a criterion of vitamin C intake of the guinea pig. The Journal of Nutrition, 33(5), 491–504. doi: 10.1093/jn/33.5.491.</p>
 <p>1.1 Plot the histogram of the length of the odontoblast in the entire dataset.</p>
@@ -395,17 +426,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>1.8 what would be the number of Guinea Pigs per group required in order to have a power of 80% to detect a significant difference between both groups? And for a power of 90%?</p>
 <p>1.9 Perform a Wilcoxon-Mann-Whitney test to compare the medians of the length of the cells between both delivery methods</p>
 </div>
-<div id="exercise2" class="section level3 hasAnchor" number="6.2.2">
-<h3><span class="header-section-number">6.2.2</span> Exercise2<a href="exercises.html#exercise2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise2" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Exercise2<a href="exercises.html#exercise2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>2.1 Create a plot that represent the power as a function of the sample for an experiment with an estimated difference in mean of 2, a standard deviation of 1.2, and a significance level of 0.05 of a two sided Student’s t-test.</p>
 <p>2.2 Create the same plot for a standard deviation of 2.4.</p>
 <p>2.3 Create the same plot for a significance threshold of 0.1.</p>
 </div>
 </div>
-<div id="chapter-3" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> Chapter 3<a href="exercises.html#chapter-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1-2" class="section level3 hasAnchor" number="6.3.1">
-<h3><span class="header-section-number">6.3.1</span> Exercise 1<a href="exercises.html#exercise-1-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="chapter-3" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Chapter 3<a href="exercises.html#chapter-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-2" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Exercise 1<a href="exercises.html#exercise-1-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>1.1 We go back to the <code>ToothGrowth</code> dataset. We saw that there is a significant difference in the average length of the odontoblast between the two delivery methods of vitamin C. We are now interested in the relationship between the dose of vitamin C and the length of odontoblast. Perform a linear regression model to test for association between these 2 variables.</p>
 <p>1.2 Extract the estimates and corresponding statistics and p-values from the regression.</p>
 <p>1.3 Create Plots in order to check the assumptions of the model.</p>
@@ -414,12 +445,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>1.5 It could be relevant to add a possible interaction between the dose given and the delivery method. Add an interaction effect in the model.</p>
 <p>1.6 What do you conclude from this analysis?</p>
 </div>
-<div id="exercise-2-1" class="section level3 hasAnchor" number="6.3.2">
-<h3><span class="header-section-number">6.3.2</span> Exercise 2<a href="exercises.html#exercise-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-2-1" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Exercise 2<a href="exercises.html#exercise-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>2.1. Return to the budworms example. Using the model fitted including the main effects of <code>sex</code> and <code>ldose</code> as well as their interaction, extract the fitted probabilities. Make a graph of observed and expected probabilities, and include a legend. Make sure to distinguish the groups, for example by using different plotting symbols for <code>sex</code> and different colours depending on the dose. Note that the observed probabilities are given by <code>numdead/20</code>.</p>
 </div>
-<div id="exercise-3-1" class="section level3 hasAnchor" number="6.3.3">
-<h3><span class="header-section-number">6.3.3</span> Exercise 3<a href="exercises.html#exercise-3-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-3-1" class="section level3 hasAnchor" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Exercise 3<a href="exercises.html#exercise-3-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Analyse now the <code>birthwt</code> data from the package <code>MASS</code>, to investigate factors that may affect the chance of low birth weight.</p>
 <p>3.1 Fit a logistic regression model to the variable representing low weight, using <code>smoke</code> as covariate in the model. Note that the response variable now is binary, not counts. Examine the model fit to check if it represents a good approximation of the data.</p>
 <p>3.2 Extract fitted probabilities and plot those together with the observed data. Note that the latter is now simply a binary variable.</p>
@@ -427,10 +458,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>3.4 We think that the model can be improved further, but it is not immediately clear which variables should be included, and in which order. For this, we can use the function <code>step</code>, which performs stepwise regression. This involves comparing model fits by using the Akaike Information Criterion (AIC). A statistical test helps deciding whether the AIC value indicates a statistically significant improvement between model fits. Try to improve the basic model which includes <code>smoke</code> and <code>lwt</code>, by adding variables <code>age</code>, <code>ptl</code>, <code>ht</code> and <code>ftv</code> one at a time. Check the help file for <code>step</code>, and call the function using as <code>object</code> the fitted model with <code>smoke</code> and <code>lwt</code>, and as <code>scope</code> the formula for the model including these two, plus the extra covariates.</p>
 </div>
 </div>
-<div id="chapter-4" class="section level2 hasAnchor" number="6.4">
-<h2><span class="header-section-number">6.4</span> Chapter 4<a href="exercises.html#chapter-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1-3" class="section level3 hasAnchor" number="6.4.1">
-<h3><span class="header-section-number">6.4.1</span> Exercise 1<a href="exercises.html#exercise-1-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="chapter-4" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Chapter 4<a href="exercises.html#chapter-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-3" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Exercise 1<a href="exercises.html#exercise-1-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A study has looked at the relationship between aspirin use and heart attacks via a randomized clinical trial. The aim is to test whether aspirin taken regularly reduces mortality from cardiovascular disease. Study participants did not know if they used aspirin or a placebo. The table below summarizes some of their findings, according to fatal miocardial infarcts (FMI) and non-fatal ones (NFMI).</p>
 <table>
 <thead>
@@ -466,8 +497,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>1.6 Extract the odds ratio estimates from 1.3 and 1.6, and include them as inline code in the text below.</p>
 <p>The odds ratio estimated by us from the table was <code>r</code>, and the one estimated by Fisher’s exact test was <code>r</code>.</p>
 </div>
-<div id="exercise-2-2" class="section level3 hasAnchor" number="6.4.2">
-<h3><span class="header-section-number">6.4.2</span> Exercise 2<a href="exercises.html#exercise-2-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-2-2" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Exercise 2<a href="exercises.html#exercise-2-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A study looked at the association between job satisfaction and income, gathering the data in the table below.</p>
 <table>
 <colgroup>
@@ -528,8 +559,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>2.7 Complete the following text with inline code.</p>
 <p>This study found that odds of being dissatisfied, compared with being satisfied, is for the income class <code>&gt;25,000</code> <code>r</code> that for the income class of <code>&lt;6,000</code>.</p>
 </div>
-<div id="exercise-3-2" class="section level3 hasAnchor" number="6.4.3">
-<h3><span class="header-section-number">6.4.3</span> Exercise 3<a href="exercises.html#exercise-3-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-3-2" class="section level3 hasAnchor" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Exercise 3<a href="exercises.html#exercise-3-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The table below gives the grade into which left and right eye of the same person were classified. Use an appropriate test to check if there is evidence that eye grades of one side are typically better than the other side, against the null hypothesis that the better grade is observed at random for the left and for the right eye.</p>
 <table>
 <thead>
@@ -555,8 +586,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>3.1 Enter the data as a matrix and define row and column names. Check that your definition is correct.</p>
 <p>3.2 Use an appropriate test to check if there is evidence that eye grades of one side are typically better than the other side, against the null hypothesis that the better grade is observed at random for the left and for the right eye.</p>
 </div>
-<div id="exercise-4" class="section level3 hasAnchor" number="6.4.4">
-<h3><span class="header-section-number">6.4.4</span> Exercise 4<a href="exercises.html#exercise-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-4" class="section level3 hasAnchor" number="7.4.4">
+<h3><span class="header-section-number">7.4.4</span> Exercise 4<a href="exercises.html#exercise-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A study compared radiation therapy with surgery in treating cancer of the larynx. The data is given below.</p>
 <table>
 <thead>
@@ -585,10 +616,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>4.4 Evaluate the power for larger sample sizes, keeping the relative sample size for the first and second groups the same. Make a graph of results, with the total expected sample size on the x-axis and the power on the y-axis.</p>
 </div>
 </div>
-<div id="chapter-5" class="section level2 hasAnchor" number="6.5">
-<h2><span class="header-section-number">6.5</span> Chapter 5<a href="exercises.html#chapter-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1-4" class="section level3 hasAnchor" number="6.5.1">
-<h3><span class="header-section-number">6.5.1</span> Exercise 1<a href="exercises.html#exercise-1-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="chapter-5" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Chapter 5<a href="exercises.html#chapter-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-4" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Exercise 1<a href="exercises.html#exercise-1-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Consider again the leukemia data in dataset <code>leuk</code>. We will now compare survival probabilities between the groups given by <code>ag</code>, representing the test result for the presence of Auer rods and/or significant granulation of leukaemic cells.</p>
 <p>1.1 Plot the Kaplan-Meier survival curves separately per group defined by the AG test. Compute the log-rank test and add the test result to the graph’s title.</p>
 <p>1.2 By default the curves are plotted with the same colour. Add colours to the plot by using the slot <code>col</code> in the <code>plot</code> call. Note that curves are plotted using the order of the factor levels in the grouping variable, which is also the order used by <code>print</code> and <code>summary</code> - in this example D1 comes first, followed by D2. Add a legend to the plot indicating which group corresponds to which colour.</p>
@@ -601,12 +632,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>1.8 Let us compare survival probabilities estimated by Kaplan-Meier with those estimated by the Cox model. Make the graph of the Kaplan-Meier curves separately per <code>ag</code> group, as well as of the Cox model’s baseline hazards estimated separately, without correcting for <code>log(wbc)</code>. How do the survival probabilities estimated by Kaplan-Meier compare with those estimated by Cox regression?</p>
 <p>1.9 Now repeat this plot, using the Cox model with separate baseline hazards depending on the group defined by <code>ag</code> as before, and correcting for the effect of <code>log(wbc)</code>. How do these results compare with those from the previous exercise?</p>
 </div>
-<div id="exercise-2-3" class="section level3 hasAnchor" number="6.5.2">
-<h3><span class="header-section-number">6.5.2</span> Exercise 2<a href="exercises.html#exercise-2-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-2-3" class="section level3 hasAnchor" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Exercise 2<a href="exercises.html#exercise-2-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Read in the migraine data again. Check that the Kaplan-Meier curve produced by using the <code>survfit</code> object with just an intercept is the same as the one produced by plotting the <code>Surv</code> object directly.</p>
 </div>
-<div id="exercise-3-3" class="section level3 hasAnchor" number="6.5.3">
-<h3><span class="header-section-number">6.5.3</span> Exercise 3<a href="exercises.html#exercise-3-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercise-3-3" class="section level3 hasAnchor" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> Exercise 3<a href="exercises.html#exercise-3-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Researchers want to start a study to find if progression is related to a chromosomal aberration sometimes found in cancer patients. Here we mean by <em>progression</em> the combination of time from end-of-treatment to relapse, as well as the event, which can be relapse or end-of-study, the latter representing censoring. In addition, individuals are recorded as having the aberration or not. From a previous study, progression data and information about the chromosomal aberration are available. Now they want to know how many patients are needed in their new study, designed to test if this chromosomal aberration affects progression or not.</p>
 <p>In addition to the chromosomal aberration, other covariates will be taken into account when studying progression, such as the study. For this reason, the researchers decided that they will use a Cox proportional-hazards model to analyse the data and test for the effect of the chromosomal aberration on progression to relapse.</p>
 <p>3.1. Read the data in from file <code>data_progression_2groups.txt</code>.</p>
@@ -627,7 +658,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="survival-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="clinical-research.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="appendix.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -642,42 +673,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

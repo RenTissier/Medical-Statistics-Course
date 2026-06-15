@@ -1,0 +1,105 @@
+---
+title: "Exercise one arm trials"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = param, eval= param, include=T)
+```
+
+Suppose that in reality, if we would give all mesothelioma patients from past, present and future drug X, 30% would have an objective response. But we do not know that. We *want* to know the response rate by giving drug X to a small set of study patients. The percentage responders in our study is our best estimate about what this true percentage is.
+
+Suppose we include 20 patients in our trial.
+
+The goal of this exercise is to get some feeling for questions like 'how far will the response rate observed in this trial stray from the true response rate of 30%?' and 'Is the number of patients 20 (likely) big enough or too small to draw the right conclusions?'
+
+Load the file 'simulatedtrials.Rdata'. It contains 10,000 randomly generated possible versions of how this trial could go. The list 'trials' contains all trials and the vector 'estimated_response_rates' contains for each trial the response rate the researchers in that trial observe. The data generation process ensures that each patient has 30% probability of being a responder, but the researchers don't know that, otherwise they didn't need to do the trial. (I put the R-code that created the data below so that you can see what is going on and/or manipulate it)
+
+(Side note: if you have the resources to treat and study 200,000 patients it is of course better to run one big trial than 10,000 small ones. So think about these trials as run in different hospitals that somehow do not know about eachother's existence. Each of the 10,000 researchers only sees their own 20 patients.)
+
+Code used to generate the data:
+```{r onearmtrials, echo=TRUE}
+set.seed(1234) #just so we get the same randomness
+trials <- vector(mode = "list", length = 10000) #initialization
+for(i in seq(1, 10000)){
+  trials[[i]] <- sample(c("Response", "Non-response"), size = 20, replace = T, prob = c(0.3, 0.7))
+}
+estimated_response_rates <- sapply(trials, function(x){sum(x == "Response")/length(x)})
+```
+
+
+For each of the following questions, imagine that you are doing just one trial with 20 patients with this drug that has a true response rate of 30%.
+
+1. Before looking at the simulated data, what number of responders do you expect to see in your single 20 patient trial? 
+
+
+
+2. How large do you think is the probability of seeing this number of responders? **Guess first**, then check the answer with R. 
+
+
+
+```{r no of resp}
+sum(sapply(trials, function(x){sum(x == "Response")})== 6)/10000
+```
+
+
+
+```{r no of resprate30}
+#Alternative:
+sum(estimated_response_rates == 0.3)/10000
+```
+
+alternative: don't use the simulations but just math:
+
+```{r why do I need simulations when I have a calculator}
+dbinom(x = 6, size = 20, prob = .3)
+```
+
+
+
+
+3. Draw a histogram of the simulated response rates, to get a feeling for the probability distribution of the outcome. Is the most likely outcome equal to the number you guessed under questions 1?
+
+
+
+```{r histogram}
+hist(estimated_response_rates)
+```
+
+
+
+4. How large is the chance of seeing 2 or less responders and concluding: 'Aaargh the response rate is only 10% or less, this drug is not good enough!'? Guess first, then compute. 
+
+Note: this would be a type II error, so we want this probability to be 'acceptably small'. Is it, in your opinion?
+
+
+  
+```{r how likely are we to conclude that the drug does not work}
+sum(estimated_response_rates <= 0.1)/10000
+```
+
+```{r again a why simulate when you can compute style answer}
+#Alternative:
+pbinom(q = 2, size = 20, prob = 0.3)
+```
+
+
+5. How large is the chance of seeing 10 or more responders and concluding 'Ahaaa! This drug is the new wonder-cure, with 50% or more responders, we should give this to everyone!!'?
+
+
+Expencted answer:
+```{r how likely are we to conclude that drug is very very good}
+sum(estimated_response_rates >= 0.5)/10000
+```
+
+
+6. Suppose that instead of 20 patients we used 10 or 40. How would these probabilities change? First guess and then manipulate the R-code we used above (or write your own) to get the answers.
+
+
+
+
+
+**Remember:** in the exercise we somehow magically knew that the true response rate is 30%. But in reality we know very little, and after doing the trial, whatever percentage we found there is our best guess of what the response rate (i.e. response probability of a future patient) is. 
+
+
+**Remark:** Generating simulated trials is an easy way to get insight into and good estimates of these types of probabilities, so I suggest you use your R-skills to answer the questions by just *counting* how many of the 10000 simulated trials have the property in question. However it is of course also possible to *compute* the answers to these questions (using R or even just pen and paper) if you prefer; this is of course also completely fine.

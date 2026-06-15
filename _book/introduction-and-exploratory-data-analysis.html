@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Introduction and exploratory data analysis | Medical Statistics</title>
   <meta name="description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Introduction and exploratory data analysis | Medical Statistics" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2025-08-18" />
+<meta name="date" content="2026-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,7 +55,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -65,7 +65,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -291,46 +291,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.5" data-path="survival-analysis.html"><a href="survival-analysis.html#competing-risks"><i class="fa fa-check"></i><b>5.4.5</b> Competing risks</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>6</b> Exercises</a>
+<li class="chapter" data-level="6" data-path="clinical-research.html"><a href="clinical-research.html"><i class="fa fa-check"></i><b>6</b> Clinical research</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="exercises.html"><a href="exercises.html#chapter-1"><i class="fa fa-check"></i><b>6.1</b> Chapter 1</a>
+<li class="chapter" data-level="6.1" data-path="clinical-research.html"><a href="clinical-research.html#clinical-research-why-and-how"><i class="fa fa-check"></i><b>6.1</b> Clinical research, why and how</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="exercises.html"><a href="exercises.html#exercise-1"><i class="fa fa-check"></i><b>6.1.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="6.1.2" data-path="exercises.html"><a href="exercises.html#exercise-2"><i class="fa fa-check"></i><b>6.1.2</b> Exercise 2:</a></li>
-<li class="chapter" data-level="6.1.3" data-path="exercises.html"><a href="exercises.html#exercise-3"><i class="fa fa-check"></i><b>6.1.3</b> Exercise 3(*)</a></li>
+<li class="chapter" data-level="6.1.1" data-path="clinical-research.html"><a href="clinical-research.html#bias-and-precision"><i class="fa fa-check"></i><b>6.1.1</b> Bias and Precision</a></li>
+<li class="chapter" data-level="6.1.2" data-path="clinical-research.html"><a href="clinical-research.html#increase-accuracy"><i class="fa fa-check"></i><b>6.1.2</b> Increase accuracy</a></li>
+<li class="chapter" data-level="6.1.3" data-path="clinical-research.html"><a href="clinical-research.html#reducing-bias-randomized-trials"><i class="fa fa-check"></i><b>6.1.3</b> Reducing bias: randomized trials</a></li>
+<li class="chapter" data-level="6.1.4" data-path="clinical-research.html"><a href="clinical-research.html#exercise-law-of-large-numbers-in-a-one-arm-trial."><i class="fa fa-check"></i><b>6.1.4</b> Exercise: law of large numbers in a one-arm trial.</a></li>
+<li class="chapter" data-level="6.1.5" data-path="clinical-research.html"><a href="clinical-research.html#short-summary-of-what-we-found-in-the-exercise"><i class="fa fa-check"></i><b>6.1.5</b> Short summary of what we found in the exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="exercises.html"><a href="exercises.html#chapter-2"><i class="fa fa-check"></i><b>6.2</b> Chapter 2</a>
+<li class="chapter" data-level="6.2" data-path="clinical-research.html"><a href="clinical-research.html#randomization-techniques"><i class="fa fa-check"></i><b>6.2</b> Randomization techniques</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="exercises.html"><a href="exercises.html#exercise-1-1"><i class="fa fa-check"></i><b>6.2.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="6.2.2" data-path="exercises.html"><a href="exercises.html#exercise2"><i class="fa fa-check"></i><b>6.2.2</b> Exercise2</a></li>
+<li class="chapter" data-level="6.2.1" data-path="clinical-research.html"><a href="clinical-research.html#randomization-in-a-randomized-clinical-trial"><i class="fa fa-check"></i><b>6.2.1</b> Randomization in a randomized clinical trial</a></li>
+<li class="chapter" data-level="6.2.2" data-path="clinical-research.html"><a href="clinical-research.html#why-randomize"><i class="fa fa-check"></i><b>6.2.2</b> Why randomize?</a></li>
+<li class="chapter" data-level="6.2.3" data-path="clinical-research.html"><a href="clinical-research.html#working-example-11"><i class="fa fa-check"></i><b>6.2.3</b> Working example</a></li>
+<li class="chapter" data-level="6.2.4" data-path="clinical-research.html"><a href="clinical-research.html#simple-randomization"><i class="fa fa-check"></i><b>6.2.4</b> Simple randomization</a></li>
+<li class="chapter" data-level="6.2.5" data-path="clinical-research.html"><a href="clinical-research.html#block-randomization"><i class="fa fa-check"></i><b>6.2.5</b> Block randomization</a></li>
+<li class="chapter" data-level="6.2.6" data-path="clinical-research.html"><a href="clinical-research.html#minimization"><i class="fa fa-check"></i><b>6.2.6</b> Minimization</a></li>
+<li class="chapter" data-level="6.2.7" data-path="clinical-research.html"><a href="clinical-research.html#summary"><i class="fa fa-check"></i><b>6.2.7</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="exercises.html"><a href="exercises.html#chapter-3"><i class="fa fa-check"></i><b>6.3</b> Chapter 3</a>
+<li class="chapter" data-level="6.3" data-path="clinical-research.html"><a href="clinical-research.html#observational-studies"><i class="fa fa-check"></i><b>6.3</b> Observational studies</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="exercises.html"><a href="exercises.html#exercise-1-2"><i class="fa fa-check"></i><b>6.3.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="6.3.2" data-path="exercises.html"><a href="exercises.html#exercise-2-1"><i class="fa fa-check"></i><b>6.3.2</b> Exercise 2</a></li>
-<li class="chapter" data-level="6.3.3" data-path="exercises.html"><a href="exercises.html#exercise-3-1"><i class="fa fa-check"></i><b>6.3.3</b> Exercise 3</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="exercises.html"><a href="exercises.html#chapter-4"><i class="fa fa-check"></i><b>6.4</b> Chapter 4</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="exercises.html"><a href="exercises.html#exercise-1-3"><i class="fa fa-check"></i><b>6.4.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="6.4.2" data-path="exercises.html"><a href="exercises.html#exercise-2-2"><i class="fa fa-check"></i><b>6.4.2</b> Exercise 2</a></li>
-<li class="chapter" data-level="6.4.3" data-path="exercises.html"><a href="exercises.html#exercise-3-2"><i class="fa fa-check"></i><b>6.4.3</b> Exercise 3</a></li>
-<li class="chapter" data-level="6.4.4" data-path="exercises.html"><a href="exercises.html#exercise-4"><i class="fa fa-check"></i><b>6.4.4</b> Exercise 4</a></li>
-</ul></li>
-<li class="chapter" data-level="6.5" data-path="exercises.html"><a href="exercises.html#chapter-5"><i class="fa fa-check"></i><b>6.5</b> Chapter 5</a>
-<ul>
-<li class="chapter" data-level="6.5.1" data-path="exercises.html"><a href="exercises.html#exercise-1-4"><i class="fa fa-check"></i><b>6.5.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="6.5.2" data-path="exercises.html"><a href="exercises.html#exercise-2-3"><i class="fa fa-check"></i><b>6.5.2</b> Exercise 2</a></li>
-<li class="chapter" data-level="6.5.3" data-path="exercises.html"><a href="exercises.html#exercise-3-3"><i class="fa fa-check"></i><b>6.5.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="6.3.1" data-path="clinical-research.html"><a href="clinical-research.html#why-do-we-need-observational-studies"><i class="fa fa-check"></i><b>6.3.1</b> Why do we need observational studies?</a></li>
+<li class="chapter" data-level="6.3.2" data-path="clinical-research.html"><a href="clinical-research.html#classifying-observational-studies"><i class="fa fa-check"></i><b>6.3.2</b> Classifying observational studies</a></li>
+<li class="chapter" data-level="6.3.3" data-path="clinical-research.html"><a href="clinical-research.html#cross-sectional-studies"><i class="fa fa-check"></i><b>6.3.3</b> Cross-sectional studies</a></li>
+<li class="chapter" data-level="6.3.4" data-path="clinical-research.html"><a href="clinical-research.html#cohort-studies"><i class="fa fa-check"></i><b>6.3.4</b> Cohort studies</a></li>
+<li class="chapter" data-level="6.3.5" data-path="clinical-research.html"><a href="clinical-research.html#case-control-studies"><i class="fa fa-check"></i><b>6.3.5</b> Case-control studies</a></li>
+<li class="chapter" data-level="6.3.6" data-path="clinical-research.html"><a href="clinical-research.html#rare-disease-approximation"><i class="fa fa-check"></i><b>6.3.6</b> Rare disease approximation</a></li>
+<li class="chapter" data-level="6.3.7" data-path="clinical-research.html"><a href="clinical-research.html#summary-1"><i class="fa fa-check"></i><b>6.3.7</b> Summary</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>7</b> Appendix</a>
+<li class="chapter" data-level="7" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>7</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="appendix.html"><a href="appendix.html#pca-analysis"><i class="fa fa-check"></i><b>7.1</b> PCA Analysis</a>
+<li class="chapter" data-level="7.1" data-path="exercises.html"><a href="exercises.html#chapter-1"><i class="fa fa-check"></i><b>7.1</b> Chapter 1</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="appendix.html"><a href="appendix.html#motivation-15"><i class="fa fa-check"></i><b>7.1.1</b> Motivation</a></li>
-<li class="chapter" data-level="7.1.2" data-path="appendix.html"><a href="appendix.html#working-example-11"><i class="fa fa-check"></i><b>7.1.2</b> Working example</a></li>
-<li class="chapter" data-level="7.1.3" data-path="appendix.html"><a href="appendix.html#quick-tasks"><i class="fa fa-check"></i><b>7.1.3</b> Quick tasks</a></li>
+<li class="chapter" data-level="7.1.1" data-path="exercises.html"><a href="exercises.html#exercise-1"><i class="fa fa-check"></i><b>7.1.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.1.2" data-path="exercises.html"><a href="exercises.html#exercise-2"><i class="fa fa-check"></i><b>7.1.2</b> Exercise 2:</a></li>
+<li class="chapter" data-level="7.1.3" data-path="exercises.html"><a href="exercises.html#exercise-3"><i class="fa fa-check"></i><b>7.1.3</b> Exercise 3(*)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="exercises.html"><a href="exercises.html#chapter-2"><i class="fa fa-check"></i><b>7.2</b> Chapter 2</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="exercises.html"><a href="exercises.html#exercise-1-1"><i class="fa fa-check"></i><b>7.2.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.2.2" data-path="exercises.html"><a href="exercises.html#exercise2"><i class="fa fa-check"></i><b>7.2.2</b> Exercise2</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="exercises.html"><a href="exercises.html#chapter-3"><i class="fa fa-check"></i><b>7.3</b> Chapter 3</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="exercises.html"><a href="exercises.html#exercise-1-2"><i class="fa fa-check"></i><b>7.3.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.3.2" data-path="exercises.html"><a href="exercises.html#exercise-2-1"><i class="fa fa-check"></i><b>7.3.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="7.3.3" data-path="exercises.html"><a href="exercises.html#exercise-3-1"><i class="fa fa-check"></i><b>7.3.3</b> Exercise 3</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="exercises.html"><a href="exercises.html#chapter-4"><i class="fa fa-check"></i><b>7.4</b> Chapter 4</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="exercises.html"><a href="exercises.html#exercise-1-3"><i class="fa fa-check"></i><b>7.4.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.4.2" data-path="exercises.html"><a href="exercises.html#exercise-2-2"><i class="fa fa-check"></i><b>7.4.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="7.4.3" data-path="exercises.html"><a href="exercises.html#exercise-3-2"><i class="fa fa-check"></i><b>7.4.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="7.4.4" data-path="exercises.html"><a href="exercises.html#exercise-4"><i class="fa fa-check"></i><b>7.4.4</b> Exercise 4</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="exercises.html"><a href="exercises.html#chapter-5"><i class="fa fa-check"></i><b>7.5</b> Chapter 5</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="exercises.html"><a href="exercises.html#exercise-1-4"><i class="fa fa-check"></i><b>7.5.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.5.2" data-path="exercises.html"><a href="exercises.html#exercise-2-3"><i class="fa fa-check"></i><b>7.5.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="7.5.3" data-path="exercises.html"><a href="exercises.html#exercise-3-3"><i class="fa fa-check"></i><b>7.5.3</b> Exercise 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="appendix.html"><a href="appendix.html#pca-analysis"><i class="fa fa-check"></i><b>8.1</b> PCA Analysis</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="appendix.html"><a href="appendix.html#motivation-15"><i class="fa fa-check"></i><b>8.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="appendix.html"><a href="appendix.html#working-example-18"><i class="fa fa-check"></i><b>8.1.2</b> Working example</a></li>
+<li class="chapter" data-level="8.1.3" data-path="appendix.html"><a href="appendix.html#quick-tasks"><i class="fa fa-check"></i><b>8.1.3</b> Quick tasks</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -362,40 +393,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">1.1.2</span> Discrete random variables<a href="introduction-and-exploratory-data-analysis.html#discrete-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Discrete random variables are those taking only integer values. Common distributions for those variables are the uniform distribution, the Bernoulli distribution and the binomial distribution.</p>
 <p>The <strong>discrete uniform distribution</strong> assigns the exact same probability to a finite set of values. A common example is throwing a fair dice. After throwing the dice, each number 1, 2, 3, .., 6 has the same probability to be obtained, equal to 1/6.</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-1-1.png" alt="" width="672" /></p>
 <p>Consider another example, where you flip a coin: heads is registered as 1, and tails as 0. The <strong>Bernoulli distribution</strong> can be used to study this variable: it assigns probability <em>p</em> to 1 (heads), and <em>1-p</em> = <em>q</em> to 0 (tails).</p>
 <p>You could also have a variable that can yield many possible values, which is transformed to yield only 1. For example, let us throw a fair dice and check if the number is equal to or lower than 2. The probability of a success (obtaining a value below or equal 2) corresponds to the dice returning 1 or 2, so is equal to 1/3. Therefore, the probability of throwing a number larger than 2 is 2/3 (corresponding to values 3, 4, 5, 6). The analysis of the association between covariates and the probability of success is often done via logistic regression.</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-2-1.png" alt="" width="672" /></p>
 <p>Now imagine that you throw a fair coin not once, but 10 times. Then the number of times that the result was heads can be modeled by the <strong>binomial distribution</strong>. It describes the probabilities of results of several independent throws, each of which with the same probability of success (heads).</p>
 <p>If we go back to the previous dice example, we can compute the probability to obtain 4 successes (dice gives 1 or 2) in 10 trials. This can be done with the function <code>dbinom</code>. The probability can be calculated by using <code>dbinom(4, size = 10, p= 1/3)</code>, resulting in 0.2276076.</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" /></p>
 </div>
 <div id="continuous-random-variable" class="section level3 hasAnchor" number="1.1.3">
 <h3><span class="header-section-number">1.1.3</span> Continuous random variable<a href="introduction-and-exploratory-data-analysis.html#continuous-random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A continuous random variable can have an infinite number of possible values. Therefore, the probability to obtain any one value in particular is equal to 0. For these variables, we do not consider the probability of individual values, but instead we consider the probability associated with intervals, say all values between 0 and 1. We call the function describing the probabilities the <em>density probability function</em>. We will now look at some important continuous distributions.</p>
 <p>The <strong>continuous uniform distribution</strong> has a similar definition to the discrete uniform distribution. The probability density function yields the same value across the range of possible values. To illustrate this, let us plot the density of a continuous uniform distribution between 0 and 1.</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-4-1.png" alt="" width="672" /></p>
 <p><strong>Quartiles</strong> are values that leave probability of 1/4, 2/4 (or 1/2) and 3/4 below them. Let us add the quartiles of the uniform distribution to the plot.</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-5-1.png" alt="" width="672" /></p>
 <p>The quartiles split the range of values into 4 parts, each with 1/4 probability. So the probability to observe values between 2 subsequent quartiles is 1/4, or 25%. This means that the probability to observe a value between the first and the third quartiles is equal to 1/4+1/4 = 1/2, or 50%.</p>
 <p>Quartiles can also be computed for a sample: they are values that leave 1/4, 1/2 and 3/4 of the observations below them. For example, consider the following sample:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-and-exploratory-data-analysis.html#cb1-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">12</span></span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12</code></pre>
 <p>Then we can take the first quartile as 3, since it has observations 1, 2, 3 up to and below it, 25% of all observations. Of course, a value larger than 3, but smaller than the next value (4) can also be used.</p>
 <p>In general, for a continuous variable, the probability to observe a value between 2 given values is equal to the area under the probability density function between these two points. The generalization of the quartiles for any probability is called <strong>quantile</strong>: the 5%-quantile is the value that leaves 5% (or 0.05) of probability below it. Similarly, the 95%-quantile is the value that leaves 95% (or 0.95) of probability below it. Below we illustrate these with the probability density function for the uniform between 0 and 1.</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-7-1.png" alt="" width="672" /></p>
 <p>Quantiles are used in statistical testing to build the confidence intervals and compute p-values. Similar to quartiles, we can also obtain quantiles for samples of values. For example, for the sample</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-and-exploratory-data-analysis.html#cb3-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <p>the 10% quantile is 1 (or any number larger than 1 but smaller than 2), and the 90% quantile is 9.</p>
 <p>The most common distribution encountered in the nature is the normal or Gaussian distribution. This distribution is symmetric, and is defined by its expectation <span class="math inline">\(\mu\)</span> and its variance <span class="math inline">\(\sigma^2\)</span>, i.e. <span class="math inline">\(N(\mu,\sigma^2)\)</span>. Its values range from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(\infty\)</span>. Note that it is important to make the difference between the expectation of the distribution and the sample mean derived from this distribution. Indeed, these two will be equal only if all possible samples are included to compute sample mean.</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
 <p>The normal distribution is often referred to as the <em>Gaussian</em> distribution, due to the work of C. F. Gauss in this area. The normal distribution with mean <span class="math inline">\(\mu=\)</span> 0 and variance <span class="math inline">\(\sigma^2=\)</span> 1 is referred to as the standard normal distribution.</p>
 <p>This distribution is very important in statistics due to one of its properties, the <strong>central limit theorem</strong>: it states that if you have a population with expectation <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> and take sufficiently large random samples from the population with replacement, then the sample means will follow approximately a normal distribution. This will hold true regardless of whether the source population is normal or skewed, provided the sample size is sufficiently large (usually <em>n</em> &gt; 30) and the variance of the original distribution is finite.</p>
 <p>Let’s illustrate the central limit theorem with the gamma distribution that will be seen in another chapter of this course. First consider the probability density function of the gamma distribution:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introduction-and-exploratory-data-analysis.html#cb5-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dgamma</span>(x, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">rate =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">col=</span> <span class="st">&#39;blue&#39;</span></span>
 <span id="cb5-2"><a href="introduction-and-exploratory-data-analysis.html#cb5-2" tabindex="-1"></a>      , <span class="at">ylab=</span> <span class="st">&#39;density&#39;</span>)</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-10-1.png" alt="" width="672" /></p>
 <p>Now we simulate 500 samples, each of 30 values, from the same gamma distribution. We then compute the mean for each sample.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="introduction-and-exploratory-data-analysis.html#cb6-1" tabindex="-1"></a>mean.samples <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb6-2"><a href="introduction-and-exploratory-data-analysis.html#cb6-2" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>){</span>
@@ -404,32 +435,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-5"><a href="introduction-and-exploratory-data-analysis.html#cb6-5" tabindex="-1"></a>}</span></code></pre></div>
 <p>The histogram of the means computed is:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction-and-exploratory-data-analysis.html#cb7-1" tabindex="-1"></a><span class="fu">hist</span>(mean.samples, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" /></p>
 <p>Essentially the arithmetic mean smoothes out small random variations between samples, which can go in either direction. As a result, its distribution will not be skewed, as the original observations, but symmetric and with little variation around its own mean. This is then the normal distribution.</p>
 <p>The chi-square distribution, represented by <span class="math inline">\(\chi^2\)</span> is defined at the sum of <em>k</em> squared independent random variables, each following a normal distribution with mean 0 and variance equal to 1. The chi-square only has one parameter, <em>k</em>, called <em>degrees of freedom</em>. This distribution is often used for statistical testing. Its probability density function is shown below.</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
 <p>Finally, the Student’s t distribution is very important as it is used in the well-known Student’s-t test to compare means between two samples. This distribution is defined by its number of degrees of freedom <span class="math inline">\(k\)</span>. This distribution, as the normal distribution, is symmetric, as we can see from its probability density function below.</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" /></p>
 <p>This distribution has the same <em>bell</em> shape as the normal distribution. However, this shape is wider for the Student’s-t, becoming narrower as the number of degrees of freedom increases.</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" /></p>
 </div>
 <div id="r-functions" class="section level3 hasAnchor" number="1.1.4">
 <h3><span class="header-section-number">1.1.4</span> R functions<a href="introduction-and-exploratory-data-analysis.html#r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="probability-density-function-e.g.-dnorm-dbinom-dunif" class="section level4 hasAnchor" number="1.1.4.1">
 <h4><span class="header-section-number">1.1.4.1</span> Probability <em>d</em>ensity function (e.g. <code>dnorm</code>, <code>dbinom</code>, <code>dunif</code>)<a href="introduction-and-exploratory-data-analysis.html#probability-density-function-e.g.-dnorm-dbinom-dunif" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-16-1.png" width="50%" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-16-1.png" alt="" width="50%" /></p>
 </div>
 <div id="cumulative-probability-function-e.g.-pnorm-pbinom-punif" class="section level4 hasAnchor" number="1.1.4.2">
 <h4><span class="header-section-number">1.1.4.2</span> Cumulative <em>p</em>robability function (e.g. <code>pnorm</code>, <code>pbinom</code>, <code>punif</code>)<a href="introduction-and-exploratory-data-analysis.html#cumulative-probability-function-e.g.-pnorm-pbinom-punif" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-17-1.png" width="50%" /><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-17-2.png" width="50%" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-17-1.png" alt="" width="50%" /><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-17-2.png" alt="" width="50%" /></p>
 </div>
 <div id="quantile-function-e.g.-qnorm-qbinom-qunif" class="section level4 hasAnchor" number="1.1.4.3">
 <h4><span class="header-section-number">1.1.4.3</span> <em>Q</em>uantile function (e.g. <code>qnorm</code>, <code>qbinom</code>, <code>qunif</code>)<a href="introduction-and-exploratory-data-analysis.html#quantile-function-e.g.-qnorm-qbinom-qunif" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-18-1.png" width="50%" /><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-18-2.png" width="50%" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-18-1.png" alt="" width="50%" /><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-18-2.png" alt="" width="50%" /></p>
 </div>
 <div id="random-number-generator-e.g.-rnorm-rbinom-runif" class="section level4 hasAnchor" number="1.1.4.4">
 <h4><span class="header-section-number">1.1.4.4</span> <em>R</em>andom number generator (e.g. <code>rnorm</code>, <code>rbinom</code>, <code>runif</code>)<a href="introduction-and-exploratory-data-analysis.html#random-number-generator-e.g.-rnorm-rbinom-runif" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-19-1.png" width="50%" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-19-1.png" alt="" width="50%" /></p>
 <hr />
 <blockquote>
 <p><em>Quick task(s)</em>:</p>
@@ -497,11 +528,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Before doing any statistical analysis, it is important to look at the distributions of the variables available. Indeed, looking at the shape of the distributions can help choosing adequate analysis methods. Let’s look at the distribution of the variable <code>scoreX</code> by plotting an histogram of the variable. This can be done using the function hist in R:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction-and-exploratory-data-analysis.html#cb13-1" tabindex="-1"></a><span class="co">#plot the histogram of a variable</span></span>
 <span id="cb13-2"><a href="introduction-and-exploratory-data-analysis.html#cb13-2" tabindex="-1"></a><span class="fu">hist</span>(dataset<span class="sc">$</span>scoreX, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" /></p>
 <p>The histogram displays bars representing counts of the number of observations falling into specific bins (intervals of values). This gives us an idea about the shape of the distribution of a variable (in the example above, of <code>scoreX</code>). As we simulated values for =<code>scoreX</code> using a normal distribution, we expect the histogram to reflect this - be symmetric and to not have too many extreme values. Compare the histogram above to the one for the variable <code>scoreY</code>:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="introduction-and-exploratory-data-analysis.html#cb14-1" tabindex="-1"></a><span class="co">#plot the histogram of a variable</span></span>
 <span id="cb14-2"><a href="introduction-and-exploratory-data-analysis.html#cb14-2" tabindex="-1"></a><span class="fu">hist</span>(dataset<span class="sc">$</span>scoreY, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
 <p>We can also display histograms per group to compare the shape of the distributions between two groups. To do so we need to split the data in two:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction-and-exploratory-data-analysis.html#cb15-1" tabindex="-1"></a><span class="co">#Creation dataset group A</span></span>
 <span id="cb15-2"><a href="introduction-and-exploratory-data-analysis.html#cb15-2" tabindex="-1"></a>data.A <span class="ot">&lt;-</span> dataset[dataset<span class="sc">$</span>group <span class="sc">==</span> <span class="st">&#39;A&#39;</span>,]</span>
@@ -513,7 +544,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-8"><a href="introduction-and-exploratory-data-analysis.html#cb15-8" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
 <span id="cb15-9"><a href="introduction-and-exploratory-data-analysis.html#cb15-9" tabindex="-1"></a><span class="fu">hist</span>(data.A<span class="sc">$</span>scoreX, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">main =</span> <span class="st">&#39;histogram scoreX group A&#39;</span> )</span>
 <span id="cb15-10"><a href="introduction-and-exploratory-data-analysis.html#cb15-10" tabindex="-1"></a><span class="fu">hist</span>(data.B<span class="sc">$</span>scoreX, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">main =</span> <span class="st">&#39;histogram scoreX group B&#39;</span> )</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" /></p>
 <p>Here, the histograms of subsets of <code>scoreX</code> look quite different. However, the values from both groups are drawn using the same distribution. The differences observed are only due to randomness. We can, for example, add to these histograms the density plot of the distribution used to simulate the <code>scoreX</code> variable:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="introduction-and-exploratory-data-analysis.html#cb16-1" tabindex="-1"></a><span class="co">#plot the histograms of scoreX for both groups with added density</span></span>
 <span id="cb16-2"><a href="introduction-and-exploratory-data-analysis.html#cb16-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
@@ -526,18 +557,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-9"><a href="introduction-and-exploratory-data-analysis.html#cb16-9" tabindex="-1"></a><span class="fu">hist</span>(data.B<span class="sc">$</span>scoreX, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">prob =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb16-10"><a href="introduction-and-exploratory-data-analysis.html#cb16-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&#39;histogram scoreX group B&#39;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.4</span>), <span class="at">xlim=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>) )</span>
 <span id="cb16-11"><a href="introduction-and-exploratory-data-analysis.html#cb16-11" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="fl">1.2</span>), <span class="at">col =</span> <span class="st">&#39;red&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" /></p>
 <p>As we can see, it is not possible to determine from these plots that the distributions of <code>scoreX</code> in both groups are different. This is why statistical testing is needed: to check if apparent differences could be due to chance or not.</p>
 <p>Another important and useful way to represent the data are boxplots. Boxplots are graphical representations of summary measures of a distribution represented, as the name indicates, in the shape of a box. We will draw a boxplot of the variable <code>scoreY</code>:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction-and-exploratory-data-analysis.html#cb17-1" tabindex="-1"></a><span class="co">#Boxplot of a variable</span></span>
 <span id="cb17-2"><a href="introduction-and-exploratory-data-analysis.html#cb17-2" tabindex="-1"></a><span class="fu">boxplot</span>(dataset<span class="sc">$</span>scoreY, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;scoreY&#39;</span>)</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" /></p>
 <p>The box represents the space between the first and the third quartiles of the variable. The thick horizontal line represents the median of the variable, i.e. the second quartile leaving 50% of values below it. Finally, the top and bottom lines represent a space equal to 1.5 the box size from the nearest edge of the box. Any values above or below these lines are represented as points and are considered as extreme values, and possible outliers.</p>
 <p>To make boxplots of the same variable for different groups is really easy, by using a formula as shown below:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introduction-and-exploratory-data-analysis.html#cb18-1" tabindex="-1"></a><span class="co">#Boxplot of a variable for different gruops</span></span>
 <span id="cb18-2"><a href="introduction-and-exploratory-data-analysis.html#cb18-2" tabindex="-1"></a><span class="fu">boxplot</span>(dataset<span class="sc">$</span>scoreY <span class="sc">~</span> dataset<span class="sc">$</span>group, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;scoreY&#39;</span></span>
 <span id="cb18-3"><a href="introduction-and-exploratory-data-analysis.html#cb18-3" tabindex="-1"></a>        , <span class="at">xlab =</span> <span class="st">&#39;group&#39;</span>)</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" /></p>
 <p>As we can see in these boxplots, the median value for both groups is similar but the group B box is wider, indicating more variations in this group. Again, statistical methods are needed to prove if this difference is real or not.</p>
 <hr />
 <blockquote>
@@ -621,14 +652,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>##  scoreX  scoreY 
 ## 1.14792 1.61810</code></pre>
 <p>A large standard deviation indicates that one or several observed values are very different from the mean, while a small standard deviation shows that most values are very close to the mean:</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-32-1.png" alt="" width="672" /></p>
 <p>We can display another normal distribution with a larger standard deviation:</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-33-1.png" alt="" width="672" /></p>
 <p>the larger the standard deviation, the flatter the density function of a normal distributions becomes.</p>
 <p>When the data is coming from two distinct groups with different mean and standard deviation, computing the standard deviation of the two groups can lead to inflated standard deviation:</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-34-1.png" alt="" width="672" />
 If we have for example the same number of samples in both groups, the mean of the two groups combined in that case would be around 2.5 (it might vary due to randomness and group size in real life). We will add a line to show the combined mean in the previous plot:</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" /></p>
 <p>As you can see the mean is outside the most common value of both distributions, this will lead to large variation around the means. We can simulate some data from the two group and compute their mean:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="introduction-and-exploratory-data-analysis.html#cb29-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
 <span id="cb29-2"><a href="introduction-and-exploratory-data-analysis.html#cb29-2" tabindex="-1"></a></span>
@@ -655,7 +686,7 @@ If we have for example the same number of samples in both groups, the mean of th
 <span id="cb39-2"><a href="introduction-and-exploratory-data-analysis.html#cb39-2" tabindex="-1"></a>sd.gs</span></code></pre></div>
 <pre><code>## [1] 2.698599</code></pre>
 <p>As expected the standard deviations in group 1 and 2 separately are equal or close to 1. But the standard deviation of both groups combined is equal to 2.7.</p>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-38-1.png" alt="" width="672" /></p>
 <p>The standard deviation of both groups is misleading due to the shift in mean when both groups are combined. So in statistical test where we compare means we prefer the use of the pooled standard deviation:</p>
 <p><span class="math inline">\(\sigma_\mathrm{pooled} = \sqrt{\frac{(n1-1)*s1^{2}+ (n2-1)*s2^{2}}{n1+n2-2}}\)</span></p>
 <p>This pooled standard deviation is the square root of the weighted mean of the variance existing in each group. The more sample in a group the larger weight the variance of this group has in the average. The pooled standard deviation allows us to quantify the amount of variation existing around the means of the different group while the standard deviation of the combined group allows us to quantify the amount of variation around the mean of both groups combined. In the case of our simulated data the pooled standard deviation is:</p>
@@ -786,7 +817,7 @@ If we have for example the same number of samples in both groups, the mean of th
 <pre><code>## [1] 0.1912684</code></pre>
 <p>The absolute value of the correlation 0.1912684 tells us that variation of <code>Variable1</code> does not necessarily mean variation for <code>Variable2</code>. Indeed, a scatterplot of the two variables does not suggest much association:</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="introduction-and-exploratory-data-analysis.html#cb79-1" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>Variable1, dataset<span class="sc">$</span>Variable2)</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-53-1.png" alt="" width="672" /></p>
 <p>The function <code>cor</code> can also be used on the entire data matrix, yielding all pairwise correlations between variables:</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="introduction-and-exploratory-data-analysis.html#cb80-1" tabindex="-1"></a><span class="co">#computation of the Pearson correlation matrix between all #variables of the dataset</span></span>
 <span id="cb80-2"><a href="introduction-and-exploratory-data-analysis.html#cb80-2" tabindex="-1"></a>correlation.pearson <span class="ot">&lt;-</span> <span class="fu">cor</span>(dataset, <span class="at">method =</span> <span class="st">&#39;pearson&#39;</span>, <span class="at">use =</span> <span class="st">&#39;complete.obs&#39;</span>)</span>
@@ -801,41 +832,50 @@ If we have for example the same number of samples in both groups, the mean of th
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="introduction-and-exploratory-data-analysis.html#cb82-1" tabindex="-1"></a><span class="co">#Heatmap plot</span></span>
 <span id="cb82-2"><a href="introduction-and-exploratory-data-analysis.html#cb82-2" tabindex="-1"></a><span class="fu">library</span>(gplots)</span></code></pre></div>
 <pre><code>## 
-## Attachement du package : &#39;gplots&#39;</code></pre>
-<pre><code>## L&#39;objet suivant est masqué depuis &#39;package:stats&#39;:
+## ---------------------
+## gplots 3.3.0 loaded:
+##   * Use citation(&#39;gplots&#39;) for citation info.
+##   * Homepage: https://talgalili.github.io/gplots/
+##   * Report issues: https://github.com/talgalili/gplots/issues
+##   * Ask questions: https://stackoverflow.com/questions/tagged/gplots
+##   * Suppress this message with: suppressPackageStartupMessages(library(gplots))
+## ---------------------</code></pre>
+<pre><code>## 
+## Attaching package: &#39;gplots&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
 ## 
 ##     lowess</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="introduction-and-exploratory-data-analysis.html#cb85-1" tabindex="-1"></a><span class="fu">heatmap.2</span>(correlation.pearson, <span class="at">trace =</span> <span class="st">&#39;none&#39;</span>, <span class="at">cexRow =</span> <span class="fl">0.8</span>, </span>
-<span id="cb85-2"><a href="introduction-and-exploratory-data-analysis.html#cb85-2" tabindex="-1"></a>          <span class="at">cexCol =</span> <span class="fl">0.8</span>, <span class="at">col=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;green&quot;</span>,<span class="st">&quot;white&quot;</span>,<span class="st">&quot;red&quot;</span>))(<span class="dv">20</span>))</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="introduction-and-exploratory-data-analysis.html#cb86-1" tabindex="-1"></a><span class="fu">heatmap.2</span>(correlation.pearson, <span class="at">trace =</span> <span class="st">&#39;none&#39;</span>, <span class="at">cexRow =</span> <span class="fl">0.8</span>, </span>
+<span id="cb86-2"><a href="introduction-and-exploratory-data-analysis.html#cb86-2" tabindex="-1"></a>          <span class="at">cexCol =</span> <span class="fl">0.8</span>, <span class="at">col=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;green&quot;</span>,<span class="st">&quot;white&quot;</span>,<span class="st">&quot;red&quot;</span>))(<span class="dv">20</span>))</span></code></pre></div>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672" /></p>
 <p>Here, the correlation is represented by a ‘heat’, blue or ‘cold heat’ represent negative correlations, red or ‘hot heat’ represent strong correlations.</p>
 <p>The trees produced by the function <code>heatmap</code> on each side of the plot represent the similarity between the variables based on their correlation matrix. Each variable has a root, and all roots merge at the base of the tree. The height at which the roots of two variables merge represents the dissimilarity between them. The higher they meet, the more dissimilar they are.</p>
 <p>The Pearson correlation is particularly good at quantifying association given a linear relationship between two variables X and Y, i.e., in cases where $ X = aY + b $. However, more complex relationship can exist between variables. Alternative correlation measures can be used to capture other forms of association. However, the interpretation of this correlation can be challenging.</p>
 <p>One common alternative is to use <strong>Spearman</strong>’s correlation coefficient. It is non-parametric and often denoted by <span class="math inline">\(\rho\)</span>. The computation is similar to the Pearson correlation, but the values are replaced by their rank. For example, to compute the Spearman correlation coefficient between</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="introduction-and-exploratory-data-analysis.html#cb86-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="introduction-and-exploratory-data-analysis.html#cb87-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span></code></pre></div>
 <p>and</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="introduction-and-exploratory-data-analysis.html#cb87-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="introduction-and-exploratory-data-analysis.html#cb88-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">4</span>)</span></code></pre></div>
 <p>we actually compute the Pearson correlation between the ranks of <span class="math inline">\(x\)</span>:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="introduction-and-exploratory-data-analysis.html#cb88-1" tabindex="-1"></a><span class="fu">rank</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="introduction-and-exploratory-data-analysis.html#cb89-1" tabindex="-1"></a><span class="fu">rank</span>(x)</span></code></pre></div>
 <pre><code>## [1] 3 1 2</code></pre>
 <p>and the ranks of <span class="math inline">\(y\)</span>:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="introduction-and-exploratory-data-analysis.html#cb90-1" tabindex="-1"></a><span class="fu">rank</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="introduction-and-exploratory-data-analysis.html#cb91-1" tabindex="-1"></a><span class="fu">rank</span>(y)</span></code></pre></div>
 <pre><code>## [1] 1 3 2</code></pre>
 <p>Let us now compute the Spearman’s rank correlation matrix for <code>dataset</code> and plot the <code>heatmap</code>.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="introduction-and-exploratory-data-analysis.html#cb92-1" tabindex="-1"></a><span class="co">#computation of the correlation matrix between all variables of</span></span>
-<span id="cb92-2"><a href="introduction-and-exploratory-data-analysis.html#cb92-2" tabindex="-1"></a>correlation.spearman <span class="ot">&lt;-</span> <span class="fu">cor</span>(dataset, <span class="at">method =</span> <span class="st">&#39;spearman&#39;</span>, <span class="at">use =</span> <span class="st">&#39;complete.obs&#39;</span>)</span>
-<span id="cb92-3"><a href="introduction-and-exploratory-data-analysis.html#cb92-3" tabindex="-1"></a><span class="fu">heatmap.2</span>(correlation.spearman, <span class="at">trace =</span> <span class="st">&#39;none&#39;</span>, <span class="at">cexRow =</span> <span class="fl">0.8</span>,</span>
-<span id="cb92-4"><a href="introduction-and-exploratory-data-analysis.html#cb92-4" tabindex="-1"></a>          <span class="at">cexCol =</span> <span class="fl">0.8</span>, <span class="at">col=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;white&quot;</span>,<span class="st">&quot;red&quot;</span>))(<span class="dv">20</span>))</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="introduction-and-exploratory-data-analysis.html#cb93-1" tabindex="-1"></a><span class="co">#computation of the correlation matrix between all variables of</span></span>
+<span id="cb93-2"><a href="introduction-and-exploratory-data-analysis.html#cb93-2" tabindex="-1"></a>correlation.spearman <span class="ot">&lt;-</span> <span class="fu">cor</span>(dataset, <span class="at">method =</span> <span class="st">&#39;spearman&#39;</span>, <span class="at">use =</span> <span class="st">&#39;complete.obs&#39;</span>)</span>
+<span id="cb93-3"><a href="introduction-and-exploratory-data-analysis.html#cb93-3" tabindex="-1"></a><span class="fu">heatmap.2</span>(correlation.spearman, <span class="at">trace =</span> <span class="st">&#39;none&#39;</span>, <span class="at">cexRow =</span> <span class="fl">0.8</span>,</span>
+<span id="cb93-4"><a href="introduction-and-exploratory-data-analysis.html#cb93-4" tabindex="-1"></a>          <span class="at">cexCol =</span> <span class="fl">0.8</span>, <span class="at">col=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;white&quot;</span>,<span class="st">&quot;red&quot;</span>))(<span class="dv">20</span>))</span></code></pre></div>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-60-1.png" alt="" width="672" /></p>
 <p>Here as I have only created linearly correlated variables, not much difference can be seen between both heatmaps. Note that a transformation of the data that does not change the ranks of observations, such as the logarithm or the square root, does not affect the Spearman correlation.</p>
 <p>The third correlation coefficient, <strong>Kendall</strong>’s tau represented by <span class="math inline">\(\tau\)</span>, is also nonparametric. Let us consider 2 variables X and Y having 3 observations, (0, 1, 2) and (1, 4, 3) respectively. The 3 subjects have each 2 values, one for each variable, given by (0, 1) for the first, (1, 4) for the second, and (2, 3) for the third. Kendall’s tau will check if each pair of subjects has concordant or discordant observations, and count the number of subjects of each type. In the above example, the second subject (1, 4) involves both entries larger than the first subject (0, 1), so they are called concordant. The third subject (2, 3) involves one entry larger and one smaller than the second subject (1, 4), so they are called discordant. Finally, the third subject (2, 3) is concordant compared with the first (0, 1).</p>
 <p>The correlation is then computed as the number of concordant pairs of subjects minus the number of discordant pairs, divided by the total number of pairs. In the above example, there are 2 concordant pairs and one discordant, and the total number of pairs of subjects (combinations of subjects) is equal to 3, leading to a Kendall’s <span class="math inline">\(\tau\)</span> of 1/3=0.333.</p>
 <p>This coefficient can be more interpretable than the Spearman’s correlation coefficient.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="introduction-and-exploratory-data-analysis.html#cb93-1" tabindex="-1"></a><span class="co">#computation of the correlation matrix between all variables of</span></span>
-<span id="cb93-2"><a href="introduction-and-exploratory-data-analysis.html#cb93-2" tabindex="-1"></a>correlation.kendall <span class="ot">&lt;-</span> <span class="fu">cor</span>(dataset, <span class="at">method =</span> <span class="st">&#39;kendall&#39;</span>, <span class="at">use =</span> <span class="st">&#39;complete.obs&#39;</span>)</span>
-<span id="cb93-3"><a href="introduction-and-exploratory-data-analysis.html#cb93-3" tabindex="-1"></a><span class="fu">heatmap.2</span>(correlation.kendall, <span class="at">trace =</span> <span class="st">&#39;none&#39;</span>, <span class="at">cexRow =</span> <span class="fl">0.8</span>,</span>
-<span id="cb93-4"><a href="introduction-and-exploratory-data-analysis.html#cb93-4" tabindex="-1"></a>          <span class="at">cexCol =</span> <span class="fl">0.8</span>, <span class="at">col=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;white&quot;</span>,<span class="st">&quot;red&quot;</span>))(<span class="dv">20</span>))</span></code></pre></div>
-<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="introduction-and-exploratory-data-analysis.html#cb94-1" tabindex="-1"></a><span class="co">#computation of the correlation matrix between all variables of</span></span>
+<span id="cb94-2"><a href="introduction-and-exploratory-data-analysis.html#cb94-2" tabindex="-1"></a>correlation.kendall <span class="ot">&lt;-</span> <span class="fu">cor</span>(dataset, <span class="at">method =</span> <span class="st">&#39;kendall&#39;</span>, <span class="at">use =</span> <span class="st">&#39;complete.obs&#39;</span>)</span>
+<span id="cb94-3"><a href="introduction-and-exploratory-data-analysis.html#cb94-3" tabindex="-1"></a><span class="fu">heatmap.2</span>(correlation.kendall, <span class="at">trace =</span> <span class="st">&#39;none&#39;</span>, <span class="at">cexRow =</span> <span class="fl">0.8</span>,</span>
+<span id="cb94-4"><a href="introduction-and-exploratory-data-analysis.html#cb94-4" tabindex="-1"></a>          <span class="at">cexCol =</span> <span class="fl">0.8</span>, <span class="at">col=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;white&quot;</span>,<span class="st">&quot;red&quot;</span>))(<span class="dv">20</span>))</span></code></pre></div>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-61-1.png" alt="" width="672" /></p>
 <hr />
 <blockquote>
 <p><em>Quick task(s)</em>:</p>
@@ -866,42 +906,42 @@ If we have for example the same number of samples in both groups, the mean of th
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Clinical research | Medical Statistics</title>
+  <meta name="description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Clinical research | Medical Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Clinical research | Medical Statistics" />
+  
+  <meta name="twitter:description" content="This course teaches the basics of R, an open-source and free environment for statistical analyses. In this course we also teach the basics transparent and reproducible research. For this, we teach RMarkdown, a tool to make dynamic reports in R." />
+  
+
+
+
+<meta name="date" content="2026-06-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="survival-analysis.html"/>
+<link rel="next" href="exercises.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#teachers"><i class="fa fa-check"></i>Teachers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#goals-topics"><i class="fa fa-check"></i>Goals &amp; Topics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#programme"><i class="fa fa-check"></i>Programme</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html"><i class="fa fa-check"></i><b>1</b> Introduction and exploratory data analysis</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#introduction-to-probabilistic-distributions"><i class="fa fa-check"></i><b>1.1</b> Introduction to probabilistic distributions</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#motivation"><i class="fa fa-check"></i><b>1.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#discrete-random-variables"><i class="fa fa-check"></i><b>1.1.2</b> Discrete random variables</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#continuous-random-variable"><i class="fa fa-check"></i><b>1.1.3</b> Continuous random variable</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#r-functions"><i class="fa fa-check"></i><b>1.1.4</b> R functions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#data-representation"><i class="fa fa-check"></i><b>1.2</b> Data representation</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#motivating-example"><i class="fa fa-check"></i><b>1.2.1</b> Motivating example</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#working-example"><i class="fa fa-check"></i><b>1.2.2</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#mean-variance"><i class="fa fa-check"></i><b>1.3</b> Mean-Variance</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#working-example-1"><i class="fa fa-check"></i><b>1.3.1</b> Working example</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#correlation-and-heatmap"><i class="fa fa-check"></i><b>1.4</b> Correlation and heatmap</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#motivation-1"><i class="fa fa-check"></i><b>1.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction-and-exploratory-data-analysis.html"><a href="introduction-and-exploratory-data-analysis.html#working-example-2"><i class="fa fa-check"></i><b>1.4.2</b> Working example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html"><i class="fa fa-check"></i><b>2</b> Statistical tests - Part 1</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#comparing-2-groups"><i class="fa fa-check"></i><b>2.1</b> Comparing 2 groups</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#motivation-2"><i class="fa fa-check"></i><b>2.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#working-example-3"><i class="fa fa-check"></i><b>2.1.2</b> Working Example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#power-of-a-statistical-test"><i class="fa fa-check"></i><b>2.2</b> Power of a statistical test</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#motivation-3"><i class="fa fa-check"></i><b>2.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="2.2.2" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#working-example-4"><i class="fa fa-check"></i><b>2.2.2</b> Working example</a></li>
+<li class="chapter" data-level="2.2.3" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#illustrating-two-sided-critical-regions"><i class="fa fa-check"></i><b>2.2.3</b> Illustrating two-sided critical regions</a></li>
+<li class="chapter" data-level="2.2.4" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#illustrating-the-power"><i class="fa fa-check"></i><b>2.2.4</b> Illustrating the power</a></li>
+<li class="chapter" data-level="2.2.5" data-path="statistical-tests---part-1.html"><a href="statistical-tests---part-1.html#what-happens-if-the-effect-size-is-smaller"><i class="fa fa-check"></i><b>2.2.5</b> What happens if the effect size is smaller?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="common-regression-models.html"><a href="common-regression-models.html"><i class="fa fa-check"></i><b>3</b> Common regression models</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="common-regression-models.html"><a href="common-regression-models.html#linear-regression"><i class="fa fa-check"></i><b>3.1</b> Linear regression</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="common-regression-models.html"><a href="common-regression-models.html#motivation-4"><i class="fa fa-check"></i><b>3.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.1.2" data-path="common-regression-models.html"><a href="common-regression-models.html#working-example-5"><i class="fa fa-check"></i><b>3.1.2</b> Working Example</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="common-regression-models.html"><a href="common-regression-models.html#logistic-regression"><i class="fa fa-check"></i><b>3.2</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="common-regression-models.html"><a href="common-regression-models.html#motivation-5"><i class="fa fa-check"></i><b>3.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.2.2" data-path="common-regression-models.html"><a href="common-regression-models.html#link-function"><i class="fa fa-check"></i><b>3.2.2</b> Link function</a></li>
+<li class="chapter" data-level="3.2.3" data-path="common-regression-models.html"><a href="common-regression-models.html#the-glm-function"><i class="fa fa-check"></i><b>3.2.3</b> The <code>glm</code> function</a></li>
+<li class="chapter" data-level="3.2.4" data-path="common-regression-models.html"><a href="common-regression-models.html#working-example-6"><i class="fa fa-check"></i><b>3.2.4</b> Working example</a></li>
+<li class="chapter" data-level="3.2.5" data-path="common-regression-models.html"><a href="common-regression-models.html#fitted-values"><i class="fa fa-check"></i><b>3.2.5</b> Fitted values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html"><i class="fa fa-check"></i><b>4</b> Statistical tests - Part 2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#comparing-more-than-two-groups"><i class="fa fa-check"></i><b>4.1</b> Comparing more than two groups</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-6"><i class="fa fa-check"></i><b>4.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples"><i class="fa fa-check"></i><b>4.1.2</b> Working examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#testing-independence-in-2x2-tables"><i class="fa fa-check"></i><b>4.2</b> Testing independence in 2x2 tables</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-7"><i class="fa fa-check"></i><b>4.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-1"><i class="fa fa-check"></i><b>4.2.2</b> Working examples</a></li>
+<li class="chapter" data-level="4.2.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#general-setup"><i class="fa fa-check"></i><b>4.2.3</b> General setup</a></li>
+<li class="chapter" data-level="4.2.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont"><i class="fa fa-check"></i><b>4.2.4</b> Working examples (cont)</a></li>
+<li class="chapter" data-level="4.2.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#the-chi-squared-test"><i class="fa fa-check"></i><b>4.2.5</b> The chi-squared test</a></li>
+<li class="chapter" data-level="4.2.6" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont-1"><i class="fa fa-check"></i><b>4.2.6</b> Working examples (cont)</a></li>
+<li class="chapter" data-level="4.2.7" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#fishers-exact-test"><i class="fa fa-check"></i><b>4.2.7</b> Fisher’s exact test</a></li>
+<li class="chapter" data-level="4.2.8" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont-2"><i class="fa fa-check"></i><b>4.2.8</b> Working examples (cont)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#testing-independence-in-nx2-tables"><i class="fa fa-check"></i><b>4.3</b> Testing independence in nx2 tables</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-8"><i class="fa fa-check"></i><b>4.3.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.3.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-2"><i class="fa fa-check"></i><b>4.3.2</b> Working examples</a></li>
+<li class="chapter" data-level="4.3.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#general-setup-1"><i class="fa fa-check"></i><b>4.3.3</b> General setup</a></li>
+<li class="chapter" data-level="4.3.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#chi-squared-test-for-nx2-tables"><i class="fa fa-check"></i><b>4.3.4</b> Chi-squared test for nx2 tables</a></li>
+<li class="chapter" data-level="4.3.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-examples-cont-3"><i class="fa fa-check"></i><b>4.3.5</b> Working examples (cont)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#testing-symmetry-in-2x2-tables"><i class="fa fa-check"></i><b>4.4</b> Testing symmetry in 2x2 tables</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-9"><i class="fa fa-check"></i><b>4.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.4.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-example-7"><i class="fa fa-check"></i><b>4.4.2</b> Working example</a></li>
+<li class="chapter" data-level="4.4.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#general-setup-2"><i class="fa fa-check"></i><b>4.4.3</b> General setup</a></li>
+<li class="chapter" data-level="4.4.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#working-example-cont"><i class="fa fa-check"></i><b>4.4.4</b> Working example (cont)</a></li>
+<li class="chapter" data-level="4.4.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#notes"><i class="fa fa-check"></i><b>4.4.5</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#relative-risk-and-odds-ratio"><i class="fa fa-check"></i><b>4.5</b> Relative risk and odds ratio</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-10"><i class="fa fa-check"></i><b>4.5.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.5.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#relative-risk"><i class="fa fa-check"></i><b>4.5.2</b> Relative risk</a></li>
+<li class="chapter" data-level="4.5.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#odds-ratio"><i class="fa fa-check"></i><b>4.5.3</b> Odds ratio</a></li>
+<li class="chapter" data-level="4.5.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#relative-risk-vs.-odds-ratio"><i class="fa fa-check"></i><b>4.5.4</b> Relative risk <em>vs.</em> odds ratio</a></li>
+<li class="chapter" data-level="4.5.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#logistic-regression-models-cont"><i class="fa fa-check"></i><b>4.5.5</b> Logistic regression models (cont)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#poisson-regression-models"><i class="fa fa-check"></i><b>4.5.6</b> Poisson regression models</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#power-for-analysis-of-count-tables"><i class="fa fa-check"></i><b>4.6</b> Power for analysis of count tables</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#motivation-11"><i class="fa fa-check"></i><b>4.6.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.6.2" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#fishers-exact-test-1"><i class="fa fa-check"></i><b>4.6.2</b> Fisher’s exact test</a></li>
+<li class="chapter" data-level="4.6.3" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#chi-squared-test"><i class="fa fa-check"></i><b>4.6.3</b> Chi-squared test</a></li>
+<li class="chapter" data-level="4.6.4" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#odds-ratio-1"><i class="fa fa-check"></i><b>4.6.4</b> Odds ratio</a></li>
+<li class="chapter" data-level="4.6.5" data-path="statistical-tests---part-2.html"><a href="statistical-tests---part-2.html#notes-1"><i class="fa fa-check"></i><b>4.6.5</b> Notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>5</b> Survival analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data---introduction"><i class="fa fa-check"></i><b>5.1</b> Survival data - Introduction</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="survival-analysis.html"><a href="survival-analysis.html#motivation-12"><i class="fa fa-check"></i><b>5.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-8"><i class="fa fa-check"></i><b>5.1.2</b> Working example</a></li>
+<li class="chapter" data-level="5.1.3" data-path="survival-analysis.html"><a href="survival-analysis.html#kaplan-meier-curve"><i class="fa fa-check"></i><b>5.1.3</b> Kaplan-Meier curve</a></li>
+<li class="chapter" data-level="5.1.4" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-cont-1"><i class="fa fa-check"></i><b>5.1.4</b> Working example (cont)</a></li>
+<li class="chapter" data-level="5.1.5" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data-analysis-in-r"><i class="fa fa-check"></i><b>5.1.5</b> Survival data analysis in R</a></li>
+<li class="chapter" data-level="5.1.6" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data-for-groups-the-log-rank-test"><i class="fa fa-check"></i><b>5.1.6</b> Survival data for groups: the log-rank test</a></li>
+<li class="chapter" data-level="5.1.7" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-cont-2"><i class="fa fa-check"></i><b>5.1.7</b> Working example (cont)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data---regression-models"><i class="fa fa-check"></i><b>5.2</b> Survival data - regression models</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="survival-analysis.html"><a href="survival-analysis.html#motivation-13"><i class="fa fa-check"></i><b>5.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.2.2" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-proportional-hazards-model"><i class="fa fa-check"></i><b>5.2.2</b> Cox proportional-hazards model</a></li>
+<li class="chapter" data-level="5.2.3" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-9"><i class="fa fa-check"></i><b>5.2.3</b> Working example</a></li>
+<li class="chapter" data-level="5.2.4" data-path="survival-analysis.html"><a href="survival-analysis.html#group-specific-baseline-hazards"><i class="fa fa-check"></i><b>5.2.4</b> Group-specific baseline hazards</a></li>
+<li class="chapter" data-level="5.2.5" data-path="survival-analysis.html"><a href="survival-analysis.html#the-proportional-hazards-assumption"><i class="fa fa-check"></i><b>5.2.5</b> The proportional hazards assumption</a></li>
+<li class="chapter" data-level="5.2.6" data-path="survival-analysis.html"><a href="survival-analysis.html#others"><i class="fa fa-check"></i><b>5.2.6</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-data---power-analysis"><i class="fa fa-check"></i><b>5.3</b> Survival data - power analysis</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="survival-analysis.html"><a href="survival-analysis.html#motivation-14"><i class="fa fa-check"></i><b>5.3.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.3.2" data-path="survival-analysis.html"><a href="survival-analysis.html#power-and-sample-size-for-cox-regression"><i class="fa fa-check"></i><b>5.3.2</b> Power and sample size for Cox regression</a></li>
+<li class="chapter" data-level="5.3.3" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-10"><i class="fa fa-check"></i><b>5.3.3</b> Working example</a></li>
+<li class="chapter" data-level="5.3.4" data-path="survival-analysis.html"><a href="survival-analysis.html#minimum-sample-size"><i class="fa fa-check"></i><b>5.3.4</b> Minimum sample size</a></li>
+<li class="chapter" data-level="5.3.5" data-path="survival-analysis.html"><a href="survival-analysis.html#working-example-cont-3"><i class="fa fa-check"></i><b>5.3.5</b> Working example (cont)</a></li>
+<li class="chapter" data-level="5.3.6" data-path="survival-analysis.html"><a href="survival-analysis.html#reference"><i class="fa fa-check"></i><b>5.3.6</b> Reference</a></li>
+<li class="chapter" data-level="5.3.7" data-path="survival-analysis.html"><a href="survival-analysis.html#notes-2"><i class="fa fa-check"></i><b>5.3.7</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-analysis---notes"><i class="fa fa-check"></i><b>5.4</b> Survival analysis - Notes</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="survival-analysis.html"><a href="survival-analysis.html#other-types-of-censoring"><i class="fa fa-check"></i><b>5.4.1</b> Other types of censoring</a></li>
+<li class="chapter" data-level="5.4.2" data-path="survival-analysis.html"><a href="survival-analysis.html#right--left--and-interval-censoring"><i class="fa fa-check"></i><b>5.4.2</b> Right-, left- and interval censoring</a></li>
+<li class="chapter" data-level="5.4.3" data-path="survival-analysis.html"><a href="survival-analysis.html#left-truncation-delayed-entry"><i class="fa fa-check"></i><b>5.4.3</b> Left-truncation (delayed entry)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="survival-analysis.html"><a href="survival-analysis.html#type-i-and-type-ii-censoring"><i class="fa fa-check"></i><b>5.4.4</b> Type-I and type-II censoring</a></li>
+<li class="chapter" data-level="5.4.5" data-path="survival-analysis.html"><a href="survival-analysis.html#competing-risks"><i class="fa fa-check"></i><b>5.4.5</b> Competing risks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="clinical-research.html"><a href="clinical-research.html"><i class="fa fa-check"></i><b>6</b> Clinical research</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="clinical-research.html"><a href="clinical-research.html#clinical-research-why-and-how"><i class="fa fa-check"></i><b>6.1</b> Clinical research, why and how</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="clinical-research.html"><a href="clinical-research.html#bias-and-precision"><i class="fa fa-check"></i><b>6.1.1</b> Bias and Precision</a></li>
+<li class="chapter" data-level="6.1.2" data-path="clinical-research.html"><a href="clinical-research.html#increase-accuracy"><i class="fa fa-check"></i><b>6.1.2</b> Increase accuracy</a></li>
+<li class="chapter" data-level="6.1.3" data-path="clinical-research.html"><a href="clinical-research.html#reducing-bias-randomized-trials"><i class="fa fa-check"></i><b>6.1.3</b> Reducing bias: randomized trials</a></li>
+<li class="chapter" data-level="6.1.4" data-path="clinical-research.html"><a href="clinical-research.html#exercise-law-of-large-numbers-in-a-one-arm-trial."><i class="fa fa-check"></i><b>6.1.4</b> Exercise: law of large numbers in a one-arm trial.</a></li>
+<li class="chapter" data-level="6.1.5" data-path="clinical-research.html"><a href="clinical-research.html#short-summary-of-what-we-found-in-the-exercise"><i class="fa fa-check"></i><b>6.1.5</b> Short summary of what we found in the exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="clinical-research.html"><a href="clinical-research.html#randomization-techniques"><i class="fa fa-check"></i><b>6.2</b> Randomization techniques</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="clinical-research.html"><a href="clinical-research.html#randomization-in-a-randomized-clinical-trial"><i class="fa fa-check"></i><b>6.2.1</b> Randomization in a randomized clinical trial</a></li>
+<li class="chapter" data-level="6.2.2" data-path="clinical-research.html"><a href="clinical-research.html#why-randomize"><i class="fa fa-check"></i><b>6.2.2</b> Why randomize?</a></li>
+<li class="chapter" data-level="6.2.3" data-path="clinical-research.html"><a href="clinical-research.html#working-example-11"><i class="fa fa-check"></i><b>6.2.3</b> Working example</a></li>
+<li class="chapter" data-level="6.2.4" data-path="clinical-research.html"><a href="clinical-research.html#simple-randomization"><i class="fa fa-check"></i><b>6.2.4</b> Simple randomization</a></li>
+<li class="chapter" data-level="6.2.5" data-path="clinical-research.html"><a href="clinical-research.html#block-randomization"><i class="fa fa-check"></i><b>6.2.5</b> Block randomization</a></li>
+<li class="chapter" data-level="6.2.6" data-path="clinical-research.html"><a href="clinical-research.html#minimization"><i class="fa fa-check"></i><b>6.2.6</b> Minimization</a></li>
+<li class="chapter" data-level="6.2.7" data-path="clinical-research.html"><a href="clinical-research.html#summary"><i class="fa fa-check"></i><b>6.2.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="clinical-research.html"><a href="clinical-research.html#observational-studies"><i class="fa fa-check"></i><b>6.3</b> Observational studies</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="clinical-research.html"><a href="clinical-research.html#why-do-we-need-observational-studies"><i class="fa fa-check"></i><b>6.3.1</b> Why do we need observational studies?</a></li>
+<li class="chapter" data-level="6.3.2" data-path="clinical-research.html"><a href="clinical-research.html#classifying-observational-studies"><i class="fa fa-check"></i><b>6.3.2</b> Classifying observational studies</a></li>
+<li class="chapter" data-level="6.3.3" data-path="clinical-research.html"><a href="clinical-research.html#cross-sectional-studies"><i class="fa fa-check"></i><b>6.3.3</b> Cross-sectional studies</a></li>
+<li class="chapter" data-level="6.3.4" data-path="clinical-research.html"><a href="clinical-research.html#cohort-studies"><i class="fa fa-check"></i><b>6.3.4</b> Cohort studies</a></li>
+<li class="chapter" data-level="6.3.5" data-path="clinical-research.html"><a href="clinical-research.html#case-control-studies"><i class="fa fa-check"></i><b>6.3.5</b> Case-control studies</a></li>
+<li class="chapter" data-level="6.3.6" data-path="clinical-research.html"><a href="clinical-research.html#rare-disease-approximation"><i class="fa fa-check"></i><b>6.3.6</b> Rare disease approximation</a></li>
+<li class="chapter" data-level="6.3.7" data-path="clinical-research.html"><a href="clinical-research.html#summary-1"><i class="fa fa-check"></i><b>6.3.7</b> Summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>7</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="exercises.html"><a href="exercises.html#chapter-1"><i class="fa fa-check"></i><b>7.1</b> Chapter 1</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="exercises.html"><a href="exercises.html#exercise-1"><i class="fa fa-check"></i><b>7.1.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.1.2" data-path="exercises.html"><a href="exercises.html#exercise-2"><i class="fa fa-check"></i><b>7.1.2</b> Exercise 2:</a></li>
+<li class="chapter" data-level="7.1.3" data-path="exercises.html"><a href="exercises.html#exercise-3"><i class="fa fa-check"></i><b>7.1.3</b> Exercise 3(*)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="exercises.html"><a href="exercises.html#chapter-2"><i class="fa fa-check"></i><b>7.2</b> Chapter 2</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="exercises.html"><a href="exercises.html#exercise-1-1"><i class="fa fa-check"></i><b>7.2.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.2.2" data-path="exercises.html"><a href="exercises.html#exercise2"><i class="fa fa-check"></i><b>7.2.2</b> Exercise2</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="exercises.html"><a href="exercises.html#chapter-3"><i class="fa fa-check"></i><b>7.3</b> Chapter 3</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="exercises.html"><a href="exercises.html#exercise-1-2"><i class="fa fa-check"></i><b>7.3.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.3.2" data-path="exercises.html"><a href="exercises.html#exercise-2-1"><i class="fa fa-check"></i><b>7.3.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="7.3.3" data-path="exercises.html"><a href="exercises.html#exercise-3-1"><i class="fa fa-check"></i><b>7.3.3</b> Exercise 3</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="exercises.html"><a href="exercises.html#chapter-4"><i class="fa fa-check"></i><b>7.4</b> Chapter 4</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="exercises.html"><a href="exercises.html#exercise-1-3"><i class="fa fa-check"></i><b>7.4.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.4.2" data-path="exercises.html"><a href="exercises.html#exercise-2-2"><i class="fa fa-check"></i><b>7.4.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="7.4.3" data-path="exercises.html"><a href="exercises.html#exercise-3-2"><i class="fa fa-check"></i><b>7.4.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="7.4.4" data-path="exercises.html"><a href="exercises.html#exercise-4"><i class="fa fa-check"></i><b>7.4.4</b> Exercise 4</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="exercises.html"><a href="exercises.html#chapter-5"><i class="fa fa-check"></i><b>7.5</b> Chapter 5</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="exercises.html"><a href="exercises.html#exercise-1-4"><i class="fa fa-check"></i><b>7.5.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="7.5.2" data-path="exercises.html"><a href="exercises.html#exercise-2-3"><i class="fa fa-check"></i><b>7.5.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="7.5.3" data-path="exercises.html"><a href="exercises.html#exercise-3-3"><i class="fa fa-check"></i><b>7.5.3</b> Exercise 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="appendix.html"><a href="appendix.html#pca-analysis"><i class="fa fa-check"></i><b>8.1</b> PCA Analysis</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="appendix.html"><a href="appendix.html#motivation-15"><i class="fa fa-check"></i><b>8.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="appendix.html"><a href="appendix.html#working-example-18"><i class="fa fa-check"></i><b>8.1.2</b> Working example</a></li>
+<li class="chapter" data-level="8.1.3" data-path="appendix.html"><a href="appendix.html#quick-tasks"><i class="fa fa-check"></i><b>8.1.3</b> Quick tasks</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Medical Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="clinical-research" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Clinical research<a href="clinical-research.html#clinical-research" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>(Sara Balduzzi, Antonios Daletzakis and Vincent van der Noort)</p>
+<div id="clinical-research-why-and-how" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Clinical research, why and how<a href="clinical-research.html#clinical-research-why-and-how" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Time to take a step back. What are we doing here all day, as researchers? What is our goal and why is everything so complicated?</p>
+<p>Of course there are many answers to these questions but one important aspect is this:</p>
+<p>Clinical research tries to answer a question about <em>a large group of patients</em> (e. g. all stage III non-small cell lung cancer patients) by looking at a <em>small subset of these patients</em> (the patients in the trial).</p>
+<center>
+<div class="float">
+<img src="figure/korbedpsych.jpg" alt="Sampling from general population" />
+<div class="figcaption">Sampling from general population</div>
+</div>
+</center>
+<p>You collect a number of study participants, see (for instance) how well they react to a new drug and then draw conclusions about how all other patients with the same disease will react to this drug in the future.</p>
+<p>The first thing that comes to mind when seeing this is: this is impossible. You cannot know everything about all the people that are <em>not</em> in the trial. This is correct, on a fundamental level what we want is impossible and it is important to realize that statistics cannot change that: statistics is not magic.</p>
+<p>However, more important is to <em>not give up</em>. As researchers we take (what I think is) the best course of action when confronted with an impossible situation: make the best of it. In our case: try to do what we can to make the conclusions about the large group of people (the general population) based on the small set of people (the study population) <em>as reliable as possible</em>. This what statistics, but also (part of) the rules and regulations from GCP are all about. While it is true that we cannot know everything, it is also true that after doing a study we know <em>more</em> than we knew before.</p>
+<div id="bias-and-precision" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Bias and Precision<a href="clinical-research.html#bias-and-precision" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Much of the measures we take to draw more reliable conclusions fall in three categories:</p>
+<ul>
+<li>Increase accuracy</li>
+<li>Decrease bias</li>
+<li>Make sure your trial measures the things you are actually interested in in clinical practice</li>
+</ul>
+<p>What do these terms mean and what can we do about it?</p>
+<p>The <strong>precision</strong> of a quantitative measurement relates to the amount of random variation about a fixed point (be it the true value or not).</p>
+<p><strong>Bias</strong> may be defined as any factor or process that tends to produce results or conclusions that differ systematically from the truth. Any research study in a medical field is open to bias (from many sources).</p>
+<p>In general, an accurate measurement is defined as both <strong>unbiased and precise</strong>.</p>
+<center>
+<div class="float">
+<img src="figure/precision-and-bias.PNG" alt="Precision and bias" />
+<div class="figcaption">Precision and bias</div>
+</div>
+</center>
+<p><strong>Group discussion</strong>: the following picture gives some rather abstract examples of things that can affect the accuracy of our measurements, let’s see if we can give concrete examples on all of them:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sources-variation"></span>
+<img src="figure/Sources.png" alt="Sources of variation" width="80%" />
+<p class="caption">
+Figure 6.1: Sources of variation
+</p>
+</div>
+</div>
+<div id="increase-accuracy" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Increase accuracy<a href="clinical-research.html#increase-accuracy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Some general strategies for increasing accuracy are:</p>
+<ul>
+<li>Increase the sample size</li>
+<li>Use more accurate or sensitive techniques for your measurements</li>
+<li>Take prognostic factors into account</li>
+</ul>
+<p>We will discuss all three of them shortly.</p>
+<p><strong>Sample size</strong> There is an obvious intuitive reason why increasing the sample size is good: we are trying to learn something about a large group of patients. The larger the fraction of those patients we actually see in our study, the more we learn about them.</p>
+<p>But there is also a more mathematical reason, sometime called the law of large numbers. Suppose we are will to accept that (for now) we cannot learn enough about our patients to predict for each future patient their exact time of death or even whether or not their tumor will respond to drug X. However we do believe that by doing the study we can get some useful ‘summary’ level information about the patient group as a whole: what is their <em>median</em> overall survival? What <em>fraction</em> of patients will respond to drug X?</p>
+<p>The median survival in the study patients is a an estimate of this ‘true’ median survival in all patient; the observed response rate in the study patients is an estimate of the ‘true’ response rate in all patients - this latter number can be interpreted as the probability for in individual future patient to respond.</p>
+<p>Now this estimate will likely not be 100% accurate (i.e. equal to the true value) because of inter-subject variation and the fact that not every patient in past, present and future participates in the trial. But here we know that the more patients we include the more accurate the estimate becomes, and we can also calculate how fast. This is no longer a matter of biology but of mathematics: we can just model the trial patients as marbles we randomly draw from the urn of all patients.</p>
+<p>(Note that here it is important the study patients are indeed a representative sample of the population of interest!)</p>
+<p>We have an exercise about this further down. First let’s look at the other two bullets.</p>
+<p><strong>Sensitive measurements</strong> Our hospital is named after Antoni van Leeuwenhoek who contributed tremendously to our understanding of biology by improving the sensitivity of an (existing) measurement apparatus: the microscope. Just to say that there really <em>is</em> fame and glamour in this boring sounding bullet point.</p>
+<p>In the context of clinical trials this is more about using standardized questionnaires for patient reported outcomes, standardized measurements of tumor (e.g. Recist), finding ways to be even better than that, like the automatic volume measurements that are currently developed here in the AvL, using overall survival instead of progression free survival as a measure of survival etc.</p>
+<p><strong>Prognostic factors</strong> Imagine that you are trying to estimate the <em>difference</em> in survival between two groups of patients (e.g. smokers and non-smokers) but among your trial patients you see that the groups do not only differ only in smoking status but also in other known prognostic factors such as age, socioeconomic status, percentage females etc. Then in order to get a more accurate of what part of the difference is attributable to smoking we can make a <em>regression model</em> taking these other factors into account. You already had a whole chapter on regression models, so this is just a short reminder why we care.</p>
+</div>
+<div id="reducing-bias-randomized-trials" class="section level3 hasAnchor" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Reducing bias: randomized trials<a href="clinical-research.html#reducing-bias-randomized-trials" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The last example with smokers and non-smokers that differ in various aspects also ties in with the question of how to reduce bias. We can make a very long list (e.g. Chavalarias J Clin Epidemiology 63 (2010) identify 235 types of bias that have accquired their own name throughout the literature) but here I want to list just a few thing common in clinical trials:</p>
+<ul>
+<li>Identify sources of bias</li>
+<li>Use a control group</li>
+<li>Randomisation</li>
+<li>Blinding</li>
+</ul>
+<p>The first point is obvious: <strong>think about everything that can go wrong before starting your trial</strong>.</p>
+<p><strong>Control groups:</strong> If you give a number of study patients drug X and after 1 year all of them are still alive, this looks like as if drug X is working very well, especially if you are someone who already believed that. But how do we know that these patients wouldn’t have lived for one year anyway?</p>
+<p>One solution out of this is to include a second group of patients that do not get drug X but the standard of care and see if people in the ‘drug X’-group do actually live longer (or more often make the 1 year mark).</p>
+<p><strong>Randomization:</strong> Can we improve on the idea of the previous paragraph? We saw in the smoker/non-smoker example that it is annoying if the groups you want to compare differ in more aspects than the one you are interested in. Ideally we want the groups to be as comparable as possible with the exception of the one thing we are studying (normally: which treatment do the patients get, but sometimes also a potential risk factor like smoking).</p>
+<p>One way to achieve that is through <em>randomization</em>. All patients that are eligible and willing to participate are randomly assigned to treatment A or treatment B. The groups will not be exactly equal, but due to the law of large numbers again we assume that when including enough patients all <em>known and unknown</em> prognostic factors must be balanced between arms.</p>
+<p>When it comes to known factors we can also manipulate the randomness a bit (see chapter stratification later today) to ensure these are balanced.</p>
+<p>Randomized controlled trials are considered the gold standard in clinical research</p>
+<p><strong>Question:</strong> What are some reasons to trust ‘randomness’ more than people when assigning patients to treatment arms?</p>
+<p><strong>Question:</strong> If randomized trials are so great, then why (i.e. for what reasons) do we do so many one-armed trials?</p>
+<p><strong>Blinding:</strong> Sometimes patients and/or treating physicians are <em>blinded</em> to (e.g. do not know) which treatment a patient receives with the goal of eliminating the placebo effect (or making it equally bad between arms). Also (even in one-armed trials) treating physicians are blinded to the emerging outcomes in order to prevent influencing their decisions on which patients to include or not into the trial.</p>
+<p>In many practical situations blinding is not possible. (E.g. a trial that compares surgery to chemotherapy.) The amount of effort spend on blinding also depends on the outcome (e.g. when the outcome is overall survival we worry less about the placebo effect than when the outcome is (reduction of) pain).</p>
+</div>
+<div id="exercise-law-of-large-numbers-in-a-one-arm-trial." class="section level3 hasAnchor" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Exercise: law of large numbers in a one-arm trial.<a href="clinical-research.html#exercise-law-of-large-numbers-in-a-one-arm-trial." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<hr />
+<blockquote>
+<p><em>Quick task(s)</em>:</p>
+<p>Solve <a href="exercises/01-exercise-one-arm-trials.tasks.nocode.html">the task(s)</a>, and check your solution(s) <a href="exercises/01-exercise-one-arm-trials.tasks.code.html">here</a>.</p>
+</blockquote>
+<hr />
+</div>
+<div id="short-summary-of-what-we-found-in-the-exercise" class="section level3 hasAnchor" number="6.1.5">
+<h3><span class="header-section-number">6.1.5</span> Short summary of what we found in the exercise<a href="clinical-research.html#short-summary-of-what-we-found-in-the-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We see:</p>
+<ul>
+<li><strong>On one hand:</strong> what we want (to figure something out about <em>all</em> patients based on <em>some</em> patients) is fundamentally impossible. The probability of getting a wrong answer is greater than the probability of getting the right answer</li>
+<li><strong>On the other hand:</strong> The situation is not hopeless. By including a not-too-tiny amount of patients we can make the probability of finding a wrong answer that is <em>clinically relevantly different</em> from the true answer pretty small.</li>
+</ul>
+<p>Of course you have talked about this before already in the chapter about power and sample size.</p>
+</div>
+</div>
+<div id="randomization-techniques" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Randomization techniques<a href="clinical-research.html#randomization-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="randomization-in-a-randomized-clinical-trial" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Randomization in a randomized clinical trial<a href="clinical-research.html#randomization-in-a-randomized-clinical-trial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A randomized clinical trial compares treatments by allocating patients to treatment groups using chance rather than clinician choice. In a simple two-arm trial the basic structure is:</p>
+<ol style="list-style-type: decimal">
+<li>define the study population;</li>
+<li>randomize eligible patients to treatment <code>A</code> or <code>B</code>;</li>
+<li>follow patients in the same way in both groups;</li>
+<li>compare outcomes between the groups.</li>
+</ol>
+<p>The central idea is that treatment groups should be formed in a fair way. If clinicians choose who receives which treatment, one arm may end up with younger patients, milder disease, or patients with better prognosis. Then a difference in outcome could reflect the treatment, but it could also reflect pre-treatment differences between the groups.</p>
+</div>
+<div id="why-randomize" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Why randomize?<a href="clinical-research.html#why-randomize" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Randomization helps make treatment groups comparable <em>on average</em>. It does not guarantee two identical groups in one particular trial, but it reduces systematic differences in baseline characteristics and helps protect the treatment comparison from selection bias.</p>
+<p>In this section we look at three common approaches:</p>
+<ul>
+<li>simple randomization;</li>
+<li>block randomization;</li>
+<li>minimization.</li>
+</ul>
+<p>The main code uses package functions, because that is closer to how these methods are implemented in practice. Alongside that, we use small hand-worked examples to explain what each method is doing.</p>
+<p>##3 What randomization can and cannot do</p>
+<p>Randomization is extremely important, but it is not a magic solution. It helps prevent bias in the treatment allocation process. It does <strong>not</strong> fix problems caused by poor outcome measurement, missing data, lack of blinding, non-adherence, or protocol deviations. A well-randomized trial can still give misleading results if these other issues are not handled carefully.</p>
+</div>
+<div id="working-example-11" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Working example<a href="clinical-research.html#working-example-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider a small two-arm trial in which 24 patients arrive sequentially. Before treatment allocation, three prognostic factors are recorded for each patient: sex, age group, and disease severity.</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="clinical-research.html#cb333-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1405</span>)</span>
+<span id="cb333-2"><a href="clinical-research.html#cb333-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">24</span></span>
+<span id="cb333-3"><a href="clinical-research.html#cb333-3" tabindex="-1"></a>trial.data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb333-4"><a href="clinical-research.html#cb333-4" tabindex="-1"></a>  <span class="at">patient =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb333-5"><a href="clinical-research.html#cb333-5" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb333-6"><a href="clinical-research.html#cb333-6" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Young&quot;</span>, <span class="st">&quot;Old&quot;</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.55</span>, <span class="fl">0.45</span>))),</span>
+<span id="cb333-7"><a href="clinical-research.html#cb333-7" tabindex="-1"></a>  <span class="at">severity =</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.60</span>, <span class="fl">0.40</span>)))</span>
+<span id="cb333-8"><a href="clinical-research.html#cb333-8" tabindex="-1"></a>)</span>
+<span id="cb333-9"><a href="clinical-research.html#cb333-9" tabindex="-1"></a><span class="fu">head</span>(trial.data, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    patient    sex   age severity
+## 1        1 Female Young      Low
+## 2        2   Male Young     High
+## 3        3   Male   Old     High
+## 4        4   Male Young      Low
+## 5        5 Female   Old     High
+## 6        6 Female   Old      Low
+## 7        7   Male   Old      Low
+## 8        8 Female   Old      Low
+## 9        9   Male   Old      Low
+## 10      10 Female   Old      Low</code></pre>
+<p>The objective is to allocate each patient to treatment <code>A</code> or <code>B</code>.</p>
+</div>
+<div id="simple-randomization" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Simple randomization<a href="clinical-research.html#simple-randomization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In simple randomization, each patient is assigned independently, with the same probability of going to either treatment arm. In a two-arm trial with equal allocation, each patient has probability 0.5 of receiving treatment <code>A</code> and probability 0.5 of receiving treatment <code>B</code>.</p>
+<p>This is the easiest randomization technique to understand and to implement. However, in a small trial it can lead to imbalance in the number of patients per group, and it can also lead to accidental imbalance in important prognostic factors.</p>
+<div id="a-first-look" class="section level4 hasAnchor" number="6.2.4.1">
+<h4><span class="header-section-number">6.2.4.1</span> A first look<a href="clinical-research.html#a-first-look" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="clinical-research.html#cb335-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11</span>)</span>
+<span id="cb335-2"><a href="clinical-research.html#cb335-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="at">size =</span> <span class="dv">12</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</code></pre>
+<p>This is already a simple randomization list for 12 patients. Because assignments are independent, there is no guarantee that the final numbers in the two groups will be equal.</p>
+</div>
+<div id="working-example-12" class="section level4 hasAnchor" number="6.2.4.2">
+<h4><span class="header-section-number">6.2.4.2</span> Working example<a href="clinical-research.html#working-example-12" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The package function <code>randomizr::simple_ra()</code> performs this kind of assignment directly.</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="clinical-research.html#cb337-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">21</span>)</span>
+<span id="cb337-2"><a href="clinical-research.html#cb337-2" tabindex="-1"></a>trt.simple <span class="ot">&lt;-</span> randomizr<span class="sc">::</span><span class="fu">simple_ra</span>(</span>
+<span id="cb337-3"><a href="clinical-research.html#cb337-3" tabindex="-1"></a>  <span class="at">N =</span> n,</span>
+<span id="cb337-4"><a href="clinical-research.html#cb337-4" tabindex="-1"></a>  <span class="at">conditions =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>)</span>
+<span id="cb337-5"><a href="clinical-research.html#cb337-5" tabindex="-1"></a>)</span>
+<span id="cb337-6"><a href="clinical-research.html#cb337-6" tabindex="-1"></a></span>
+<span id="cb337-7"><a href="clinical-research.html#cb337-7" tabindex="-1"></a>trial.simple <span class="ot">&lt;-</span> <span class="fu">cbind</span>(trial.data, <span class="at">treatment =</span> trt.simple)</span>
+<span id="cb337-8"><a href="clinical-research.html#cb337-8" tabindex="-1"></a><span class="fu">head</span>(trial.simple, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    patient    sex   age severity treatment
+## 1        1 Female Young      Low         B
+## 2        2   Male Young     High         A
+## 3        3   Male   Old     High         B
+## 4        4   Male Young      Low         A
+## 5        5 Female   Old     High         B
+## 6        6 Female   Old      Low         B
+## 7        7   Male   Old      Low         A
+## 8        8 Female   Old      Low         A
+## 9        9   Male   Old      Low         B
+## 10      10 Female   Old      Low         B</code></pre>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="clinical-research.html#cb339-1" tabindex="-1"></a><span class="fu">table</span>(trial.simple<span class="sc">$</span>treatment)</span></code></pre></div>
+<pre><code>## 
+##  A  B 
+## 10 14</code></pre>
+<p>A useful first check is the difference in the number of patients allocated to each treatment.</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="clinical-research.html#cb341-1" tabindex="-1"></a><span class="fu">abs</span>(<span class="fu">sum</span>(trt.simple <span class="sc">==</span> <span class="st">&quot;A&quot;</span>) <span class="sc">-</span> <span class="fu">sum</span>(trt.simple <span class="sc">==</span> <span class="st">&quot;B&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Because patients are randomized one by one, the imbalance can change during recruitment. We can display the running difference between the cumulative numbers in arms <code>A</code> and <code>B</code>.</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="clinical-research.html#cb343-1" tabindex="-1"></a>running.diff.simple <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(trt.simple <span class="sc">==</span> <span class="st">&quot;A&quot;</span>) <span class="sc">-</span> <span class="fu">cumsum</span>(trt.simple <span class="sc">==</span> <span class="st">&quot;B&quot;</span>)</span>
+<span id="cb343-2"><a href="clinical-research.html#cb343-2" tabindex="-1"></a><span class="fu">plot</span>(running.diff.simple, <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb343-3"><a href="clinical-research.html#cb343-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Patient order&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Running difference (A - B)&quot;</span>,</span>
+<span id="cb343-4"><a href="clinical-research.html#cb343-4" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Simple randomization&quot;</span>)</span>
+<span id="cb343-5"><a href="clinical-research.html#cb343-5" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-217-1.png" alt="" width="672" /></p>
+<p>Simple randomization is especially problematic in small studies. To see this, we simulate many small trials with <code>n = 20</code> patients and compute the final absolute imbalance <code>|n_A - n_B|</code>.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="clinical-research.html#cb344-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">31</span>)</span>
+<span id="cb344-2"><a href="clinical-research.html#cb344-2" tabindex="-1"></a>nsim <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb344-3"><a href="clinical-research.html#cb344-3" tabindex="-1"></a>n.small <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb344-4"><a href="clinical-research.html#cb344-4" tabindex="-1"></a>imb.simple <span class="ot">&lt;-</span> <span class="fu">replicate</span>(nsim, {</span>
+<span id="cb344-5"><a href="clinical-research.html#cb344-5" tabindex="-1"></a>  trt <span class="ot">&lt;-</span> randomizr<span class="sc">::</span><span class="fu">simple_ra</span>(<span class="at">N =</span> n.small, <span class="at">conditions =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>))</span>
+<span id="cb344-6"><a href="clinical-research.html#cb344-6" tabindex="-1"></a>  <span class="fu">abs</span>(<span class="fu">sum</span>(trt <span class="sc">==</span> <span class="st">&quot;A&quot;</span>) <span class="sc">-</span> <span class="fu">sum</span>(trt <span class="sc">==</span> <span class="st">&quot;B&quot;</span>))</span>
+<span id="cb344-7"><a href="clinical-research.html#cb344-7" tabindex="-1"></a>})</span>
+<span id="cb344-8"><a href="clinical-research.html#cb344-8" tabindex="-1"></a></span>
+<span id="cb344-9"><a href="clinical-research.html#cb344-9" tabindex="-1"></a><span class="fu">hist</span>(imb.simple, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Simple randomization&quot;</span>,</span>
+<span id="cb344-10"><a href="clinical-research.html#cb344-10" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;|nA - nB|&quot;</span>)</span></code></pre></div>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-218-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="clinical-research.html#cb345-1" tabindex="-1"></a><span class="fu">mean</span>(imb.simple <span class="sc">&gt;=</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## [1] 0.259</code></pre>
+<p>The last value estimates the probability that the final imbalance is at least 6 patients in a study of size 20.</p>
+<hr />
+<blockquote>
+<p><em>Quick task(s)</em>:</p>
+<p>Solve <a href="exercises/02-Simple-randomization-packages.tasks.nocode.html">the task(s)</a>, and check your solution(s) <a href="exercises/02-Simple-randomization-packages.tasks.code.html">here</a>.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="block-randomization" class="section level3 hasAnchor" number="6.2.5">
+<h3><span class="header-section-number">6.2.5</span> Block randomization<a href="clinical-research.html#block-randomization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In block randomization, the randomization list is built in blocks. Within each block, the numbers allocated to each treatment are fixed in advance. For example, with block size 4 and allocation ratio 1:1, each block contains two <code>A</code> labels and two <code>B</code> labels, in random order.</p>
+<p>The main advantage is that the numbers in the two treatment groups remain close to each other throughout recruitment. This is particularly useful in small or medium-sized trials.</p>
+<div id="a-block-of-size-4" class="section level4 hasAnchor" number="6.2.5.1">
+<h4><span class="header-section-number">6.2.5.1</span> A block of size 4<a href="clinical-research.html#a-block-of-size-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="clinical-research.html#cb347-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">14</span>)</span>
+<span id="cb347-2"><a href="clinical-research.html#cb347-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;B&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;A&quot;</code></pre>
+<p>This is a single balanced block. The order is random, but the block always contains two <code>A</code> allocations and two <code>B</code> allocations.</p>
+</div>
+<div id="working-example-13" class="section level4 hasAnchor" number="6.2.5.2">
+<h4><span class="header-section-number">6.2.5.2</span> Working example<a href="clinical-research.html#working-example-13" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The package <code>blockrand</code> generates treatment lists block by block. In a two-arm trial, <code>block.sizes = 2</code> corresponds to an actual block size of 4, because the package multiplies by the number of treatment groups.</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="clinical-research.html#cb349-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">21</span>)</span>
+<span id="cb349-2"><a href="clinical-research.html#cb349-2" tabindex="-1"></a>br.fixed <span class="ot">&lt;-</span> blockrand<span class="sc">::</span><span class="fu">blockrand</span>(</span>
+<span id="cb349-3"><a href="clinical-research.html#cb349-3" tabindex="-1"></a>  <span class="at">n =</span> n,</span>
+<span id="cb349-4"><a href="clinical-research.html#cb349-4" tabindex="-1"></a>  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>),</span>
+<span id="cb349-5"><a href="clinical-research.html#cb349-5" tabindex="-1"></a>  <span class="at">block.sizes =</span> <span class="fu">c</span>(<span class="dv">2</span>)</span>
+<span id="cb349-6"><a href="clinical-research.html#cb349-6" tabindex="-1"></a>)</span>
+<span id="cb349-7"><a href="clinical-research.html#cb349-7" tabindex="-1"></a></span>
+<span id="cb349-8"><a href="clinical-research.html#cb349-8" tabindex="-1"></a>trt.block <span class="ot">&lt;-</span> br.fixed<span class="sc">$</span>treatment[<span class="fu">seq_len</span>(n)]</span>
+<span id="cb349-9"><a href="clinical-research.html#cb349-9" tabindex="-1"></a>trial.block <span class="ot">&lt;-</span> <span class="fu">cbind</span>(trial.data, <span class="at">treatment =</span> trt.block)</span>
+<span id="cb349-10"><a href="clinical-research.html#cb349-10" tabindex="-1"></a></span>
+<span id="cb349-11"><a href="clinical-research.html#cb349-11" tabindex="-1"></a><span class="fu">head</span>(br.fixed)</span></code></pre></div>
+<pre><code>##   id block.id block.size treatment
+## 1  1        1          4         A
+## 2  2        1          4         A
+## 3  3        1          4         B
+## 4  4        1          4         B
+## 5  5        2          4         B
+## 6  6        2          4         A</code></pre>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="clinical-research.html#cb351-1" tabindex="-1"></a><span class="fu">table</span>(trial.block<span class="sc">$</span>treatment)</span></code></pre></div>
+<pre><code>## 
+##  A  B 
+## 12 12</code></pre>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="clinical-research.html#cb353-1" tabindex="-1"></a><span class="fu">abs</span>(<span class="fu">sum</span>(trt.block <span class="sc">==</span> <span class="st">&quot;A&quot;</span>) <span class="sc">-</span> <span class="fu">sum</span>(trt.block <span class="sc">==</span> <span class="st">&quot;B&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>Now we compare the running imbalance under simple randomization and block randomization.</p>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="clinical-research.html#cb355-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb355-2"><a href="clinical-research.html#cb355-2" tabindex="-1"></a><span class="fu">plot</span>(running.diff.simple, <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb355-3"><a href="clinical-research.html#cb355-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Patient order&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Running difference (A - B)&quot;</span>,</span>
+<span id="cb355-4"><a href="clinical-research.html#cb355-4" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Simple randomization&quot;</span>)</span>
+<span id="cb355-5"><a href="clinical-research.html#cb355-5" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb355-6"><a href="clinical-research.html#cb355-6" tabindex="-1"></a></span>
+<span id="cb355-7"><a href="clinical-research.html#cb355-7" tabindex="-1"></a>running.diff.block <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(trt.block <span class="sc">==</span> <span class="st">&quot;A&quot;</span>) <span class="sc">-</span> <span class="fu">cumsum</span>(trt.block <span class="sc">==</span> <span class="st">&quot;B&quot;</span>)</span>
+<span id="cb355-8"><a href="clinical-research.html#cb355-8" tabindex="-1"></a><span class="fu">plot</span>(running.diff.block, <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb355-9"><a href="clinical-research.html#cb355-9" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Patient order&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Running difference (A - B)&quot;</span>,</span>
+<span id="cb355-10"><a href="clinical-research.html#cb355-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Block randomization&quot;</span>)</span>
+<span id="cb355-11"><a href="clinical-research.html#cb355-11" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-222-1.png" alt="" width="960" /></p>
+<p>With block randomization the curve returns regularly towards 0, because balance is forced at the end of each block.</p>
+<p>A drawback is that if the block size is known, the last allocations in a block may become predictable. One way to reduce predictability is to use random block sizes.</p>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="clinical-research.html#cb356-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">21</span>)</span>
+<span id="cb356-2"><a href="clinical-research.html#cb356-2" tabindex="-1"></a>br.random <span class="ot">&lt;-</span> blockrand<span class="sc">::</span><span class="fu">blockrand</span>(</span>
+<span id="cb356-3"><a href="clinical-research.html#cb356-3" tabindex="-1"></a>  <span class="at">n =</span> n,</span>
+<span id="cb356-4"><a href="clinical-research.html#cb356-4" tabindex="-1"></a>  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>),</span>
+<span id="cb356-5"><a href="clinical-research.html#cb356-5" tabindex="-1"></a>  <span class="at">block.sizes =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb356-6"><a href="clinical-research.html#cb356-6" tabindex="-1"></a>)</span>
+<span id="cb356-7"><a href="clinical-research.html#cb356-7" tabindex="-1"></a></span>
+<span id="cb356-8"><a href="clinical-research.html#cb356-8" tabindex="-1"></a>trt.block.random <span class="ot">&lt;-</span> br.random<span class="sc">$</span>treatment[<span class="fu">seq_len</span>(n)]</span>
+<span id="cb356-9"><a href="clinical-research.html#cb356-9" tabindex="-1"></a><span class="fu">table</span>(trt.block.random)</span></code></pre></div>
+<pre><code>## trt.block.random
+##  A  B 
+## 12 12</code></pre>
+<p>Another extension is <em>stratified block randomization</em>. In that case, separate block randomization lists are used within strata defined by important variables, for example sex or disease stage.</p>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="clinical-research.html#cb358-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8</span>)</span>
+<span id="cb358-2"><a href="clinical-research.html#cb358-2" tabindex="-1"></a>trt.strat <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA_character_</span>, n)</span>
+<span id="cb358-3"><a href="clinical-research.html#cb358-3" tabindex="-1"></a></span>
+<span id="cb358-4"><a href="clinical-research.html#cb358-4" tabindex="-1"></a><span class="cf">for</span> (lev <span class="cf">in</span> <span class="fu">levels</span>(trial.data<span class="sc">$</span>sex)) {</span>
+<span id="cb358-5"><a href="clinical-research.html#cb358-5" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">which</span>(trial.data<span class="sc">$</span>sex <span class="sc">==</span> lev)</span>
+<span id="cb358-6"><a href="clinical-research.html#cb358-6" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> blockrand<span class="sc">::</span><span class="fu">blockrand</span>(</span>
+<span id="cb358-7"><a href="clinical-research.html#cb358-7" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(idx),</span>
+<span id="cb358-8"><a href="clinical-research.html#cb358-8" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>),</span>
+<span id="cb358-9"><a href="clinical-research.html#cb358-9" tabindex="-1"></a>    <span class="at">block.sizes =</span> <span class="fu">c</span>(<span class="dv">2</span>),</span>
+<span id="cb358-10"><a href="clinical-research.html#cb358-10" tabindex="-1"></a>    <span class="at">stratum =</span> lev</span>
+<span id="cb358-11"><a href="clinical-research.html#cb358-11" tabindex="-1"></a>  )</span>
+<span id="cb358-12"><a href="clinical-research.html#cb358-12" tabindex="-1"></a>  trt.strat[idx] <span class="ot">&lt;-</span> <span class="fu">as.character</span>(tmp<span class="sc">$</span>treatment[<span class="fu">seq_along</span>(idx)])</span>
+<span id="cb358-13"><a href="clinical-research.html#cb358-13" tabindex="-1"></a>}</span>
+<span id="cb358-14"><a href="clinical-research.html#cb358-14" tabindex="-1"></a></span>
+<span id="cb358-15"><a href="clinical-research.html#cb358-15" tabindex="-1"></a><span class="fu">table</span>(trt.strat, trial.data<span class="sc">$</span>sex)</span></code></pre></div>
+<pre><code>##          
+## trt.strat Female Male
+##         A      3    8
+##         B      4    9</code></pre>
+<p>This helps keep treatment counts balanced inside each stratum. In practice, only a few important stratification variables can be handled this way, because the number of strata grows quickly.</p>
+<hr />
+<blockquote>
+<p><em>Quick task(s)</em>:</p>
+<p>Solve <a href="exercises/03-Block-randomization-packages.tasks.nocode.html">the task(s)</a>, and check your solution(s) <a href="exercises/03-Block-randomization-packages.tasks.code.html">here</a>.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="minimization" class="section level3 hasAnchor" number="6.2.6">
+<h3><span class="header-section-number">6.2.6</span> Minimization<a href="clinical-research.html#minimization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Simple and block randomization mainly aim to control the number of patients per treatment arm. In some studies, it is also important to keep several prognostic factors balanced between groups. Minimization is an adaptive allocation method designed for that purpose.</p>
+<p>When a new patient enters the study, we compare the imbalance that would result from assigning the patient to treatment 1 with the imbalance that would result from assigning the patient to treatment 2. The preferred treatment is the one that gives the smaller imbalance score.</p>
+<div id="the-basic-idea" class="section level4 hasAnchor" number="6.2.6.1">
+<h4><span class="header-section-number">6.2.6.1</span> The basic idea<a href="clinical-research.html#the-basic-idea" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For each incoming patient, the minimization rule works as follows:</p>
+<ol style="list-style-type: decimal">
+<li>look at the patient’s covariates;</li>
+<li>calculate the imbalance score if the patient is assigned to treatment 1;</li>
+<li>calculate the imbalance score if the patient is assigned to treatment 2;</li>
+<li>prefer the treatment with the smaller score;</li>
+<li>keep a random element, so that the preferred treatment is chosen with high probability rather than certainty.</li>
+</ol>
+</div>
+<div id="a-hand-worked-example" class="section level4 hasAnchor" number="6.2.6.2">
+<h4><span class="header-section-number">6.2.6.2</span> A hand-worked example<a href="clinical-research.html#a-hand-worked-example" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Suppose the next patient is:</p>
+<ul>
+<li>Female</li>
+<li>Old</li>
+<li>High severity</li>
+</ul>
+<p>and suppose the allocations among the first 8 patients have produced the following counts for these levels:</p>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="clinical-research.html#cb360-1" tabindex="-1"></a>mini.example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb360-2"><a href="clinical-research.html#cb360-2" tabindex="-1"></a>  <span class="at">variable =</span> <span class="fu">c</span>(<span class="st">&quot;Sex&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Severity&quot;</span>),</span>
+<span id="cb360-3"><a href="clinical-research.html#cb360-3" tabindex="-1"></a>  <span class="at">level =</span> <span class="fu">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Old&quot;</span>, <span class="st">&quot;High&quot;</span>),</span>
+<span id="cb360-4"><a href="clinical-research.html#cb360-4" tabindex="-1"></a>  <span class="at">count_A =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>),</span>
+<span id="cb360-5"><a href="clinical-research.html#cb360-5" tabindex="-1"></a>  <span class="at">count_B =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb360-6"><a href="clinical-research.html#cb360-6" tabindex="-1"></a>)</span>
+<span id="cb360-7"><a href="clinical-research.html#cb360-7" tabindex="-1"></a>mini.example</span></code></pre></div>
+<pre><code>##   variable  level count_A count_B
+## 1      Sex Female       3       2
+## 2      Age    Old       2       3
+## 3 Severity   High       1       3</code></pre>
+<p>If we assign this patient to treatment <code>A</code>, the absolute differences for the three matching levels become:</p>
+<ul>
+<li>Female: <code>|4 - 2| = 2</code></li>
+<li>Old: <code>|3 - 3| = 0</code></li>
+<li>High: <code>|2 - 3| = 1</code></li>
+</ul>
+<p>With equal weights, the Pocock-Simon score is proportional to:</p>
+<p><span class="math display">\[
+\frac{1}{3}(2^2 + 0^2 + 1^2) = \frac{5}{3}.
+\]</span></p>
+<p>If we assign this patient to treatment <code>B</code>, the absolute differences become:</p>
+<ul>
+<li>Female: <code>|3 - 3| = 0</code></li>
+<li>Old: <code>|2 - 4| = 2</code></li>
+<li>High: <code>|1 - 4| = 3</code></li>
+</ul>
+<p>and the corresponding score is:</p>
+<p><span class="math display">\[
+\frac{1}{3}(0^2 + 2^2 + 3^2) = \frac{13}{3}.
+\]</span></p>
+<p>So treatment <code>A</code> is preferred because it gives the smaller imbalance score.</p>
+</div>
+<div id="working-example-14" class="section level4 hasAnchor" number="6.2.6.3">
+<h4><span class="header-section-number">6.2.6.3</span> Working example<a href="clinical-research.html#working-example-14" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The package function <code>carat::PocSimMIN()</code> implements Pocock and Simon’s minimization procedure. The returned assignments are coded as <code>1</code> and <code>2</code>, so we relabel them as <code>A</code> and <code>B</code>.</p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="clinical-research.html#cb362-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">21</span>)</span>
+<span id="cb362-2"><a href="clinical-research.html#cb362-2" tabindex="-1"></a>res.min <span class="ot">&lt;-</span> carat<span class="sc">::</span><span class="fu">PocSimMIN</span>(</span>
+<span id="cb362-3"><a href="clinical-research.html#cb362-3" tabindex="-1"></a>  <span class="at">data =</span> trial.data[, <span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;severity&quot;</span>)],</span>
+<span id="cb362-4"><a href="clinical-research.html#cb362-4" tabindex="-1"></a>  <span class="at">p =</span> <span class="fl">0.80</span></span>
+<span id="cb362-5"><a href="clinical-research.html#cb362-5" tabindex="-1"></a>)</span>
+<span id="cb362-6"><a href="clinical-research.html#cb362-6" tabindex="-1"></a></span>
+<span id="cb362-7"><a href="clinical-research.html#cb362-7" tabindex="-1"></a>trt.min <span class="ot">&lt;-</span> res.min<span class="sc">$</span>assignments</span>
+<span id="cb362-8"><a href="clinical-research.html#cb362-8" tabindex="-1"></a>trial.min <span class="ot">&lt;-</span> <span class="fu">cbind</span>(trial.data, <span class="at">treatment =</span> trt.min)</span>
+<span id="cb362-9"><a href="clinical-research.html#cb362-9" tabindex="-1"></a></span>
+<span id="cb362-10"><a href="clinical-research.html#cb362-10" tabindex="-1"></a><span class="fu">table</span>(trial.min<span class="sc">$</span>treatment)</span></code></pre></div>
+<pre><code>## 
+##  A  B 
+## 11 13</code></pre>
+<p>We now compare simple randomization and minimization with respect to covariate balance.</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="clinical-research.html#cb364-1" tabindex="-1"></a>imb.simple.tab <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(abs_diff <span class="sc">~</span> variable,</span>
+<span id="cb364-2"><a href="clinical-research.html#cb364-2" tabindex="-1"></a>                            <span class="at">data =</span> <span class="fu">imbalance_summary</span>(trt.simple,</span>
+<span id="cb364-3"><a href="clinical-research.html#cb364-3" tabindex="-1"></a>                                                     trial.data[, <span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;severity&quot;</span>)])<span class="sc">$</span>cov_diffs,</span>
+<span id="cb364-4"><a href="clinical-research.html#cb364-4" tabindex="-1"></a>                            sum)</span>
+<span id="cb364-5"><a href="clinical-research.html#cb364-5" tabindex="-1"></a>imb.min.tab <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(abs_diff <span class="sc">~</span> variable,</span>
+<span id="cb364-6"><a href="clinical-research.html#cb364-6" tabindex="-1"></a>                         <span class="at">data =</span> <span class="fu">imbalance_summary</span>(trt.min,</span>
+<span id="cb364-7"><a href="clinical-research.html#cb364-7" tabindex="-1"></a>                                                  trial.data[, <span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;severity&quot;</span>)])<span class="sc">$</span>cov_diffs,</span>
+<span id="cb364-8"><a href="clinical-research.html#cb364-8" tabindex="-1"></a>                         sum)</span>
+<span id="cb364-9"><a href="clinical-research.html#cb364-9" tabindex="-1"></a></span>
+<span id="cb364-10"><a href="clinical-research.html#cb364-10" tabindex="-1"></a>imb.simple.tab</span></code></pre></div>
+<pre><code>##   variable abs_diff
+## 1      age        4
+## 2 severity        4
+## 3      sex        4</code></pre>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="clinical-research.html#cb366-1" tabindex="-1"></a>imb.min.tab</span></code></pre></div>
+<pre><code>##   variable abs_diff
+## 1      age        2
+## 2 severity        4
+## 3      sex        2</code></pre>
+<p>A smaller value means better balance between the two groups for that variable.</p>
+<p>We can also compare both methods over many simulated trials.</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="clinical-research.html#cb368-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">52</span>)</span>
+<span id="cb368-2"><a href="clinical-research.html#cb368-2" tabindex="-1"></a>nsim <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb368-3"><a href="clinical-research.html#cb368-3" tabindex="-1"></a>res.cov <span class="ot">&lt;-</span> <span class="fu">replicate</span>(nsim, {</span>
+<span id="cb368-4"><a href="clinical-research.html#cb368-4" tabindex="-1"></a>  covariates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb368-5"><a href="clinical-research.html#cb368-5" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb368-6"><a href="clinical-research.html#cb368-6" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Young&quot;</span>, <span class="st">&quot;Old&quot;</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.55</span>, <span class="fl">0.45</span>))),</span>
+<span id="cb368-7"><a href="clinical-research.html#cb368-7" tabindex="-1"></a>    <span class="at">severity =</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.60</span>, <span class="fl">0.40</span>)))</span>
+<span id="cb368-8"><a href="clinical-research.html#cb368-8" tabindex="-1"></a>  )</span>
+<span id="cb368-9"><a href="clinical-research.html#cb368-9" tabindex="-1"></a></span>
+<span id="cb368-10"><a href="clinical-research.html#cb368-10" tabindex="-1"></a>  trt.s <span class="ot">&lt;-</span> randomizr<span class="sc">::</span><span class="fu">simple_ra</span>(<span class="at">N =</span> n, <span class="at">conditions =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>))</span>
+<span id="cb368-11"><a href="clinical-research.html#cb368-11" tabindex="-1"></a>  trt.m.obj <span class="ot">&lt;-</span> carat<span class="sc">::</span><span class="fu">PocSimMIN</span>(<span class="at">data =</span> covariates, <span class="at">p =</span> <span class="fl">0.80</span>)</span>
+<span id="cb368-12"><a href="clinical-research.html#cb368-12" tabindex="-1"></a>  trt.m <span class="ot">&lt;-</span> trt.m.obj<span class="sc">$</span>assignments</span>
+<span id="cb368-13"><a href="clinical-research.html#cb368-13" tabindex="-1"></a></span>
+<span id="cb368-14"><a href="clinical-research.html#cb368-14" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">simple =</span> <span class="fu">sum_covariate_imbalance</span>(trt.s, covariates),</span>
+<span id="cb368-15"><a href="clinical-research.html#cb368-15" tabindex="-1"></a>    <span class="at">minimization =</span> <span class="fu">sum_covariate_imbalance</span>(trt.m, covariates))</span>
+<span id="cb368-16"><a href="clinical-research.html#cb368-16" tabindex="-1"></a>})</span>
+<span id="cb368-17"><a href="clinical-research.html#cb368-17" tabindex="-1"></a></span>
+<span id="cb368-18"><a href="clinical-research.html#cb368-18" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">as.numeric</span>(res.cov[<span class="st">&quot;simple&quot;</span>, ]), <span class="fu">as.numeric</span>(res.cov[<span class="st">&quot;minimization&quot;</span>, ]),</span>
+<span id="cb368-19"><a href="clinical-research.html#cb368-19" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;Simple&quot;</span>, <span class="st">&quot;Minimization&quot;</span>), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb368-20"><a href="clinical-research.html#cb368-20" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Total covariate imbalance&quot;</span>)</span></code></pre></div>
+<p><img src="Medical-Statistics-Course_files/figure-html/unnamed-chunk-229-1.png" alt="" width="672" /></p>
+<p>Typically, minimization gives lower covariate imbalance than simple randomization. The price to pay is that the allocation rule is more complicated, and if the random component is too small, the next treatment assignment may become too predictable.</p>
+<hr />
+<blockquote>
+<p><em>Quick task(s)</em>:</p>
+<p>Solve <a href="exercises/04-Minimization-packages.tasks.nocode.html">the task(s)</a>, and check your solution(s) <a href="exercises/04-Minimization-packages.tasks.code.html">here</a>.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="summary" class="section level3 hasAnchor" number="6.2.7">
+<h3><span class="header-section-number">6.2.7</span> Summary<a href="clinical-research.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The three approaches in this section solve different problems:</p>
+<ul>
+<li>simple randomization is easy and fully random, but may give noticeable imbalance in small studies;</li>
+<li>block randomization keeps treatment counts close throughout recruitment, but fixed blocks may reduce unpredictability;</li>
+<li>minimization improves balance on important prognostic factors, but the procedure is more complex and should keep a random component.</li>
+</ul>
+<p>The main lesson is that better balance often requires more structure. At the same time, more structure can make the next allocation easier to guess. In practice, the choice of randomization method depends on study size, the importance of prognostic factors, and the need to protect allocation concealment.</p>
+</div>
+</div>
+<div id="observational-studies" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Observational studies<a href="clinical-research.html#observational-studies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<center>
+<div class="float">
+<img src="figure/grimes2002-fig1.png" alt="Type of studies" />
+<div class="figcaption">Type of studies</div>
+</div>
+</center>
+<div id="why-do-we-need-observational-studies" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Why do we need observational studies?<a href="clinical-research.html#why-do-we-need-observational-studies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Randomized controlled trials are often the best design for studying causal effects, but they are not always possible. In many real settings, randomization is not ethical, not practical, or too expensive. In addition, patients enrolled in randomized trials are often more selected than the patients seen in routine care, so trial results may not generalize perfectly to the target population.</p>
+<p>For these reasons, observational studies remain essential in medical research. In an observational study, the researcher does <strong>not</strong> assign the exposure. Instead, the exposure and the outcome are observed as they occur in practice.</p>
+<p>The main strength of randomized trials is that randomization makes causal interpretation easier. But observational designs are needed whenever an exposure cannot realistically or ethically be assigned.</p>
+<p>In this section we look at three common observational designs:</p>
+<ul>
+<li>cross-sectional studies;</li>
+<li>cohort studies;</li>
+<li>case-control studies.</li>
+</ul>
+</div>
+<div id="classifying-observational-studies" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Classifying observational studies<a href="clinical-research.html#classifying-observational-studies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A useful way to distinguish the three designs is by asking <strong>when</strong> exposure and outcome are assessed.</p>
+<ul>
+<li>In a <strong>cross-sectional study</strong>, exposure and outcome are measured at the same moment.</li>
+<li>In a <strong>cohort study</strong>, we start from exposure status and follow people forward to see who develops the outcome.</li>
+<li>In a <strong>case-control study</strong>, we start from outcome status and then look backward for prior exposure.</li>
+</ul>
+<p>A short memory aid is:</p>
+<ul>
+<li>cross-sectional = snapshot;</li>
+<li>cohort = from exposure to outcome;</li>
+<li>case-control = from outcome back to exposure.</li>
+</ul>
+</div>
+<div id="cross-sectional-studies" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Cross-sectional studies<a href="clinical-research.html#cross-sectional-studies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A cross-sectional study gives a snapshot of a population at one point in time. Its main use is to estimate <strong>prevalence</strong>, that is, the proportion of individuals in the population who currently have a disease or condition.</p>
+<p>Its main limitation is that exposure and outcome are observed at the same time. So if an association is found, we usually cannot tell whether the exposure caused the outcome or whether the outcome influenced the exposure.</p>
+<p>Cross-sectional studies are therefore useful for describing how common a condition is, but they are much weaker for causal interpretation.</p>
+<div id="working-example-15" class="section level4 hasAnchor" number="6.3.3.1">
+<h4><span class="header-section-number">6.3.3.1</span> Working example<a href="clinical-research.html#working-example-15" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Suppose that 300 adults are surveyed during a clinic visit, and both obesity status and arthritis status are recorded at that same visit.</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="clinical-research.html#cb369-1" tabindex="-1"></a>cross.tab <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb369-2"><a href="clinical-research.html#cb369-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">36</span>, <span class="dv">84</span>,</span>
+<span id="cb369-3"><a href="clinical-research.html#cb369-3" tabindex="-1"></a>    <span class="dv">24</span>, <span class="dv">156</span>),</span>
+<span id="cb369-4"><a href="clinical-research.html#cb369-4" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb369-5"><a href="clinical-research.html#cb369-5" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb369-6"><a href="clinical-research.html#cb369-6" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb369-7"><a href="clinical-research.html#cb369-7" tabindex="-1"></a>    <span class="at">Obesity =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>),</span>
+<span id="cb369-8"><a href="clinical-research.html#cb369-8" tabindex="-1"></a>    <span class="at">Arthritis =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb369-9"><a href="clinical-research.html#cb369-9" tabindex="-1"></a>  )</span>
+<span id="cb369-10"><a href="clinical-research.html#cb369-10" tabindex="-1"></a>)</span>
+<span id="cb369-11"><a href="clinical-research.html#cb369-11" tabindex="-1"></a></span>
+<span id="cb369-12"><a href="clinical-research.html#cb369-12" tabindex="-1"></a>cross.tab</span></code></pre></div>
+<pre><code>##        Arthritis
+## Obesity Yes  No
+##     Yes  36  84
+##     No   24 156</code></pre>
+<p>The overall prevalence of arthritis is:</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="clinical-research.html#cb371-1" tabindex="-1"></a>prev.arthritis <span class="ot">&lt;-</span> <span class="fu">sum</span>(cross.tab[, <span class="st">&quot;Yes&quot;</span>]) <span class="sc">/</span> <span class="fu">sum</span>(cross.tab)</span>
+<span id="cb371-2"><a href="clinical-research.html#cb371-2" tabindex="-1"></a>prev.arthritis</span></code></pre></div>
+<pre><code>## [1] 0.2</code></pre>
+<p>So in this cross-sectional sample, the prevalence of arthritis is 20%.</p>
+<p>We can also compare the prevalence of arthritis between obese and non-obese individuals.</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="clinical-research.html#cb373-1" tabindex="-1"></a><span class="fu">prop.table</span>(cross.tab, <span class="at">margin =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##        Arthritis
+## Obesity       Yes        No
+##     Yes 0.3000000 0.7000000
+##     No  0.1333333 0.8666667</code></pre>
+<p>The obese group has a higher prevalence of arthritis in this snapshot. But this does <strong>not</strong> establish a causal direction. A cross-sectional study cannot answer whether obesity increased the risk of arthritis, whether arthritis reduced physical activity and increased obesity, or whether both are related to other factors.</p>
+<p>Another important limitation is that cross-sectional studies estimate <strong>prevalence</strong>, not <strong>incidence</strong>. They describe how much disease is present at a given time, not how often new disease occurs over time.</p>
+</div>
+</div>
+<div id="cohort-studies" class="section level3 hasAnchor" number="6.3.4">
+<h3><span class="header-section-number">6.3.4</span> Cohort studies<a href="clinical-research.html#cohort-studies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s consider a standard 2 <span class="math inline">\(\times\)</span> 2 table</p>
+<p><span class="math display">\[
+\begin{array}{c|cc}
+&amp; \text{Disease Yes} &amp; \text{Disease No} \\
+\hline
+\text{Exposure Yes} &amp; a &amp; b \\
+\text{Exposure No} &amp; c &amp; d
+\end{array}
+\]</span></p>
+<p>A cohort study starts with exposure status and follows individuals forward in time to observe whether the outcome occurs. Because the outcome happens after exposure assessment, this design is more natural than a cross-sectional study for studying incidence and risk.</p>
+<center>
+<div class="float">
+<img src="figure/Cohort_1.png" alt="Cohort study" />
+<div class="figcaption">Cohort study</div>
+</div>
+</center>
+<p>Important strengths of cohort studies are:</p>
+<ul>
+<li>incidence can be estimated;</li>
+<li>several outcomes can be studied for the same exposure;</li>
+<li>exposures that cannot be randomized can still be studied;</li>
+<li>external validity is often higher than in a highly selected randomized trial.</li>
+</ul>
+<p>Important limitations are:</p>
+<ul>
+<li>confounding and selection bias are still concerns;</li>
+<li>causal interpretation requires strong assumptions;</li>
+<li>long follow-up may be expensive and time-consuming.</li>
+</ul>
+<p>In a randomized trial, randomization helps make treated and untreated groups comparable. In a cohort study, there is no such protection. Any causal interpretation therefore depends on correctly adjusting for systematic differences between exposed and unexposed individuals.</p>
+<p>This is difficult in practice, because it requires both:</p>
+<ul>
+<li>a reasonable causal model;</li>
+<li>measurement of all important variables that need adjustment.</li>
+</ul>
+<p>So cohort studies provide valuable information, but they must be designed and interpreted with care.</p>
+<div id="working-example-16" class="section level4 hasAnchor" number="6.3.4.1">
+<h4><span class="header-section-number">6.3.4.1</span> Working example<a href="clinical-research.html#working-example-16" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Consider a cohort of 200 individuals followed for a fixed period. At baseline, 100 are exposed and 100 are unexposed. During follow-up, disease occurs in 40 exposed individuals and 10 unexposed individuals.</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="clinical-research.html#cb375-1" tabindex="-1"></a>cohort.tab <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb375-2"><a href="clinical-research.html#cb375-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">60</span>,</span>
+<span id="cb375-3"><a href="clinical-research.html#cb375-3" tabindex="-1"></a>    <span class="dv">10</span>, <span class="dv">90</span>),</span>
+<span id="cb375-4"><a href="clinical-research.html#cb375-4" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb375-5"><a href="clinical-research.html#cb375-5" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb375-6"><a href="clinical-research.html#cb375-6" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb375-7"><a href="clinical-research.html#cb375-7" tabindex="-1"></a>    <span class="at">Exposure =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>),</span>
+<span id="cb375-8"><a href="clinical-research.html#cb375-8" tabindex="-1"></a>    <span class="at">Disease =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb375-9"><a href="clinical-research.html#cb375-9" tabindex="-1"></a>  )</span>
+<span id="cb375-10"><a href="clinical-research.html#cb375-10" tabindex="-1"></a>)</span>
+<span id="cb375-11"><a href="clinical-research.html#cb375-11" tabindex="-1"></a></span>
+<span id="cb375-12"><a href="clinical-research.html#cb375-12" tabindex="-1"></a>cohort.tab</span></code></pre></div>
+<pre><code>##         Disease
+## Exposure Yes No
+##      Yes  40 60
+##      No   10 90</code></pre>
+<p>The risk of disease in each group is:</p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="clinical-research.html#cb377-1" tabindex="-1"></a>risk.exposed <span class="ot">&lt;-</span> cohort.tab[<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(cohort.tab[<span class="st">&quot;Yes&quot;</span>, ])</span>
+<span id="cb377-2"><a href="clinical-research.html#cb377-2" tabindex="-1"></a>risk.unexposed <span class="ot">&lt;-</span> cohort.tab[<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(cohort.tab[<span class="st">&quot;No&quot;</span>, ])</span>
+<span id="cb377-3"><a href="clinical-research.html#cb377-3" tabindex="-1"></a></span>
+<span id="cb377-4"><a href="clinical-research.html#cb377-4" tabindex="-1"></a>risk.exposed</span></code></pre></div>
+<pre><code>## [1] 0.4</code></pre>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="clinical-research.html#cb379-1" tabindex="-1"></a>risk.unexposed</span></code></pre></div>
+<pre><code>## [1] 0.1</code></pre>
+<p>The relative risk (or risk ratio) is therefore:</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="clinical-research.html#cb381-1" tabindex="-1"></a>rr.cohort <span class="ot">&lt;-</span> ( cohort.tab[<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(cohort.tab[<span class="st">&quot;Yes&quot;</span>, ]) )<span class="sc">/</span> (cohort.tab[<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(cohort.tab[<span class="st">&quot;No&quot;</span>, ]))</span>
+<span id="cb381-2"><a href="clinical-research.html#cb381-2" tabindex="-1"></a>rr.cohort</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>So the disease risk is 4 times as high in the exposed group as in the unexposed group.</p>
+<p>Because this is a cohort design, these risks are meaningful: the denominators come from the numbers at risk in the exposed and unexposed groups.</p>
+</div>
+</div>
+<div id="case-control-studies" class="section level3 hasAnchor" number="6.3.5">
+<h3><span class="header-section-number">6.3.5</span> Case-control studies<a href="clinical-research.html#case-control-studies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A case-control study starts with the outcome. We first identify <strong>cases</strong> with the disease and <strong>controls</strong> without the disease, and then compare how common previous exposure was in the two groups.</p>
+<center>
+<div class="float">
+<img src="figure/CC_studies_1.png" alt="Case-control study" />
+<div class="figcaption">Case-control study</div>
+</div>
+</center>
+<p>This design is especially useful for rare diseases, because it would be inefficient to wait for rare cases to appear in a prospective cohort.</p>
+<p>Case-control studies also require careful sampling.</p>
+<ul>
+<li>Cases should have a clearly defined disease or outcome.</li>
+<li>Controls should come from the same source population that gave rise to the cases.</li>
+<li>Control selection should not depend on the exposure of interest.</li>
+</ul>
+<p>This last point is very important. For example, if the exposure is smoking, choosing partners or siblings of lung cancer cases as controls may be problematic because their smoking behavior may be more similar than in the general source population. Likewise, choosing controls with another disease related to the same exposure can also bias the comparison.</p>
+<p>Other important limitations are:</p>
+<ul>
+<li>recall bias may affect how past exposure is reported;</li>
+<li>confounding and selection bias remain major concerns;</li>
+<li>matching can make groups more comparable, but it does not automatically remove all bias.</li>
+</ul>
+<div id="why-the-relative-risk-cannot-be-estimated-directly" class="section level4 hasAnchor" number="6.3.5.1">
+<h4><span class="header-section-number">6.3.5.1</span> Why the relative risk cannot be estimated directly<a href="clinical-research.html#why-the-relative-risk-cannot-be-estimated-directly" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In a case-control study, the investigator fixes how many cases and controls are sampled. That means the proportion with disease in the sample is determined by the study design, not by the underlying disease risk in the population.</p>
+<p>So the usual cohort quantity</p>
+<p><span class="math display">\[
+\text{relative risk} = \frac{a / (a+b)}{c / (c+d)}
+\]</span></p>
+<p>is not meaningful in a case-control sample.</p>
+</div>
+<div id="odds-and-the-odds-ratio" class="section level4 hasAnchor" number="6.3.5.2">
+<h4><span class="header-section-number">6.3.5.2</span> Odds and the odds ratio<a href="clinical-research.html#odds-and-the-odds-ratio" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The appropriate association measure in a case-control study is usually the <strong>odds ratio</strong>.</p>
+<p>Recall that odds are defined as</p>
+<p><span class="math display">\[
+\text{odds} = \frac{P(\text{event})}{1 - P(\text{event})}.
+\]</span></p>
+<p>For example, the probability of rolling a 6 with a fair die is <span class="math inline">\(1/6\)</span>, while the odds of rolling a 6 are <span class="math inline">\(1/5\)</span>, because there is 1 favorable side and 5 unfavorable sides.</p>
+<p>The odds ratio is</p>
+<p><span class="math display">\[
+\text{odds ratio} = \frac{a/b}{c/d} = \frac{ad}{bc}.
+\]</span></p>
+</div>
+<div id="working-example-17" class="section level4 hasAnchor" number="6.3.5.3">
+<h4><span class="header-section-number">6.3.5.3</span> Working example<a href="clinical-research.html#working-example-17" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Suppose the same disease was originally studied in a cohort, but we now perform a case-control study by taking all 50 diseased individuals and a sample of 50 controls. The observed table becomes:</p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="clinical-research.html#cb383-1" tabindex="-1"></a>casecontrol.tab <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb383-2"><a href="clinical-research.html#cb383-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">20</span>,</span>
+<span id="cb383-3"><a href="clinical-research.html#cb383-3" tabindex="-1"></a>    <span class="dv">10</span>, <span class="dv">30</span>),</span>
+<span id="cb383-4"><a href="clinical-research.html#cb383-4" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb383-5"><a href="clinical-research.html#cb383-5" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb383-6"><a href="clinical-research.html#cb383-6" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb383-7"><a href="clinical-research.html#cb383-7" tabindex="-1"></a>    <span class="at">Exposure =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>),</span>
+<span id="cb383-8"><a href="clinical-research.html#cb383-8" tabindex="-1"></a>    <span class="at">Disease =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb383-9"><a href="clinical-research.html#cb383-9" tabindex="-1"></a>  )</span>
+<span id="cb383-10"><a href="clinical-research.html#cb383-10" tabindex="-1"></a>)</span>
+<span id="cb383-11"><a href="clinical-research.html#cb383-11" tabindex="-1"></a></span>
+<span id="cb383-12"><a href="clinical-research.html#cb383-12" tabindex="-1"></a>casecontrol.tab</span></code></pre></div>
+<pre><code>##         Disease
+## Exposure Yes No
+##      Yes  40 20
+##      No   10 30</code></pre>
+<p>The appropriate association measure is the <strong>odds ratio</strong>:</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="clinical-research.html#cb385-1" tabindex="-1"></a>or.casecontrol <span class="ot">&lt;-</span> (casecontrol.tab[<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;Yes&quot;</span>]<span class="sc">*</span>casecontrol.tab[<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>])<span class="sc">/</span>(casecontrol.tab[<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No&quot;</span>]<span class="sc">*</span>casecontrol.tab[<span class="st">&quot;No&quot;</span>,<span class="st">&quot;Yes&quot;</span>])</span>
+<span id="cb385-2"><a href="clinical-research.html#cb385-2" tabindex="-1"></a>or.casecontrol</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>So the odds ratio is 6.</p>
+<p>This is <strong>not</strong> the same as the cohort relative risk of 4. The odds ratio and relative risk are different quantities.</p>
+</div>
+</div>
+<div id="rare-disease-approximation" class="section level3 hasAnchor" number="6.3.6">
+<h3><span class="header-section-number">6.3.6</span> Rare disease approximation<a href="clinical-research.html#rare-disease-approximation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When the disease is rare, the odds ratio from a case-control study is often close to the relative risk from the full cohort.</p>
+<p>For example, suppose the cohort table is:</p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="clinical-research.html#cb387-1" tabindex="-1"></a>rare.cohort <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb387-2"><a href="clinical-research.html#cb387-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">60</span>,</span>
+<span id="cb387-3"><a href="clinical-research.html#cb387-3" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">90</span>),</span>
+<span id="cb387-4"><a href="clinical-research.html#cb387-4" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb387-5"><a href="clinical-research.html#cb387-5" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb387-6"><a href="clinical-research.html#cb387-6" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb387-7"><a href="clinical-research.html#cb387-7" tabindex="-1"></a>    <span class="at">Exposure =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>),</span>
+<span id="cb387-8"><a href="clinical-research.html#cb387-8" tabindex="-1"></a>    <span class="at">Disease =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb387-9"><a href="clinical-research.html#cb387-9" tabindex="-1"></a>  )</span>
+<span id="cb387-10"><a href="clinical-research.html#cb387-10" tabindex="-1"></a>)</span>
+<span id="cb387-11"><a href="clinical-research.html#cb387-11" tabindex="-1"></a></span>
+<span id="cb387-12"><a href="clinical-research.html#cb387-12" tabindex="-1"></a>rare.cohort</span></code></pre></div>
+<pre><code>##         Disease
+## Exposure Yes No
+##      Yes   4 60
+##      No    1 90</code></pre>
+<p>The corresponding relative risk is:</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="clinical-research.html#cb389-1" tabindex="-1"></a>rr.rare <span class="ot">&lt;-</span> ( rare.cohort[<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(rare.cohort[<span class="st">&quot;Yes&quot;</span>, ]) )<span class="sc">/</span> (rare.cohort[<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>] <span class="sc">/</span> <span class="fu">sum</span>(rare.cohort[<span class="st">&quot;No&quot;</span>, ]))</span>
+<span id="cb389-2"><a href="clinical-research.html#cb389-2" tabindex="-1"></a>rr.rare</span></code></pre></div>
+<pre><code>## [1] 5.6875</code></pre>
+<p>Now suppose a case-control sample produces:</p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="clinical-research.html#cb391-1" tabindex="-1"></a>rare.cc <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb391-2"><a href="clinical-research.html#cb391-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">20</span>,</span>
+<span id="cb391-3"><a href="clinical-research.html#cb391-3" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">30</span>),</span>
+<span id="cb391-4"><a href="clinical-research.html#cb391-4" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb391-5"><a href="clinical-research.html#cb391-5" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb391-6"><a href="clinical-research.html#cb391-6" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb391-7"><a href="clinical-research.html#cb391-7" tabindex="-1"></a>    <span class="at">Exposure =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>),</span>
+<span id="cb391-8"><a href="clinical-research.html#cb391-8" tabindex="-1"></a>    <span class="at">Disease =</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb391-9"><a href="clinical-research.html#cb391-9" tabindex="-1"></a>  )</span>
+<span id="cb391-10"><a href="clinical-research.html#cb391-10" tabindex="-1"></a>)</span>
+<span id="cb391-11"><a href="clinical-research.html#cb391-11" tabindex="-1"></a></span>
+<span id="cb391-12"><a href="clinical-research.html#cb391-12" tabindex="-1"></a>rare.cc</span></code></pre></div>
+<pre><code>##         Disease
+## Exposure Yes No
+##      Yes   4 20
+##      No    1 30</code></pre>
+<p>Its odds ratio is:</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="clinical-research.html#cb393-1" tabindex="-1"></a>or.rare <span class="ot">&lt;-</span> (rare.cc[<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;Yes&quot;</span>]<span class="sc">*</span>rare.cc[<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>])<span class="sc">/</span>(rare.cc[<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;No&quot;</span>]<span class="sc">*</span>rare.cc[<span class="st">&quot;No&quot;</span>,<span class="st">&quot;Yes&quot;</span>])</span>
+<span id="cb393-2"><a href="clinical-research.html#cb393-2" tabindex="-1"></a>or.rare</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>Here the relative risk is about 5.69 and the odds ratio is 6, so they are close. This is the usual rare-disease approximation.</p>
+<hr />
+<blockquote>
+<p><em>Quick task(s)</em>:</p>
+<p>Solve <a href="exercises/05-Observational-designs-packages.tasks.nocode.html">the task(s)</a>, and check your solution(s) <a href="exercises/05-Observational-designs-packages.tasks.code.html">here</a>.</p>
+</blockquote>
+<hr />
+</div>
+<div id="summary-1" class="section level3 hasAnchor" number="6.3.7">
+<h3><span class="header-section-number">6.3.7</span> Summary<a href="clinical-research.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The main ideas of this section are:</p>
+<ul>
+<li>cross-sectional studies are useful for prevalence, but weak for causal interpretation;</li>
+<li>cohort studies allow direct estimation of incidence and relative risks;</li>
+<li>case-control studies are efficient for rare diseases and usually rely on the odds ratio;</li>
+<li>in case-control studies, controls must represent the same source population as the cases;</li>
+<li>when the disease is rare, the odds ratio often approximates the relative risk.</li>
+</ul>
+<p>In practice, the question we want to answer determines the choice of the study design and of the measure of association.</p>
+<center>
+<div class="float">
+<img src="figure/comp_obs_1.PNG" alt="Summary" />
+<div class="figcaption">Summary</div>
+</div>
+</center>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="survival-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

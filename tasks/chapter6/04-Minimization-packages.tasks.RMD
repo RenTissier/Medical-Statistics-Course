@@ -1,0 +1,137 @@
+---
+title: "Block randomization packages"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = param, eval= param, include=T)
+```
+
+```{r setup-randomization, include=FALSE}
+required_pkgs <- c("randomizr", "carat")
+missing_pkgs <- required_pkgs[!vapply(required_pkgs, requireNamespace, logical(1), quietly = TRUE)]
+
+if (length(missing_pkgs) > 0) {
+  stop(
+    paste0(
+      "Please install the following packages before running this exercise: ",
+      paste(missing_pkgs, collapse = ", ")
+    )
+  )
+}
+
+imbalance_summary <- function(trt, covariates) {
+  tab_trt <- table(trt)
+  cov_diffs <- lapply(names(covariates), function(v) {
+    levs <- unique(covariates[[v]])
+    s <- sapply(levs, function(lev) {
+      abs(sum(trt == names(tab_trt)[1] & covariates[[v]] == lev) -
+            sum(trt == names(tab_trt)[2] & covariates[[v]] == lev))
+    })
+    data.frame(variable = v, level = levs, abs_diff = as.numeric(s))
+  })
+  do.call(rbind, cov_diffs)
+}
+
+sum_covariate_imbalance <- function(trt, covariates) {
+  tmp <- aggregate(
+    abs_diff ~ variable,
+    data = imbalance_summary(trt, covariates),
+    sum
+  )
+  sum(tmp$abs_diff)
+}
+```
+
+# Exercise - Minimization
+
+Consider a trial with `n = 30` patients. For each patient, the variables `sex`, `age`, and `severity` are recorded before treatment allocation.
+
+## Exercise 1
+
+Simulate a dataset with these three variables. Then apply minimization with `carat::PocSimMIN()` and `p = 0.80` to allocate the patients to treatment `A` or `B`.
+
+
+```{r}
+set.seed(301)
+n <- 30
+covariates <- data.frame(
+  sex = factor(sample(c("Female", "Male"), n, replace = TRUE)),
+  age = factor(sample(c("Young", "Old"), n, replace = TRUE, prob = c(0.55, 0.45))),
+  severity = factor(sample(c("Low", "High"), n, replace = TRUE, prob = c(0.60, 0.40)))
+)
+
+set.seed(302)
+res.min <- carat::PocSimMIN(data = covariates, p = 0.80)
+trt.min <- as.character(res.min$assignments)
+
+trial.min <- cbind(covariates, treatment = trt.min)
+head(trial.min, 10)
+table(trial.min$treatment)
+```
+
+
+## Exercise 2
+
+Using the same covariate dataset, also generate a treatment allocation with simple randomization using `randomizr::simple_ra()`. Compare the treatment counts and the covariate balance obtained under both methods.
+
+
+```{r}
+set.seed(303)
+trt.simple <- randomizr::simple_ra(N = n, conditions = c("A", "B"))
+
+table(trt.simple)
+table(trt.min)
+
+bal.simple <- aggregate(abs_diff ~ variable,
+                        data = imbalance_summary(trt.simple, covariates),
+                        sum)
+bal.min <- aggregate(abs_diff ~ variable,
+                     data = imbalance_summary(trt.min, covariates),
+                     sum)
+
+bal.simple
+bal.min
+```
+
+
+## Exercise 3
+
+Repeat the minimization procedure with `p = 0.60`, `p = 0.80`, and `p = 0.95`. Which value gives the strongest balance? Which value would make the procedure more predictable?
+
+
+
+```{r}
+set.seed(304)
+
+p.values <- c(0.60, 0.80, 0.95)
+nsim <- 200
+
+res.p <- sapply(p.values, function(p) {
+
+  mean(replicate(nsim, {
+
+    trt <- as.character(
+      carat::PocSimMIN(data = covariates, p = p)$assignments
+    )
+
+    sum_covariate_imbalance(trt, covariates)
+
+  }))
+
+})
+
+res.p
+
+comparison <- data.frame(
+  p = p.values,
+  mean_total_imbalance = as.numeric(res.p)
+)
+
+comparison
+
+comparison[which.min(comparison$mean_total_imbalance), ]
+
+
+
+```

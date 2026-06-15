@@ -1,0 +1,104 @@
+---
+title: "Observational designs packages"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = param, eval= param, include=T)
+```
+
+# Exercise - Observational designs
+
+These exercises cover the basic calculations for cross-sectional, cohort, and case-control studies.
+
+## Exercise 1
+
+A cross-sectional survey records obesity and arthritis status for 300 individuals:
+
+```{r, eval=T,echo=T}
+cross.tab <- matrix(c(36, 84,
+                      24, 156),
+                    nrow = 2,
+                    byrow = TRUE,
+                    dimnames = list(
+                      Obesity = c("Yes", "No"),
+                      Arthritis = c("Yes", "No")
+                    ))
+
+cross.tab
+```
+
+Compute:
+
+1. the overall prevalence of arthritis;
+2. the prevalence of arthritis among obese individuals;
+3. the prevalence of arthritis among non-obese individuals.
+
+Then explain why this study cannot establish the causal direction between obesity and arthritis.
+
+
+```{r}
+overall.prev <- sum(cross.tab[, "Yes"]) / sum(cross.tab)
+prev.obese <- cross.tab["Yes", "Yes"] / sum(cross.tab["Yes", ])
+prev.nonobese <- cross.tab["No", "Yes"] / sum(cross.tab["No", ])
+
+overall.prev
+prev.obese
+prev.nonobese
+```
+
+
+## Exercise 2
+
+A cohort study follows 200 individuals for a fixed period and gives the table below:
+
+```{r, eval=T,echo=T}
+cohort.tab <- matrix(c(40, 60,
+                       10, 90),
+                     nrow = 2,
+                     byrow = TRUE,
+                     dimnames = list(
+                       Exposure = c("Yes", "No"),
+                       Disease = c("Yes", "No")
+                     ))
+```
+
+Compute:
+
+1. the risk of disease in the exposed group;
+2. the risk of disease in the unexposed group;
+3. the relative risk.
+
+
+```{r}
+risk.exposed <- cohort.tab["Yes", "Yes"] / sum(cohort.tab["Yes", ])
+risk.unexposed <- cohort.tab["No", "Yes"] / sum(cohort.tab["No", ])
+rr <- risk.exposed / risk.unexposed
+
+risk.exposed
+risk.unexposed
+rr
+```
+
+## Exercise 3
+
+A case-control study on the same disease gives the following table:
+
+```{r, eval=T,echo=T}
+casecontrol.tab <- matrix(c(40, 20,
+                            10, 30),
+                          nrow = 2,
+                          byrow = TRUE,
+                          dimnames = list(
+                            Exposure = c("Yes", "No"),
+                            Disease = c("Yes", "No")
+                          ))
+```
+
+Compute the odds ratio. Then explain why the relative risk cannot be interpreted in the usual way in a case-control study.
+
+
+```{r}
+or <-  (casecontrol.tab["Yes", "Yes"] * casecontrol.tab["No", "No"]) /
+      (casecontrol.tab["Yes", "No"] * casecontrol.tab["No", "Yes"])
+or
